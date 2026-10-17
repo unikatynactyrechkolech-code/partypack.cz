@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PARTYPACK – web
 
-## Getting Started
+Modernizovaná verze webu [partypack.cz](https://partypack.cz) postavená na Next.js (App Router) a Tailwind CSS.
+Texty a struktura stránek odpovídají původnímu webu, změnil se pouze design.
 
-First, run the development server:
+## Spuštění
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Web běží na http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Produkční build:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Obrázky
 
-To learn more about Next.js, take a look at the following resources:
+Všechny obrázky původního webu byly staženy, zkonvertovány do WebP (max. 2000 px na delší straně, kvalita 82)
+a nahrány do Cloudflare R2 bucketu `partypack`. Veřejně jsou dostupné na:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+https://pub-32c9b24c8e42465eb3608a2e395531b5.r2.dev/<rok>/<měsíc>/<název>.webp
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Cesty kopírují strukturu `wp-content/uploads` původního webu (např. `2024/04/Partypack-35.webp`).
+Rozměry všech obrázků jsou v `lib/media.json`, komponenta `components/Img.tsx` z nich skládá `next/image`.
+Seznamy (AI filtry, pozadí, partneři, galerie) jsou v `lib/data.ts`.
 
-## Deploy on Vercel
+## Kontaktní formulář
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Formulář odesílá data na `app/api/contact/route.ts`. Pokud je nastavená proměnná `CONTACT_WEBHOOK_URL`
+(viz `.env.example`), route handler data přepošle na tento webhook. Bez ní se odeslání pouze zaloguje.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Struktura stránek
+
+| Cesta | Obsah |
+| --- | --- |
+| `/` | Úvod, služby, statistiky, partneři, kontakt |
+| `/fotokoutek` | Fotokoutek \| GIFy (Partysnap) |
+| `/ai-fotokoutek` | Fotokoutek s AI |
+| `/ai-filtry`, `/skupinove-ai-filtry` | Nabídka AI filtrů |
+| `/hostesky` | Hostesky, modelky, promotéři |
+| `/partyspin360` | Partyspin 360° |
+| `/ai-draw-bot` | AI Draw Bot |
+| `/galerie` | Galerie posledních akcí (odkazy na alba na Zonerama) |
+| `/pozadi`, `/specialni-pozadi`, `/tistena-pozadi-4` | Nabídka pozadí |
+| `/dalsisluzby` | Další služby |
+| `/cena` | Ceník, FAQ, plesové balíčky |
+| `/kontakt` | Kontakt, formulář, tým |

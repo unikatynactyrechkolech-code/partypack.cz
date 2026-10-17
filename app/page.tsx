@@ -1,69 +1,152 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import { Img } from "@/components/Img";
+import { Button, Container, Heading, Lead, Section } from "@/components/ui";
+import { CardLink, ContactSection, ImageGrid, Partners, Stats } from "@/components/sections";
+import { homeGallery } from "@/lib/data";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "Partypack - Ta nejlepší zábava na akce",
+  description: "Fotokoutek, virtuální realita a další služby do jednoho Partypacku!",
+  alternates: { canonical: "/" },
+};
+
+const services = [
+  { href: "/fotokoutek", title: "Fotobudka | GIFy", image: "2022/01/43531135_2220002654881285_3040242971850047488_n" },
+  { href: "/hostesky", title: "Hostesky | Modelky", image: "2023/05/2023-04-25_PIANA_DO_SKOL_photo-adam-costey-copyright-adam-costey.com-015" },
+  { href: "/ai-fotokoutek", title: "Fotokoutek s AI", image: "2024/04/819a14bd-a2ed-44ee-9e42-29a22cbe3d57" },
+  { href: "/partyspin360", title: "360° Partyspin", image: "2023/02/Partyspin-2-promo-foto-scaled" },
+  { href: "/ai-draw-bot", title: "AI Draw Bot", image: "2025/03/DMB1" },
+  { href: "/dalsisluzby", title: "Další služby", image: "2024/04/Partypack-35" },
+];
+
+const highlights = [
+  "Příjemné zpestření vašich akcí",
+  "Výhodná cena zajištěním balíčku",
+  "Svatby, firemní akce, plesy, narozky",
+  "Nejkrásnější hostesky široko daleko",
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+    <>
+      <section className="relative isolate min-h-svh overflow-hidden bg-ink text-white">
+        <Img
+          k="2023/07/MiaGebauer-302"
+          alt=""
+          fill
           priority
+          sizes="100vw"
+          className="object-cover object-center"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent" />
+        <Container className="relative flex min-h-svh flex-col justify-end pb-16 pt-32 sm:pb-24">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl lg:text-7xl">
+              PARTYPACK
+            </h1>
+            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-white/85 text-pretty sm:text-2xl">
+              … balíček služeb na vaše akce, který promění každý event v nezapomenutelný zážitek.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Button href="/kontakt" variant="light">
+                Napište nám
+              </Button>
+              <Button href="/cena" variant="outline">
+                Cena
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <Section>
+        <Container>
+          <div className="max-w-2xl">
+            <Heading>Co dokážeme zajistit?</Heading>
+            <Lead className="mt-4">… sestavte si svůj balíček! Pro vás zajišťujeme již 7 let.</Lead>
+          </div>
+          <ul className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((s) => (
+              <li key={s.href}>
+                <CardLink href={s.href} image={s.image} title={s.title} />
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      <Stats
+        image="2022/01/33103039_1018111845036421_263485012270120960_n"
+        items={[
+          { value: "10", label: "let na trhu" },
+          { value: "3750", label: "úspěšných akcí" },
+          { value: "702380", label: "úsměvů" },
+          { value: "2188", label: "spokojených klientů" },
+        ]}
+      />
+
+      <Section>
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-paper-soft lg:aspect-auto lg:min-h-[560px]">
+              <Img
+                k="2024/04/Partypack-specialni-Pozadi-31"
+                alt="Fotokoutek Partysnap"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <Heading>
+                … alias nejlepší fotokoutek široko daleko, který za vámi dorazí klidně na druhý konec světa!
+              </Heading>
+              <div className="mt-8">
+                <Button href="/fotokoutek">Více info</Button>
+              </div>
+
+              <div className="mt-14 border-t border-line pt-10">
+                <Heading as="h3">Milujeme naší práci</Heading>
+                <Lead className="mt-4">
+                  … proto do toho dáváme srdce a je to znát! Na trhu jsme již pěknou řadu let a nyní nás
+                  můžete najít jako balíček služeb Partypack.
+                </Lead>
+                <p className="mt-4 leading-relaxed text-ink-soft text-pretty">
+                  Specializujeme se na jedinečné zážitky, které oživí každý event, konferenci, firemní
+                  večírek, narozeniny či svatbu. S námi můžete počítat s profesionálním přístupem,
+                  moderním vybavením a službami, které zaručeně potěší vaše hosty. Děláme vše pro to, aby
+                  vaše událost byla nezapomenutelná!
+                </p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Partners />
+
+      <Section>
+        <Container>
+          <ImageGrid
+            images={homeGallery}
+            alt="Partypack na akci"
+            cols="grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
+            aspect="aspect-[3/4]"
+          />
+          <ul className="mt-14 grid gap-6 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-4">
+            {highlights.map((h) => (
+              <li key={h} className="text-lg font-medium tracking-tight text-ink">
+                {h}
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      <ContactSection
+        lead="… Vaší představu o plánovaném eventu, svatbě, (maturitním) plese, nebo konferenci a my se už postaráme o zbytek! Naše služby zajistíme taky na dětské dny, koncerty, narozeniny nebo třeba babyshower!"
+      />
+    </>
   );
 }

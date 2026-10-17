@@ -1,9 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "pub-32c9b24c8e42465eb3608a2e395531b5.r2.dev",
+      },
+    ],
+  },
   turbopack: {
     rules: {
       "*.css": {

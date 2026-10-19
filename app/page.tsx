@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Img } from "@/components/Img";
-import { Button, Container, Heading, Lead, Section } from "@/components/ui";
+import { HeroSlider, type Slide } from "@/components/HeroSlider";
+import { Container, Section, SectionTitle } from "@/components/ui";
 import { CardLink, ContactSection, ImageGrid, Partners, Stats } from "@/components/sections";
 import { homeGallery } from "@/lib/data";
 
@@ -9,6 +9,25 @@ export const metadata: Metadata = {
   description: "Fotokoutek, virtuální realita a další služby do jednoho Partypacku!",
   alternates: { canonical: "/" },
 };
+
+const slides: Slide[] = [
+  {
+    image: "2023/07/MiaGebauer-302",
+    title: "Partypack",
+    text: "… balíček služeb na vaše akce, který promění každý event v nezapomenutelný zážitek.",
+  },
+  {
+    image: "2024/04/Partypack-specialni-Pozadi-31",
+    title: "Partysnap",
+    text: "… alias nejlepší fotokoutek široko daleko, který za vámi dorazí klidně na druhý konec světa!",
+    cta: { href: "/fotokoutek", label: "Více info" },
+  },
+  {
+    image: "2024/10/038_2024-10-16-Makro-Chefs-Dinner-VIP_Full-scaled",
+    title: "Akce bez starostí",
+    text: "… pro vás zajišťujeme již 7 let!",
+  },
+];
 
 const services = [
   { href: "/fotokoutek", title: "Fotobudka | GIFy", image: "2022/01/43531135_2220002654881285_3040242971850047488_n" },
@@ -29,47 +48,20 @@ const highlights = [
 export default function HomePage() {
   return (
     <>
-      <section className="relative isolate min-h-svh overflow-hidden bg-ink text-white">
-        <Img
-          k="2023/07/MiaGebauer-302"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent" />
-        <Container className="relative flex min-h-svh flex-col justify-end pb-16 pt-32 sm:pb-24">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl lg:text-7xl">
-              PARTYPACK
-            </h1>
-            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-white/85 text-pretty sm:text-2xl">
-              … balíček služeb na vaše akce, který promění každý event v nezapomenutelný zážitek.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Button href="/kontakt" variant="light">
-                Napište nám
-              </Button>
-              <Button href="/cena" variant="outline">
-                Cena
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <HeroSlider slides={slides} />
 
       <Section>
         <Container>
-          <div className="max-w-2xl">
-            <Heading>Co dokážeme zajistit?</Heading>
-            <Lead className="mt-4">… sestavte si svůj balíček! Pro vás zajišťujeme již 7 let.</Lead>
-          </div>
-          <ul className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <SectionTitle title="Co dokážeme zajistit?" subtitle="… sestavte si svůj balíček!" />
+          <ul className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 xl:grid-cols-6">
             {services.map((s) => (
               <li key={s.href}>
-                <CardLink href={s.href} image={s.image} title={s.title} />
+                <CardLink
+                  href={s.href}
+                  image={s.image}
+                  title={s.title}
+                  sizes="(min-width: 1280px) 16vw, (min-width: 1024px) 33vw, 50vw"
+                />
               </li>
             ))}
           </ul>
@@ -86,41 +78,18 @@ export default function HomePage() {
         ]}
       />
 
-      <Section>
+      <Section className="bg-paper-soft">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-paper-soft lg:aspect-auto lg:min-h-[560px]">
-              <Img
-                k="2024/04/Partypack-specialni-Pozadi-31"
-                alt="Fotokoutek Partysnap"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="flex flex-col justify-center">
-              <Heading>
-                … alias nejlepší fotokoutek široko daleko, který za vámi dorazí klidně na druhý konec světa!
-              </Heading>
-              <div className="mt-8">
-                <Button href="/fotokoutek">Více info</Button>
-              </div>
-
-              <div className="mt-14 border-t border-line pt-10">
-                <Heading as="h3">Milujeme naší práci</Heading>
-                <Lead className="mt-4">
-                  … proto do toho dáváme srdce a je to znát! Na trhu jsme již pěknou řadu let a nyní nás
-                  můžete najít jako balíček služeb Partypack.
-                </Lead>
-                <p className="mt-4 leading-relaxed text-ink-soft text-pretty">
-                  Specializujeme se na jedinečné zážitky, které oživí každý event, konferenci, firemní
-                  večírek, narozeniny či svatbu. S námi můžete počítat s profesionálním přístupem,
-                  moderním vybavením a službami, které zaručeně potěší vaše hosty. Děláme vše pro to, aby
-                  vaše událost byla nezapomenutelná!
-                </p>
-              </div>
-            </div>
-          </div>
+          <SectionTitle
+            title="Milujeme naší práci"
+            subtitle="… proto do toho dáváme srdce a je to znát! Na trhu jsme již pěknou řadu let a nyní nás můžete najít jako balíček služeb Partypack."
+          />
+          <p className="mx-auto mt-8 max-w-3xl text-center leading-relaxed text-ink-soft text-pretty">
+            Specializujeme se na jedinečné zážitky, které oživí každý event, konferenci, firemní večírek,
+            narozeniny či svatbu. S námi můžete počítat s profesionálním přístupem, moderním vybavením a
+            službami, které zaručeně potěší vaše hosty. Děláme vše pro to, aby vaše událost byla
+            nezapomenutelná!
+          </p>
         </Container>
       </Section>
 
@@ -134,10 +103,11 @@ export default function HomePage() {
             cols="grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
             aspect="aspect-[3/4]"
           />
-          <ul className="mt-14 grid gap-6 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-16 grid gap-10 border-t border-line pt-12 text-center sm:grid-cols-2 lg:grid-cols-4">
             {highlights.map((h) => (
-              <li key={h} className="text-lg font-medium tracking-tight text-ink">
-                {h}
+              <li key={h}>
+                <span aria-hidden className="mx-auto block h-px w-8 bg-accent" />
+                <p className="mt-4 text-base font-medium text-ink">{h}</p>
               </li>
             ))}
           </ul>

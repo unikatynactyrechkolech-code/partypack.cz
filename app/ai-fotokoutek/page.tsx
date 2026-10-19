@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Img } from "@/components/Img";
 import { PageHero } from "@/components/PageHero";
-import { Button, Container, Heading, Section } from "@/components/ui";
+import { BeforeAfter } from "@/components/BeforeAfter";
+import { Button, Container, Divider, Heading, Section } from "@/components/ui";
 import { CtaBand, Steps } from "@/components/sections";
 
 export const metadata: Metadata = {
@@ -35,62 +36,61 @@ const features = [
 export default function AiFotokoutekPage() {
   return (
     <>
-      <PageHero
-        image="2024/08/foto-AI-web-cenik"
-        title="Staň se kýmkoli, kdekoli a to díky AI!"
-      >
+      <PageHero image="2024/08/foto-AI-web-cenik" title="Staň se kýmkoli, kdekoli a to díky AI!" align="left">
         <Button href="/kontakt" variant="light">Napište nám</Button>
         <Button href="/cena" variant="outline">Cena</Button>
       </PageHero>
 
       <Section>
         <Container>
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-2xl border border-line p-8">
+          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+            <div>
               <Heading as="h3">Až 8 filtrů!</Heading>
-              <p className="mt-4 leading-relaxed text-ink-soft text-pretty">
+              <Divider className="mt-4" />
+              <p className="mt-5 leading-relaxed text-ink-soft text-pretty">
                 Mrkněte na naší bohatou nabídku AI filtrů, které jsou určené pro jednotlivce. Všechny naše
                 filtry fungují pro muže, ženy i děti.
               </p>
               <div className="mt-6">
-                <Button href="/ai-filtry">Jdeme vybírat</Button>
+                <Button href="/ai-filtry" variant="secondary">Jdeme vybírat</Button>
               </div>
             </div>
-            <div className="rounded-2xl border border-line p-8">
+            <div>
               <Heading as="h3">Ještě větší výběr!</Heading>
-              <p className="mt-4 leading-relaxed text-ink-soft text-pretty">
+              <Divider className="mt-4" />
+              <p className="mt-5 leading-relaxed text-ink-soft text-pretty">
                 Filtry pro skupiny 2-8 osob není potřeba vybírat dopředu. Na místě lze vybírat ze všech
                 dostupných filtrů! Mrkněte se, jaké máme k dispozici.
               </p>
               <div className="mt-6">
-                <Button href="/skupinove-ai-filtry">Jdeme mrknout</Button>
+                <Button href="/skupinove-ai-filtry" variant="secondary">Jdeme mrknout</Button>
               </div>
             </div>
           </div>
         </Container>
       </Section>
 
-      <Section className="border-y border-line bg-paper-soft">
-        <Container>
+      <section className="grid border-y border-line lg:grid-cols-2">
+        <div className="flex flex-col justify-center px-5 py-16 sm:px-12 lg:px-16 lg:py-24">
           <Heading>Jak to funguje?</Heading>
+          <Divider className="mt-5" />
           <div className="mt-10">
             <Steps items={steps} />
           </div>
-        </Container>
-      </Section>
+        </div>
+        <div className="relative min-h-[360px] lg:min-h-[640px]">
+          <Img k="2024/08/454878840_10228646758811796_1529734258425616764_n" alt="AI fotokoutek na akci" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+        </div>
+      </section>
 
       <Section>
         <Container>
           <Heading>Před &amp; po</Heading>
+          <Divider className="mt-5" />
           <ul className="mt-10 grid gap-6 sm:grid-cols-3">
             {beforeAfter.map(([before, after]) => (
-              <li key={before} className="grid grid-cols-2 gap-2">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-paper-soft">
-                  <Img k={before} alt="Před" fill sizes="(min-width: 640px) 16vw, 50vw" className="object-cover" />
-                </div>
-                <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-paper-soft">
-                  <Img k={after} alt="Po" fill sizes="(min-width: 640px) 16vw, 50vw" className="object-cover" />
-                </div>
+              <li key={before}>
+                <BeforeAfter before={before} after={after} />
               </li>
             ))}
           </ul>
@@ -99,10 +99,11 @@ export default function AiFotokoutekPage() {
 
       <Section className="border-t border-line bg-paper-soft">
         <Container>
-          <ul className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((f) => (
-              <li key={f.title} className="border-t border-line pt-5">
-                <h3 className="text-lg font-semibold tracking-tight text-ink">{f.title}</h3>
+              <li key={f.title}>
+                <span aria-hidden className="block h-px w-8 bg-accent" />
+                <h3 className="mt-4 text-lg font-semibold tracking-tight text-ink">{f.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft text-pretty">{f.text}</p>
               </li>
             ))}
@@ -110,8 +111,8 @@ export default function AiFotokoutekPage() {
         </Container>
       </Section>
 
-      <CtaBand image="2025/04/IMG_2202-scaled" title="Cena AI fotokoutku">
-        <Button href="/cena" variant="light">Cena</Button>
+      <CtaBand image="2025/04/IMG_2202-scaled" title="Kolik to stojí?">
+        <Button href="/cena" variant="outline">Cena</Button>
       </CtaBand>
     </>
   );

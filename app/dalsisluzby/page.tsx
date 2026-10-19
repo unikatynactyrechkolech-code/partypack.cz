@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
-import { Button, Container, Section } from "@/components/ui";
-import { ContactSection, FeatureList, Partners } from "@/components/sections";
+import { Button } from "@/components/ui";
+import { Checkerboard, ContactSection, Partners } from "@/components/sections";
 
 export const metadata: Metadata = {
   title: "Partypack - balíček služeb na vaše akce",
@@ -24,18 +24,11 @@ const services = [
 export default function DalsiSluzbyPage() {
   return (
     <>
-      <PageHero
-        image="2022/10/Partypack-50-kopie"
-        title="Sestavte si svůj balíček služeb!"
-      >
+      <PageHero image="2022/10/Partypack-50-kopie" title="Sestavte si svůj balíček služeb!">
         <Button href="/kontakt" variant="light">Napište nám</Button>
       </PageHero>
 
-      <Section>
-        <Container>
-          <FeatureList items={services} />
-        </Container>
-      </Section>
+      <Checkerboard items={services} />
 
       <Partners />
 

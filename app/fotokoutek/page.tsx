@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
-import { Button, Container, Heading, Lead, Prose, Section, TextLink } from "@/components/ui";
-import { CardLink, CtaBand, FeatureList, ImageGrid } from "@/components/sections";
+import { Button, Container, Heading, Prose, Section, SectionTitle, TextLink } from "@/components/ui";
+import { CardLink, Checkerboard, CtaBand, ImageGrid } from "@/components/sections";
 import { fotokoutekGallery, gallery, ledWallImages, partyTouchImages } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -11,11 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/fotokoutek" },
 };
 
-const classicImages = [
-  "2024/01/Partypack-115",
-  "2023/09/3M0A9772",
-  "2023/07/MiaGebauer-292",
-];
+const classicImages = ["2024/01/Partypack-115", "2023/09/3M0A9772", "2023/07/MiaGebauer-292"];
 
 const features = [
   {
@@ -87,7 +83,7 @@ export default function FotokoutekPage() {
       <Section>
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-            <div>
+            <div className="flex flex-col justify-center">
               <Heading>Klasický fotokoutek</Heading>
               <Prose className="mt-6">
                 <p>
@@ -115,7 +111,7 @@ export default function FotokoutekPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <ImageGrid images={ledWallImages} alt="LED stěna" cols="grid-cols-2" featureFirst />
-            <div className="lg:order-first">
+            <div className="flex flex-col justify-center lg:order-first">
               <Heading>Led stěna &amp; GIFY</Heading>
               <Prose className="mt-6">
                 <p>
@@ -139,7 +135,7 @@ export default function FotokoutekPage() {
       <Section>
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-            <div>
+            <div className="flex flex-col justify-center">
               <Heading>Party touch</Heading>
               <Prose className="mt-6">
                 <p>
@@ -162,50 +158,34 @@ export default function FotokoutekPage() {
         </Container>
       </Section>
 
-      <Section className="border-t border-line pt-0 sm:pt-0">
-        <Container>
-          <div className="pt-16 sm:pt-24">
-            <Heading>Fotky z fotokoutku</Heading>
-          </div>
-          <div className="mt-10">
-            <ImageGrid images={fotokoutekGallery} alt="Fotka z fotokoutku Partysnap" cols="grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" />
-          </div>
-        </Container>
-      </Section>
+      <section className="border-t border-line">
+        <ImageGrid
+          images={fotokoutekGallery.slice(0, 10)}
+          alt="Fotka z fotokoutku Partysnap"
+          cols="grid-cols-3 sm:grid-cols-5 lg:grid-cols-10 gap-0! sm:gap-0!"
+          aspect="aspect-square"
+        />
+      </section>
 
-      <Section className="bg-paper-soft">
-        <Container>
-          <Heading>Co je v ceně</Heading>
-          <div className="mt-10">
-            <FeatureList items={features} />
-          </div>
-        </Container>
-      </Section>
+      <Checkerboard items={features} />
 
-      <Section>
+      <Section className="border-t border-line bg-paper-soft">
         <Container>
-          <Heading>Pro jaké akce</Heading>
-          <ul className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-x-16 gap-y-10 md:grid-cols-2">
             {occasions.map((o) => (
-              <li key={o.title} className="border-t border-line pt-5">
+              <li key={o.title}>
                 <h3 className="text-lg font-semibold uppercase tracking-wide text-ink">{o.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft text-pretty">{o.text}</p>
+                <p className="mt-2 leading-relaxed text-ink-soft text-pretty">{o.text}</p>
               </li>
             ))}
           </ul>
         </Container>
       </Section>
 
-      <Section className="border-t border-line bg-paper-soft">
+      <Section>
         <Container>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <Heading>Fotky z našich posledních akcí</Heading>
-              <Lead className="mt-3">... a kde je ta vaše?</Lead>
-            </div>
-            <Button href="/galerie" variant="secondary">Galerie</Button>
-          </div>
-          <ul className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <SectionTitle title="Fotky z našich posledních akcí" subtitle="... a kde je ta vaše?" />
+          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {recent.map((g) => (
               <li key={g.slug}>
                 <CardLink
@@ -218,19 +198,22 @@ export default function FotokoutekPage() {
               </li>
             ))}
           </ul>
+          <div className="mt-10 text-center">
+            <Button href="/galerie" variant="secondary">Celá galerie</Button>
+          </div>
         </Container>
       </Section>
 
-      <Section>
+      <Section className="border-t border-line">
         <Container>
-          <div className="max-w-2xl">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-20">
             <Heading>Naše další služby</Heading>
-            <Lead className="mt-4">
+            <p className="text-lg leading-relaxed text-ink-soft text-pretty">
               Objednáním několika našich služeb získáte slevy od 10 – 30 % v závislosti na velikosti
               objednávky. Budeme se těšit na spolupráci!
-            </Lead>
+            </p>
           </div>
-          <ul className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-3">
+          <ul className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-3">
             {otherServices.map((s) => (
               <li key={s.href}>
                 <CardLink href={s.href} image={s.image} title={s.title} />
@@ -241,7 +224,7 @@ export default function FotokoutekPage() {
       </Section>
 
       <CtaBand image="2023/05/MiaGebauer-21" title="Konkrétní ceny za naše služby?">
-        <Button href="/cena" variant="light">Ukaž cenu</Button>
+        <Button href="/cena" variant="outline">Ukaž cenu</Button>
       </CtaBand>
     </>
   );

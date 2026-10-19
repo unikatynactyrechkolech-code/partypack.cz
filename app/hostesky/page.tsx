@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Img } from "@/components/Img";
 import { PageHero } from "@/components/PageHero";
-import { Button, Container, Heading, Prose, Section, TextLink } from "@/components/ui";
-import { CtaBand, ImageGrid, Steps } from "@/components/sections";
+import { Button, Container, Section, SectionTitle, TextLink } from "@/components/ui";
+import { CtaBand, DarkBand, Steps } from "@/components/sections";
 import { hosteskyGrid } from "@/lib/data";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Partypack - hostesky",
@@ -28,89 +29,91 @@ const steps = [
 export default function HosteskyPage() {
   return (
     <>
-      <PageHero
-        image="2023/09/adamcostey-4"
-        title="Naše hostesky budou nejkrásnější ozdobou na každé vaší akci!"
-      >
+      <PageHero image="2023/09/adamcostey-4" title="Naše hostesky budou nejkrásnější ozdobou na každé vaší akci!">
         <Button href="/kontakt" variant="light">Objednat</Button>
       </PageHero>
 
       <Section>
         <Container>
-          <Heading>Zajistíme pro vás</Heading>
-          <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
+          <SectionTitle title="Zajistíme pro vás" />
+          <ul className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
             {offer.map((o) => (
-              <li key={o.title}>
-                <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-paper-soft">
-                  <Img k={o.image} alt={o.title} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
-                </div>
-                <h3 className="mt-3 text-base font-medium text-ink">{o.title}</h3>
+              <li key={o.title} className="relative aspect-[3/4] overflow-hidden rounded-xl bg-ink">
+                <Img k={o.image} alt={o.title} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
+                <h3 className="absolute inset-x-0 bottom-0 p-5 text-center text-lg font-medium text-white">{o.title}</h3>
               </li>
             ))}
           </ul>
         </Container>
       </Section>
 
-      <Section className="border-y border-line bg-paper-soft">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-white lg:aspect-auto">
-              <Img k="2024/02/1942" alt="Hostesky Partypack" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
-            </div>
-            <div className="flex flex-col justify-center">
-              <Heading>Jak to u nás funguje?</Heading>
-              <Prose className="mt-6">
-                <p>
-                  Hostesky na akce vybíráme vždy na míru dle požadavků a představ klienta. Naše velká databáze
-                  slečen dokáže pozvednout jakýkoli event. Od firemní konference přes luxusní event až po
-                  hostesky či promotéry na veletrhu. Není problém zajistit po celou dobu naší supervizi, která
-                  se stará nejen o pohodlí hostesek, ale především o to, aby bylo vše v pořádku a nemuseli jste
-                  mít na akci žádné starosti.
-                </p>
-                <p>
-                  Samozřejmostí je pro nás též zajištění specifického dress codu, úpravy vlasů, líčení holek a
-                  dalších požadavků.
-                </p>
-                <p className="font-medium text-ink">
-                  Fundus našeho oblečení naleznete{" "}
-                  <TextLink
-                    href="https://www.canva.com/design/DAF-R99nqG4/kcEjzVnX2IUYYvne-RnKQA/view?utm_content=DAF-R99nqG4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1f1322e84c"
-                    external
-                  >
-                    ZDE
-                  </TextLink>{" "}
-                  nebo v{" "}
-                  <TextLink href="https://partypack.cz/wp-content/uploads/2024/03/Nabidka-obleceni-hostesky.pdf" external>
-                    PDF
-                  </TextLink>
-                  .
-                </p>
-              </Prose>
-            </div>
-          </div>
-          <div className="mt-14">
-            <Steps items={steps} />
-          </div>
-        </Container>
-      </Section>
+      <DarkBand image="2024/02/1942">
+        <SectionTitle title="Jak to u nás funguje?" light />
+        <div className="mx-auto mt-8 max-w-3xl space-y-4 text-center leading-relaxed text-white/85 text-pretty">
+          <p>
+            Hostesky na akce vybíráme vždy na míru dle požadavků a představ klienta. Naše velká databáze
+            slečen dokáže pozvednout jakýkoli event. Od firemní konference přes luxusní event až po hostesky
+            či promotéry na veletrhu. Není problém zajistit po celou dobu naší supervizi, která se stará nejen
+            o pohodlí hostesek, ale především o to, aby bylo vše v pořádku a nemuseli jste mít na akci žádné
+            starosti.
+          </p>
+          <p>
+            Samozřejmostí je pro nás též zajištění specifického dress codu, úpravy vlasů, líčení holek a
+            dalších požadavků.
+          </p>
+          <p className="text-lg font-medium text-white">
+            Fundus našeho oblečení naleznete{" "}
+            <a
+              href="https://www.canva.com/design/DAF-R99nqG4/kcEjzVnX2IUYYvne-RnKQA/view?utm_content=DAF-R99nqG4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1f1322e84c"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4"
+            >
+              ZDE
+            </a>{" "}
+            (
+            <a
+              href="https://partypack.cz/wp-content/uploads/2024/03/Nabidka-obleceni-hostesky.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4"
+            >
+              PDF
+            </a>
+            )
+          </p>
+        </div>
+        <div className="mt-14">
+          <Steps items={steps} light />
+        </div>
+      </DarkBand>
 
       <Section>
         <Container>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <Heading>@Partypack_cz</Heading>
-            <Button href="https://www.instagram.com/partypack_cz/" variant="secondary" external>
+          <div className="flex items-center justify-between gap-6">
+            <TextLink href={site.instagram} external>
+              {site.instagramHandle}
+            </TextLink>
+            <Button href={site.instagram} variant="secondary" external>
               Instagram
             </Button>
           </div>
-          <div className="mt-10">
-            <ImageGrid images={hosteskyGrid} alt="Hostesky Partypack" cols="grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" />
-          </div>
-          <p className="mt-10 text-2xl font-semibold tracking-tight text-ink">A nechte svou akci zazářit</p>
+          <ul className="mt-6 grid grid-cols-3 gap-2 sm:grid-cols-6 lg:grid-cols-12 sm:gap-3">
+            {hosteskyGrid.map((k) => (
+              <li key={k} className="relative aspect-square overflow-hidden rounded-lg bg-paper-soft">
+                <Img k={k} alt="Hostesky Partypack" fill sizes="(min-width: 1024px) 8vw, (min-width: 640px) 16vw, 33vw" className="object-cover" />
+              </li>
+            ))}
+          </ul>
+          <p className="mt-14 text-center text-base font-semibold uppercase tracking-[0.2em] text-ink">
+            A nechte svou akci zazářit
+          </p>
         </Container>
       </Section>
 
       <CtaBand image="2024/02/1902" title="Objednejte si svou první akci s námi!">
-        <Button href="/kontakt" variant="light">Objednat</Button>
+        <Button href="/kontakt" variant="outline">Objednat</Button>
       </CtaBand>
     </>
   );

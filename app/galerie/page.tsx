@@ -22,23 +22,23 @@ export default function GaleriePage() {
           Všechny galerie na Zonerama
         </Button>
       </PageHero>
-    <Section>
-      <Container>
-        <ul className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {gallery.map((g) => (
-            <li key={g.slug}>
-              <CardLink
-                href={g.album ?? "/kontakt"}
-                external={Boolean(g.album)}
-                image={g.img}
-                title={g.title}
-                aspect="aspect-[3/2]"
-              />
-            </li>
-          ))}
-        </ul>
-      </Container>
-    </Section>
+      <Section>
+        <Container>
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {gallery.map((g) => (
+              <li key={g.slug}>
+                <CardLink
+                  href={g.album ?? "/kontakt"}
+                  external={Boolean(g.album)}
+                  image={g.img}
+                  title={g.title}
+                  aspect="aspect-[3/2]"
+                />
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
     </>
   );
 }

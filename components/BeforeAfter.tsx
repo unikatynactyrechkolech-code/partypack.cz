@@ -8,7 +8,7 @@ export function BeforeAfter({ before, after }: { before: string; after: string }
   const [pos, setPos] = useState(50);
   const id = useId();
   return (
-    <div className="relative aspect-[3/4] select-none overflow-hidden rounded-xl bg-paper-soft">
+    <div className="relative aspect-[3/4] select-none overflow-hidden rounded-md bg-paper-soft">
       <Img k={after} alt="Po úpravě AI filtrem" fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover" />
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
         <Img k={before} alt="Před úpravou" fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover" />

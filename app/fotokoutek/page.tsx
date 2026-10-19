@@ -175,7 +175,7 @@ export default function FotokoutekPage() {
             {occasions.map((o) => (
               <li key={o.title}>
                 <h3 className="text-lg font-semibold uppercase tracking-wide text-ink">{o.title}</h3>
-                <p className="mt-2 leading-relaxed text-ink-soft text-pretty">{o.text}</p>
+                <p className="mt-2 leading-relaxed text-ink text-pretty">{o.text}</p>
               </li>
             ))}
           </ul>
@@ -208,7 +208,7 @@ export default function FotokoutekPage() {
         <Container>
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-20">
             <Heading>Naše další služby</Heading>
-            <p className="text-lg leading-relaxed text-ink-soft text-pretty">
+            <p className="text-lg leading-relaxed text-ink text-pretty">
               Objednáním několika našich služeb získáte slevy od 10 – 30 % v závislosti na velikosti
               objednávky. Budeme se těšit na spolupráci!
             </p>

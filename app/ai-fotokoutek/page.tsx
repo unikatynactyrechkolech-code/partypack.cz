@@ -47,7 +47,7 @@ export default function AiFotokoutekPage() {
             <div>
               <Heading as="h3">Až 8 filtrů!</Heading>
               <Divider className="mt-4" />
-              <p className="mt-5 leading-relaxed text-ink-soft text-pretty">
+              <p className="mt-5 leading-relaxed text-ink text-pretty">
                 Mrkněte na naší bohatou nabídku AI filtrů, které jsou určené pro jednotlivce. Všechny naše
                 filtry fungují pro muže, ženy i děti.
               </p>
@@ -58,7 +58,7 @@ export default function AiFotokoutekPage() {
             <div>
               <Heading as="h3">Ještě větší výběr!</Heading>
               <Divider className="mt-4" />
-              <p className="mt-5 leading-relaxed text-ink-soft text-pretty">
+              <p className="mt-5 leading-relaxed text-ink text-pretty">
                 Filtry pro skupiny 2-8 osob není potřeba vybírat dopředu. Na místě lze vybírat ze všech
                 dostupných filtrů! Mrkněte se, jaké máme k dispozici.
               </p>
@@ -104,7 +104,7 @@ export default function AiFotokoutekPage() {
               <li key={f.title}>
                 <span aria-hidden className="block h-px w-8 bg-accent" />
                 <h3 className="mt-4 text-lg font-semibold tracking-tight text-ink">{f.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft text-pretty">{f.text}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink text-pretty">{f.text}</p>
               </li>
             ))}
           </ul>

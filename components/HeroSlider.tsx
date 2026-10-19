@@ -48,7 +48,7 @@ export function HeroSlider({ slides }: { slides: Slide[] }) {
               {s.title}
             </h1>
             <Divider align="center" light className="mt-6" />
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/85 text-pretty sm:text-xl">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white text-pretty sm:text-xl">
               {s.text}
             </p>
             {s.cta ? (

@@ -7,16 +7,16 @@ import { partners, type Partner } from "@/lib/data";
 
 export function Partners({ items = partners }: { items?: Partner[] }) {
   return (
-    <Section className="border-y border-line bg-paper-soft py-12 sm:py-16">
+    <Section className="bg-paper-soft">
       <Container>
-        <ul className="grid grid-cols-3 gap-x-6 gap-y-8 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+        <ul className="mx-auto grid max-w-6xl grid-cols-2 items-center gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 lg:gap-y-14">
           {items.map((p) => (
             <li key={p.img} className="flex items-center justify-center">
               <Img
                 k={p.img}
                 alt={p.name}
-                sizes="(min-width: 1024px) 140px, 25vw"
-                className="h-10 w-auto max-w-[120px] object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0"
+                sizes="(min-width: 1024px) 280px, (min-width: 640px) 33vw, 50vw"
+                className="h-auto w-full max-w-[260px] object-contain"
               />
             </li>
           ))}
@@ -37,7 +37,7 @@ export function ContactSection({
     <Section id="kontakt" className="bg-paper-soft">
       <Container>
         <SectionTitle title={title} subtitle={lead} />
-        <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-line bg-white p-6 sm:p-10">
+        <div className="mx-auto mt-12 max-w-3xl rounded-lg border border-line bg-white p-6 sm:p-10">
           <ContactForm />
         </div>
       </Container>
@@ -65,7 +65,7 @@ export function Stats({
           {items.map((s) => (
             <div key={s.label}>
               <dd className="text-4xl font-semibold tracking-tight sm:text-5xl">{s.value}</dd>
-              <dt className="mt-2 text-sm text-white/75">{s.label}</dt>
+              <dt className="mt-2 text-sm text-white">{s.label}</dt>
             </div>
           ))}
         </dl>
@@ -91,7 +91,7 @@ export function CardLink({
   sizes?: string;
 }) {
   const inner = (
-    <div className={`relative ${aspect} overflow-hidden rounded-xl bg-ink`}>
+    <div className={`relative ${aspect} overflow-hidden rounded-md bg-ink`}>
       <Img
         k={image}
         alt={title}
@@ -137,7 +137,7 @@ export function ImageGrid({
       {images.map((k, i) => (
         <li
           key={k}
-          className={`relative ${aspect} overflow-hidden rounded-xl bg-paper-soft ${
+          className={`relative ${aspect} overflow-hidden rounded-md bg-paper-soft ${
             featureFirst && i === 0 ? "col-span-2 aspect-[3/2]" : ""
           }`}
         >
@@ -174,7 +174,7 @@ export function Checkerboard({ items }: { items: CheckerItem[] }) {
       cells.push(
         <div key={`t${i}`} className="flex min-h-[260px] flex-col items-center justify-center px-6 py-12 text-center sm:min-h-[320px] lg:min-h-[400px]">
           <h3 className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">{it.title}</h3>
-          <div className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft text-pretty [&_a]:underline [&_a]:underline-offset-4">
+          <div className="mt-4 max-w-sm text-sm leading-relaxed text-ink text-pretty [&_a]:underline [&_a]:underline-offset-4">
             {it.text}
           </div>
         </div>,
@@ -236,14 +236,14 @@ export function Steps({
     <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((s, i) => (
         <li key={s.title}>
-          <span className={`text-sm font-semibold ${light ? "text-white/60" : "text-muted"}`}>
+          <span className={`text-sm font-semibold ${light ? "text-white" : "text-ink"}`}>
             {i + 1}.
           </span>
           <span aria-hidden className={`mt-3 block h-px w-10 ${light ? "bg-white/40" : "bg-line"}`} />
           <h3 className={`mt-4 text-lg font-semibold tracking-tight ${light ? "text-white" : "text-ink"}`}>
             {s.title}
           </h3>
-          <p className={`mt-2 text-sm leading-relaxed text-pretty ${light ? "text-white/80" : "text-ink-soft"}`}>
+          <p className={`mt-2 text-sm leading-relaxed text-pretty ${light ? "text-white" : "text-ink"}`}>
             {s.text}
           </p>
         </li>

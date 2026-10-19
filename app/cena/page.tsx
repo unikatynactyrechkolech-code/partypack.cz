@@ -101,7 +101,7 @@ export default function CenaPage() {
 
       <Section className="border-t border-line bg-paper-soft">
         <Container>
-          <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-white p-6 sm:p-10">
+          <div className="mx-auto max-w-3xl rounded-lg border border-line bg-white p-6 sm:p-10">
             <SectionTitle title="FAQ" subtitle="Nejčastější dotazy" />
             <div className="mt-10">
               <Faq items={faq} />
@@ -130,21 +130,21 @@ export default function CenaPage() {
             {packages.map((p) => (
               <li
                 key={p.name}
-                className={`flex flex-col items-center rounded-2xl border p-8 text-center ${
+                className={`flex flex-col items-center rounded-lg border p-8 text-center ${
                   p.featured ? "border-ink bg-ink text-white" : "border-line bg-white"
                 }`}
               >
-                <p className={`text-xs font-semibold uppercase tracking-[0.3em] ${p.featured ? "text-white/70" : "text-muted"}`}>
+                <p className={`text-xs font-semibold uppercase tracking-[0.3em] ${p.featured ? "text-white" : "text-ink"}`}>
                   {p.name}
                 </p>
                 <p className="mt-3 text-4xl font-semibold uppercase tracking-tight">{p.price}</p>
                 <span aria-hidden className={`mt-5 block h-px w-10 ${p.featured ? "bg-white/40" : "bg-line"}`} />
-                <div className={`mt-5 space-y-2 text-sm leading-relaxed ${p.featured ? "text-white/80" : "text-ink-soft"}`}>
+                <div className={`mt-5 space-y-2 text-sm leading-relaxed ${p.featured ? "text-white" : "text-ink"}`}>
                   {p.lines.map((l) => (
                     <p key={l}>{l}</p>
                   ))}
                 </div>
-                <p className={`mt-6 text-sm ${p.featured ? "text-white/85" : "text-ink-soft"}`}>
+                <p className={`mt-6 text-sm ${p.featured ? "text-white" : "text-ink"}`}>
                   <span className="font-medium">Balíček obsahuje:</span>
                   <br />
                   {packageIncludes}

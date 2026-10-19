@@ -34,7 +34,7 @@ export function PageHero({
           </Heading>
           <Divider align={align} light className="mt-6" />
           {lead ? (
-            <p className="mt-6 text-lg leading-relaxed text-white/85 text-pretty sm:text-xl">
+            <p className="mt-6 text-lg leading-relaxed text-white text-pretty sm:text-xl">
               {lead}
             </p>
           ) : null}

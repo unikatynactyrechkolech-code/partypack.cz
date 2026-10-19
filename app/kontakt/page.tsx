@@ -27,7 +27,7 @@ export default function KontaktPage() {
       <Section className="bg-paper-soft">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
-            <div className="rounded-2xl border border-line bg-white p-6 sm:p-10">
+            <div className="rounded-lg border border-line bg-white p-6 sm:p-10">
               <ContactForm />
             </div>
             <div className="lg:pt-10">
@@ -35,33 +35,33 @@ export default function KontaktPage() {
               <dl className="mt-8 space-y-7">
                 <div>
                   <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-ink">Kancelář</dt>
-                  <dd className="mt-2 text-ink-soft">{site.address}</dd>
+                  <dd className="mt-2 text-ink">{site.address}</dd>
                 </div>
                 <div>
                   <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-ink">Telefon</dt>
                   <dd className="mt-2">
-                    <a href={site.phoneHref} className="text-ink-soft hover:text-ink">{site.phone}</a>
+                    <a href={site.phoneHref} className="text-ink hover:underline underline-offset-4">{site.phone}</a>
                   </dd>
                 </div>
                 <div>
                   <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-ink">Email</dt>
                   <dd className="mt-2">
-                    <a href={`mailto:${site.email}`} className="text-ink-soft hover:text-ink">{site.email}</a>
+                    <a href={`mailto:${site.email}`} className="text-ink hover:underline underline-offset-4">{site.email}</a>
                   </dd>
                 </div>
               </dl>
               <ul className="mt-8 flex gap-5 text-sm">
-                <li><a href={site.facebook} target="_blank" rel="noopener noreferrer" className="text-ink-soft hover:text-ink">Facebook</a></li>
-                <li><a href={site.instagram} target="_blank" rel="noopener noreferrer" className="text-ink-soft hover:text-ink">Instagram</a></li>
+                <li><a href={site.facebook} target="_blank" rel="noopener noreferrer" className="text-ink hover:underline underline-offset-4">Facebook</a></li>
+                <li><a href={site.instagram} target="_blank" rel="noopener noreferrer" className="text-ink hover:underline underline-offset-4">Instagram</a></li>
               </ul>
               <ul className="mt-8 space-y-3 text-sm">
                 <li>
-                  <a href={site.termsUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline underline-offset-4 decoration-line hover:decoration-ink">
+                  <a href={site.termsUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline underline-offset-4 decoration-ink">
                     Všeobecné obchodní podmínky ZDE
                   </a>
                 </li>
                 <li>
-                  <a href={site.privacyUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline underline-offset-4 decoration-line hover:decoration-ink">
+                  <a href={site.privacyUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline underline-offset-4 decoration-ink">
                     Zásady o zpracování osobních údajů ZDE
                   </a>
                 </li>
@@ -80,7 +80,7 @@ export default function KontaktPage() {
               <Img k="2023/05/profilovkaaaa" alt="Mia" fill sizes="144px" className="object-cover" />
             </div>
             <Heading as="h3" className="mt-6 text-3xl">Mia</Heading>
-            <div className="mt-6 space-y-4 leading-relaxed text-ink-soft text-pretty">
+            <div className="mt-6 space-y-4 leading-relaxed text-ink text-pretty">
               <p>
                 Příběh PARTYPACK se začal psát již v roce 2012, kdy Mia organizovala akce a eventy v
                 západočeském kraji. Od roku 2015 vedla a vlastnila společnost Fotodroid, která dodávala fotobudky
@@ -96,7 +96,7 @@ export default function KontaktPage() {
             </div>
           </div>
 
-          <div className="relative mx-auto mt-14 aspect-[3/2] max-w-3xl overflow-hidden rounded-2xl bg-paper-soft">
+          <div className="relative mx-auto mt-14 aspect-[3/2] max-w-3xl overflow-hidden rounded-md bg-paper-soft">
             <Img k="2025/03/Partypack-5" alt="Tým Partypack" fill sizes="(min-width: 1024px) 768px, 100vw" className="object-cover" />
           </div>
           <p className="mx-auto mt-8 max-w-3xl text-center text-lg leading-relaxed text-ink text-pretty">
@@ -111,13 +111,13 @@ export default function KontaktPage() {
                   <Img k={m.image} alt={m.name} fill sizes="280px" className="object-cover" />
                 </div>
                 <h3 className="mt-6 text-xl font-semibold tracking-tight text-ink">{m.name}</h3>
-                <p className="text-sm text-muted">{m.role}</p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft text-pretty">{m.text}</p>
+                <p className="text-sm text-ink">{m.role}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink text-pretty">{m.text}</p>
               </li>
             ))}
           </ul>
 
-          <p className="mx-auto mt-16 max-w-3xl text-center leading-relaxed text-ink-soft text-pretty">
+          <p className="mx-auto mt-16 max-w-3xl text-center leading-relaxed text-ink text-pretty">
             Samozřejmě máme ještě mraky pomocníků, bez kterých by to nešlo! Našeho technika – elektrikáře,
             konstruktéra, tiskaře a mnoho dalších. Prostě takový ty lidi, který asi nikdy nepotkáte, ale jsou
             potřeba! Nicméně tady je galerie našich Partypekáčků, které rozhodně na akcích potkáte a na které se

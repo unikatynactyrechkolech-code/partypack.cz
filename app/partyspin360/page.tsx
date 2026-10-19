@@ -55,7 +55,7 @@ export default function PartyspinPage() {
       <DarkBand image="2024/08/3M0A0664-scaled" className="mt-12">
         <ul className="grid gap-8 text-center md:grid-cols-3 md:text-left">
           {statements.map((s) => (
-            <li key={s} className="leading-relaxed text-white/85 text-pretty md:border-l md:border-white/20 md:pl-6">
+            <li key={s} className="leading-relaxed text-white text-pretty md:border-l md:border-white/20 md:pl-6">
               {s}
             </li>
           ))}
@@ -110,7 +110,7 @@ export default function PartyspinPage() {
               <Heading>Co umíme navíc?</Heading>
               <Divider className="mt-5" />
             </div>
-            <p className="text-lg leading-relaxed text-ink-soft text-pretty">
+            <p className="text-lg leading-relaxed text-ink text-pretty">
               Kromě vlastního textu do emailu, tisku fotek nebo tvorbě GIFů, umíme i rekvizity na míru a nebo
               třeba tyhle další super služby! Naše služby neustále vylepšujeme a brzy se těšíme na to, až vám
               budeme moci nabízet i animované grafiky:)

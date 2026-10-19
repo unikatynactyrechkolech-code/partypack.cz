@@ -6,7 +6,7 @@ export function LabeledGrid({ items, aspect = "aspect-[3/2]" }: { items: Labeled
     <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
       {items.map((it) => (
         <li key={`${it.label}-${it.img}`}>
-          <div className={`relative ${aspect} overflow-hidden rounded-xl bg-paper-soft`}>
+          <div className={`relative ${aspect} overflow-hidden rounded-md bg-paper-soft`}>
             <Img
               k={it.img}
               alt={it.label}

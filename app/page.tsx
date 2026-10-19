@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { HeroSlider, type Slide } from "@/components/HeroSlider";
 import { Container, Section, SectionTitle } from "@/components/ui";
-import { CardLink, ContactSection, ImageGrid, Partners, Stats } from "@/components/sections";
-import { homeGallery } from "@/lib/data";
+import { CardLink, ContactSection, Partners, Stats } from "@/components/sections";
 
 export const metadata: Metadata = {
   title: "Partypack - Ta nejlepší zábava na akce",
@@ -84,7 +83,7 @@ export default function HomePage() {
             title="Milujeme naší práci"
             subtitle="… proto do toho dáváme srdce a je to znát! Na trhu jsme již pěknou řadu let a nyní nás můžete najít jako balíček služeb Partypack."
           />
-          <p className="mx-auto mt-8 max-w-3xl text-center leading-relaxed text-ink-soft text-pretty">
+          <p className="mx-auto mt-8 max-w-3xl text-center leading-relaxed text-ink text-pretty">
             Specializujeme se na jedinečné zážitky, které oživí každý event, konferenci, firemní večírek,
             narozeniny či svatbu. S námi můžete počítat s profesionálním přístupem, moderním vybavením a
             službami, které zaručeně potěší vaše hosty. Děláme vše pro to, aby vaše událost byla
@@ -95,15 +94,9 @@ export default function HomePage() {
 
       <Partners />
 
-      <Section>
+      <section className="border-b border-line">
         <Container>
-          <ImageGrid
-            images={homeGallery}
-            alt="Partypack na akci"
-            cols="grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
-            aspect="aspect-[3/4]"
-          />
-          <ul className="mt-16 grid gap-10 border-t border-line pt-12 text-center sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="grid gap-10 py-14 text-center sm:grid-cols-2 sm:py-16 lg:grid-cols-4">
             {highlights.map((h) => (
               <li key={h}>
                 <span aria-hidden className="mx-auto block h-px w-8 bg-accent" />
@@ -112,7 +105,7 @@ export default function HomePage() {
             ))}
           </ul>
         </Container>
-      </Section>
+      </section>
 
       <ContactSection
         lead="… Vaší představu o plánovaném eventu, svatbě, (maturitním) plese, nebo konferenci a my se už postaráme o zbytek! Naše služby zajistíme taky na dětské dny, koncerty, narozeniny nebo třeba babyshower!"

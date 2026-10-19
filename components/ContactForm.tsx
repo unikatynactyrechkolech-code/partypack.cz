@@ -12,7 +12,7 @@ const products = [
 ];
 
 const inputCls =
-  "w-full rounded-lg border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10";
+  "w-full rounded-lg border border-line bg-white px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -39,7 +39,7 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
   }
 
   const labelCls = `text-xs font-semibold uppercase tracking-[0.15em] ${
-    dark ? "text-white/70" : "text-muted"
+    dark ? "text-white" : "text-ink"
   }`;
 
   return (
@@ -98,7 +98,7 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
           {status === "sending" ? "Odesílám…" : "Odeslat"}
         </button>
         {status === "sent" ? (
-          <p className={`text-sm ${dark ? "text-white/80" : "text-ink-soft"}`}>
+          <p className={`text-sm ${dark ? "text-white" : "text-ink"}`}>
             Děkujeme, zpráva byla odeslána.
           </p>
         ) : null}

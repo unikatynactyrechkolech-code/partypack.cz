@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Vlevo dole je cookies kolečko, vývojový indikátor Next.js proto vpravo.
+  devIndicators: { position: "bottom-right" },
   images: {
     remotePatterns: [
       {

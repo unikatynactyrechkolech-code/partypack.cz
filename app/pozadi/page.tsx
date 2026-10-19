@@ -71,14 +71,14 @@ export default function PozadiPage() {
         <Img k="2024/04/Pozadi-Special-45" alt="" fill sizes="100vw" className="object-cover opacity-50" />
         <div className="absolute inset-0 bg-ink/40" />
         <Container className="relative py-16 sm:py-24">
-          <div className="mx-auto max-w-3xl rounded-2xl bg-white p-6 sm:p-10">
+          <div className="mx-auto max-w-3xl rounded-lg bg-white p-6 sm:p-10">
             <Heading as="h3" className="text-2xl uppercase tracking-wide">Máte dotazy?</Heading>
             <span aria-hidden className="mt-4 block h-px w-10 bg-accent" />
             <div className="mt-8">
               <ContactForm />
             </div>
           </div>
-          <ul className="mx-auto mt-8 grid max-w-3xl gap-3 text-center text-sm text-white/90 sm:grid-cols-3">
+          <ul className="mx-auto mt-8 grid max-w-3xl gap-3 text-center text-sm text-white sm:grid-cols-3">
             <li><a href={site.phoneHref} className="hover:underline">{site.phone}</a></li>
             <li><a href={`mailto:${site.email}`} className="hover:underline">{site.email}</a></li>
             <li>{site.address}</li>

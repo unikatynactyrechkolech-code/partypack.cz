@@ -106,7 +106,7 @@ export function SectionTitle({
       {subtitle ? (
         <p
           className={`mt-5 text-lg leading-relaxed text-pretty ${
-            light ? "text-white/85" : "text-ink-soft"
+            light ? "text-white" : "text-ink"
           }`}
         >
           {subtitle}
@@ -124,7 +124,7 @@ export function Lead({
   className?: string;
 }) {
   return (
-    <p className={`text-lg leading-relaxed text-ink-soft text-pretty ${className}`}>
+    <p className={`text-lg leading-relaxed text-ink text-pretty ${className}`}>
       {children}
     </p>
   );
@@ -139,7 +139,7 @@ export function Prose({
 }) {
   return (
     <div
-      className={`space-y-4 text-base leading-relaxed text-ink-soft text-pretty [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-line hover:[&_a]:decoration-ink [&_a]:text-ink [&_strong]:text-ink ${className}`}
+      className={`space-y-4 text-base leading-relaxed text-ink text-pretty [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-ink [&_a]:text-ink [&_strong]:text-ink ${className}`}
     >
       {children}
     </div>
@@ -198,7 +198,7 @@ export function TextLink({
   external?: boolean;
 }) {
   const cls =
-    "font-medium text-ink underline underline-offset-4 decoration-line hover:decoration-ink";
+    "font-medium text-ink underline underline-offset-4 decoration-ink";
   if (external) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>

@@ -10,7 +10,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
               <span className="absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-current transition-transform group-open:rotate-90" />
             </span>
           </summary>
-          <p className="mt-3 max-w-3xl leading-relaxed text-ink-soft text-pretty">{it.a}</p>
+          <p className="mt-3 max-w-3xl leading-relaxed text-ink text-pretty">{it.a}</p>
         </details>
       ))}
     </div>

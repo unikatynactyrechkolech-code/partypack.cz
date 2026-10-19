@@ -83,13 +83,13 @@ export default function AiDrawBotPage() {
           <dl className="grid gap-8 sm:grid-cols-2">
             <div>
               <dd className="text-5xl font-semibold tracking-tight">3</dd>
-              <dt className="mt-3 leading-relaxed text-white/80">
+              <dt className="mt-3 leading-relaxed text-white">
                 Máte velkou akci? Není problém! AI Draw Botů máme celkem 3, takže se dostane opravdu na každého.
               </dt>
             </div>
             <div>
               <dd className="text-5xl font-semibold tracking-tight">40s</dd>
-              <dt className="mt-3 leading-relaxed text-white/80">
+              <dt className="mt-3 leading-relaxed text-white">
                 Náš AI Draw Bot zachytí vaše rysy a bleskově je promění v jedinečný portrét. Rychlé, přesné a
                 fascinující!
               </dt>

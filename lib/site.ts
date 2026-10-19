@@ -15,15 +15,22 @@ export const site = {
     "https://partypack.cz/wp-content/uploads/2025/07/Zasady-o-zpracovani-osobnich-udaju-Partypack.pdf",
 };
 
-export const nav = [
+/** Hlavní služby – v menu velkým písmem. */
+export const primaryNav = [
   { href: "/fotokoutek", label: "Fotokoutek" },
   { href: "/ai-fotokoutek", label: "AI fotokoutek" },
   { href: "/hostesky", label: "Hostesky" },
   { href: "/partyspin360", label: "Partyspin 360°" },
   { href: "/ai-draw-bot", label: "AI Draw Bot" },
+];
+
+/** Ostatní stránky – v menu menším písmem. */
+export const secondaryNav = [
   { href: "/galerie", label: "Galerie" },
   { href: "/pozadi", label: "Pozadí" },
   { href: "/dalsisluzby", label: "Další služby" },
   { href: "/cena", label: "Cena" },
   { href: "/kontakt", label: "Kontakt" },
 ];
+
+export const nav = [...primaryNav, ...secondaryNav];

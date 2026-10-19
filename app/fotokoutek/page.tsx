@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Button, Container, Heading, Prose, Section, SectionTitle, TextLink } from "@/components/ui";
 import { CardLink, Checkerboard, CtaBand, ImageGrid } from "@/components/sections";
 import { fotokoutekGallery, gallery, ledWallImages, partyTouchImages } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Partysnap - Fotobudka na akci, maturák nebo jinou párty!",
-  description: "Okořeňte svou akci nejlepší kombinací zábavy a vzpomínek. Fotokoutek Partysnap s neomezeným tiskem, obsluhou a pozadím na míru.",
-  alternates: { canonical: "/fotokoutek" },
-};
+export const metadata: Metadata = pageMetadata(seo.fotokoutek);
 
 const classicImages = ["2024/01/Partypack-115", "2023/09/3M0A9772", "2023/07/MiaGebauer-292"];
 
@@ -53,17 +50,17 @@ const features = [
 ];
 
 const occasions = [
-  { title: "Svatby", text: "Pro nevěsty máme připravené speciální pozadí a knihu hostů zdarma! Náš tým za Vámi dorazí klidně až na Měsíc! :)" },
-  { title: "Firemní akce", text: "Fantazii se meze nekladou! Polep fotobudky do brandu. Pozadí na míru. Dekorace ve stylu akce. Příjemné hostesky. Doprava zdarma a neomezený tisk!" },
-  { title: "Ples | Párty", text: "Fotokoutek na ples zdarma! Tak to jo! Stačí, aby na plese bylo potvrzených min. 500 hostů a je to!:) O detailní info nám napiš!" },
-  { title: "Narozeniny", text: "Kulatiny a nevíte program? Fotokoutek s památeční knihou by neměl nikde chybět! Topový pozadí a grafika na míru." },
-  { title: "Dětské akce", text: "Kdo miluje focení nejvíc? Děti, babičky a prostě všichni! Proto by náš fotokoutek Partysnap neměl chybět na žádném rodinném dnu:)" },
-  { title: "Koncerty | Konference a jiné", text: "Samozřejmostí pro nás zůstává neomezený tisk, nálož rekvizit, příjemná obsluha, grafika na míru ... a mnoho dalšího na jakoukoli vaší akci:)" },
+  { title: "Fotokoutek na svatbu", text: "Pro nevěsty máme připravené speciální pozadí a knihu hostů zdarma! Náš tým za Vámi dorazí klidně až na Měsíc! :)" },
+  { title: "Fotokoutek na firemní akci", text: "Fantazii se meze nekladou! Polep fotobudky do brandu. Pozadí na míru. Dekorace ve stylu akce. Příjemné hostesky. Doprava zdarma a neomezený tisk!" },
+  { title: "Fotokoutek na ples a párty", text: "Fotokoutek na ples zdarma! Tak to jo! Stačí, aby na plese bylo potvrzených min. 500 hostů a je to!:) O detailní info nám napiš!" },
+  { title: "Fotokoutek na narozeniny", text: "Kulatiny a nevíte program? Fotokoutek s památeční knihou by neměl nikde chybět! Topový pozadí a grafika na míru." },
+  { title: "Fotokoutek na dětské akce", text: "Kdo miluje focení nejvíc? Děti, babičky a prostě všichni! Proto by náš fotokoutek Partysnap neměl chybět na žádném rodinném dnu:)" },
+  { title: "Fotokoutek na koncerty a konference", text: "Samozřejmostí pro nás zůstává neomezený tisk, nálož rekvizit, příjemná obsluha, grafika na míru ... a mnoho dalšího na jakoukoli vaší akci:)" },
 ];
 
 const otherServices = [
-  { href: "/partyspin360", title: "Partyspin 360", image: "2024/08/IMG_3006" },
-  { href: "/ai-fotokoutek", title: "Fotokoutek s AI", image: "2024/07/8f6802ed-afe1-45f4-af6d-52b1fadeb461" },
+  { href: "/partyspin360", title: "Partyspin 360°", image: "2024/08/IMG_3006" },
+  { href: "/ai-fotokoutek", title: "AI fotokoutek", image: "2024/07/8f6802ed-afe1-45f4-af6d-52b1fadeb461" },
   { href: "/hostesky", title: "Hostesky", image: "2024/08/IMG_9544-2" },
 ];
 
@@ -73,7 +70,7 @@ export default function FotokoutekPage() {
     <>
       <PageHero
         image="2024/04/Partypack-29"
-        title="Fotokoutek | GIFy"
+        title="Fotokoutek a GIFy na vaši akci"
         lead="Okořeňte svou akci nejlepší kombinací zábavy a vzpomínek"
       >
         <Button href="/kontakt" variant="light">Napište nám</Button>
@@ -84,7 +81,7 @@ export default function FotokoutekPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="flex flex-col justify-center">
-              <Heading>Klasický fotokoutek</Heading>
+              <Heading>Pronájem fotokoutku s obsluhou</Heading>
               <Prose className="mt-6">
                 <p>
                   … jak ho asi všichni znáte. Naše designová fotobudka s dvěmi velkými obrazovkami zajistí
@@ -112,7 +109,7 @@ export default function FotokoutekPage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <ImageGrid images={ledWallImages} alt="LED stěna" cols="grid-cols-2" featureFirst />
             <div className="flex flex-col justify-center lg:order-first">
-              <Heading>Led stěna &amp; GIFY</Heading>
+              <Heading>LED stěna a GIFy</Heading>
               <Prose className="mt-6">
                 <p>
                   Pro nejlepší efekt a kombinace fotek a GIFů, poslouží naše LED stěna! Stěnu lze nastavit
@@ -136,7 +133,7 @@ export default function FotokoutekPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="flex flex-col justify-center">
-              <Heading>Party touch</Heading>
+              <Heading>Party Touch: nápisy a samolepky do fotek</Heading>
               <Prose className="mt-6">
                 <p>
                   … občas je potřeba si celý proces focení trochu okořenit. Proto jsme vymysleli PARTY TOUCH!
@@ -167,11 +164,17 @@ export default function FotokoutekPage() {
         />
       </section>
 
+      <Section className="pb-12 sm:pb-16">
+        <Container>
+          <SectionTitle title="Co je v ceně fotokoutku" />
+        </Container>
+      </Section>
       <Checkerboard items={features} />
 
       <Section className="border-t border-line bg-paper-soft">
         <Container>
-          <ul className="grid gap-x-16 gap-y-10 md:grid-cols-2">
+          <SectionTitle title="Fotokoutek na každou příležitost" />
+          <ul className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
             {occasions.map((o) => (
               <li key={o.title}>
                 <h3 className="text-lg font-semibold uppercase tracking-wide text-ink">{o.title}</h3>
@@ -184,7 +187,7 @@ export default function FotokoutekPage() {
 
       <Section>
         <Container>
-          <SectionTitle title="Fotky z našich posledních akcí" subtitle="... a kde je ta vaše?" />
+          <SectionTitle title="Fotky z akcí s naším fotokoutkem" subtitle="… a kde je ta vaše?" />
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {recent.map((g) => (
               <li key={g.slug}>
@@ -207,7 +210,7 @@ export default function FotokoutekPage() {
       <Section className="border-t border-line">
         <Container>
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-20">
-            <Heading>Naše další služby</Heading>
+            <Heading>Další služby na vaši akci</Heading>
             <p className="text-lg leading-relaxed text-ink text-pretty">
               Objednáním několika našich služeb získáte slevy od 10 – 30 % v závislosti na velikosti
               objednávky. Budeme se těšit na spolupráci!
@@ -223,7 +226,7 @@ export default function FotokoutekPage() {
         </Container>
       </Section>
 
-      <CtaBand image="2023/05/MiaGebauer-21" title="Konkrétní ceny za naše služby?">
+      <CtaBand image="2023/05/MiaGebauer-21" title="Kolik stojí pronájem fotokoutku?">
         <Button href="/cena" variant="outline">Ukaž cenu</Button>
       </CtaBand>
     </>

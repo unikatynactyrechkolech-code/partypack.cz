@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import { Img } from "@/components/Img";
 import { PageHero } from "@/components/PageHero";
 import { Button, Container, Divider, Heading, Section, SectionTitle } from "@/components/ui";
 import { CardLink, DarkBand, SplitRows, Steps } from "@/components/sections";
 
-export const metadata: Metadata = {
-  title: "Partyspin - 360° zábavy!",
-  description: "Videokoutek, který vás i vaše hosty natočí ze všech úhlů, během pár vteřin sestříhá video, přidá hudbu a grafiku na míru. Ceny od 9900 Kč.",
-  alternates: { canonical: "/partyspin360" },
-};
+export const metadata: Metadata = pageMetadata(seo.partyspin);
 
 const statements = [
   "Nejvíce spokojených zákazníků si nás objednává na firemní večírky či konference, svatby, narozeniny nebo též na dětské akce.",
@@ -42,13 +39,13 @@ const extras = [
 export default function PartyspinPage() {
   return (
     <>
-      <PageHero image="2024/08/3M0A0668-scaled" position="object-[70%_center]" title="Partyspin 360°" lead="…alias jiný level videokoutku!">
+      <PageHero image="2024/08/3M0A0668-scaled" position="object-[70%_center]" title="360° fotokoutek Partyspin" lead="…alias jiný level videokoutku!">
         <Button href="/kontakt" variant="light">Objednat</Button>
       </PageHero>
 
       <Section className="pb-0 sm:pb-0">
         <Container>
-          <SectionTitle title="Nová vlna zábavy!" />
+          <SectionTitle title="360° videokoutek na firemní akce i svatby" subtitle="Nová vlna zábavy!" />
         </Container>
       </Section>
 
@@ -67,7 +64,7 @@ export default function PartyspinPage() {
 
       <section className="grid lg:grid-cols-2">
         <div className="flex flex-col justify-center px-5 py-16 sm:px-12 lg:px-16 lg:py-24">
-          <Heading>Jak to funguje?</Heading>
+          <Heading>Jak funguje 360° fotokoutek</Heading>
           <Divider className="mt-5" />
           <div className="mt-10">
             <Steps items={steps} />
@@ -85,7 +82,7 @@ export default function PartyspinPage() {
 
       <Section className="border-t border-line pb-0 sm:pb-0">
         <Container>
-          <SectionTitle title="Co vše je obsaženo?" />
+          <SectionTitle title="Co je v ceně Partyspinu 360°" />
         </Container>
       </Section>
       <div className="mt-12">
@@ -96,7 +93,7 @@ export default function PartyspinPage() {
         <Img k="2024/08/455199354_18437708977064219_8281298651533021347_n" alt="" fill sizes="100vw" className="object-cover opacity-50" />
         <div className="absolute inset-0 bg-ink/50" />
         <Container className="relative flex flex-col items-center py-20 text-center sm:py-24">
-          <h2 className="text-3xl font-semibold uppercase tracking-tight sm:text-4xl">Ceny od 9900 Kč!</h2>
+          <h2 className="text-3xl font-semibold uppercase tracking-tight sm:text-4xl">Pronájem Partyspinu 360° od 9 900 Kč</h2>
           <div className="mt-8">
             <Button href="/kontakt" variant="outline">Chci si objednat Partyspin</Button>
           </div>
@@ -107,7 +104,7 @@ export default function PartyspinPage() {
         <Container>
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-20">
             <div>
-              <Heading>Co umíme navíc?</Heading>
+              <Heading>Doplňky k 360° fotokoutku</Heading>
               <Divider className="mt-5" />
             </div>
             <p className="text-lg leading-relaxed text-ink text-pretty">

@@ -27,7 +27,7 @@ export function Partners({ items = partners }: { items?: Partner[] }) {
 }
 
 export function ContactSection({
-  title = "Napište nám",
+  title = "Nezávazná poptávka",
   lead,
 }: {
   title?: string;
@@ -199,7 +199,7 @@ export type SplitRow = {
 };
 
 /** Střídavé řádky text / fotka přes celou šířku – ceník a „Co vše je obsaženo“ na původním webu. */
-export function SplitRows({ rows }: { rows: SplitRow[] }) {
+export function SplitRows({ rows, headingAs = "h3" }: { rows: SplitRow[]; headingAs?: "h2" | "h3" }) {
   return (
     <div>
       {rows.map((r, i) => {
@@ -211,7 +211,7 @@ export function SplitRows({ rows }: { rows: SplitRow[] }) {
             </div>
             <div className="flex flex-col justify-center px-5 py-14 sm:px-12 lg:px-16 lg:py-20">
               <div className="max-w-xl">
-                <Heading as="h3" className="text-2xl sm:text-3xl">
+                <Heading as={headingAs} className="text-2xl sm:text-3xl">
                   {r.title}
                 </Heading>
                 {r.price ? <p className="mt-3 text-xl font-medium text-ink">{r.price}</p> : null}

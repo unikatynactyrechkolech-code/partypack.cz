@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import { Img } from "@/components/Img";
 import { PageHero } from "@/components/PageHero";
 import { ContactForm } from "@/components/ContactForm";
-import { Container, Heading, Section } from "@/components/ui";
+import { Container, Heading, Section, SectionTitle } from "@/components/ui";
 import { CtaBand, ImageGrid } from "@/components/sections";
 import { teamGallery } from "@/lib/data";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Partypack - Kontaktní info",
-  description: "Napište, zavolejte nebo se u nás stavte na kafe. Mandloňová 1175/16, Praha 9 Hrdlořezy, +420 720 448 660, info@partypack.cz.",
-  alternates: { canonical: "/kontakt" },
-};
+export const metadata: Metadata = pageMetadata(seo.kontakt);
 
 const team = [
   { name: "Alex", role: "Event & Sales", image: "2026/10/WhatsApp-Image-2026-10-05-at-15.41.05", text: "Alex přináší do Partypacku přes dvacet let zkušeností s obchodem a třináct let vedení vlastní firmy. Baví ho propojovat lidi, hledat praktická řešení a dotahovat věci do konce. Když zrovna neřeší klienty a akce, nejraději tráví čas se svými dvěma dcerami." },
@@ -22,11 +19,12 @@ const team = [
 export default function KontaktPage() {
   return (
     <>
-      <PageHero image="2025/04/Partypack-7" title="Napište, zavolejte nebo se u nás stavte na kafe" />
+      <PageHero image="2025/04/Partypack-7" title="Kontakt a nezávazná poptávka" lead="Napište, zavolejte nebo se u nás stavte na kafe" />
 
       <Section className="bg-paper-soft">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
+          <SectionTitle title="Poptávka fotokoutku, hostesek a dalších služeb" />
+          <div className="mt-12 grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
             <div className="rounded-lg border border-line bg-white p-6 sm:p-10">
               <ContactForm />
             </div>

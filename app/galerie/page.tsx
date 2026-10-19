@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import { PageHero } from "@/components/PageHero";
-import { Button, Container, Section } from "@/components/ui";
+import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { CardLink } from "@/components/sections";
 import { gallery } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Partypack - galerie posledních akcí",
-  description: "Fotky z našich posledních akcí. Fotokoutek, Partyspin 360, AI fotokoutek a AI Draw Bot na firemních akcích, svatbách i festivalech.",
-  alternates: { canonical: "/galerie" },
-};
+export const metadata: Metadata = pageMetadata(seo.galerie);
 
 export default function GaleriePage() {
   return (
     <>
       <PageHero
         image="2024/10/038_2024-10-16-Makro-Chefs-Dinner-VIP_Full-scaled"
-        title="Galerie posledních akcí"
-        lead="... a kde je ta vaše?"
+        title="Fotky z našich akcí"
+        lead="… a kde je ta vaše?"
       >
         <Button href="https://eu.zonerama.com/Partypack" external variant="light">
           Všechny galerie na Zonerama
@@ -24,7 +21,8 @@ export default function GaleriePage() {
       </PageHero>
       <Section>
         <Container>
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <SectionTitle title="Poslední firemní akce, svatby a festivaly" subtitle="Fotokoutek, AI fotokoutek, Partyspin 360° a AI Draw Bot v akci. Celé galerie najdete na Zoneramě." />
+          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {gallery.map((g) => (
               <li key={g.slug}>
                 <CardLink

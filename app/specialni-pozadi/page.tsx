@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import { PageHero } from "@/components/PageHero";
 import { Button, Container, Heading, Section } from "@/components/ui";
 import { LabeledGrid } from "@/components/LabeledGrid";
 import { specialIncluded, specialPaid } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Speciální pozadí",
-  description: "Speciální pozadí vytvořená na míru vašim akcím. Pozadí v ceně každého balíčku i speciální pozadí za příplatek.",
-  alternates: { canonical: "/specialni-pozadi" },
-};
+export const metadata: Metadata = pageMetadata(seo.specialniPozadi);
 
 export default function SpecialniPozadiPage() {
   return (
     <>
       <PageHero
         image="2024/04/Partypack-17-1"
-        title="Speciální pozadí"
+        title="Speciální pozadí do fotokoutku"
         lead="Vytvořené na míru vašim akcím! Nechte svou akci zazářit"
       >
         <Button href="/kontakt" variant="light">Napište nám</Button>

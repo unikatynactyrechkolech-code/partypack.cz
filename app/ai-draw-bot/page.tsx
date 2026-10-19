@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import { PageHero } from "@/components/PageHero";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { DarkBand, SplitRows, Steps } from "@/components/sections";
 
-export const metadata: Metadata = {
-  title: "AI Draw bot - nech se nakreslit robotickou rukou!",
-  description: "Revoluční bot, který pomocí AI vytváří portréty v reálném čase. Jedinečné zážitky na každé vaší akci!",
-  alternates: { canonical: "/ai-draw-bot" },
-};
+export const metadata: Metadata = pageMetadata(seo.aiDrawBot);
 
 const steps = [
   { title: "Přivítání hostesky", text: "Naše hosteska vysvětlí celý proces a připraví vás na rychlou fotku." },
@@ -18,17 +15,17 @@ const steps = [
 
 const rows = [
   {
-    title: "AI portrét na míru",
+    title: "AI portrét na míru s vaším logem",
     image: "2026/10/IMG_2577-scaled",
     children: <p>Rádi Vám připravíme vlastní design (grafiku, logo) na fotopapír, aby AI portrét perfektně ladil s vaší značkou či tématem akce.</p>,
   },
   {
-    title: "3x rychlost = 3x zážitek",
+    title: "Tři kreslící roboty pro velké akce",
     image: "2025/03/Partypack-13",
     children: <p>S třemi AI boty dokážeme obsloužit až 3 hosty současně. Každý host si odnáší unikátní portrét vytvořený do 40 vteřin a s dokonalou přesností.</p>,
   },
   {
-    title: "Jedinečná podívaná",
+    title: "Karikatury, portréty i kresby mazlíčků",
     image: "2025/03/Partypack-19-1",
     children: (
       <>
@@ -39,7 +36,7 @@ const rows = [
     ),
   },
   {
-    title: "Cena od 19 000 Kč",
+    title: "Cena AI Draw Bota od 19 000 Kč",
     image: "2026/09/WhatsApp-Image-2026-09-18-at-09.23.50",
     children: (
       <>
@@ -61,7 +58,7 @@ export default function AiDrawBotPage() {
     <>
       <PageHero
         image="2026/04/IMG_1340-1-scaled"
-        title="AI Draw Bot"
+        title="AI Draw Bot – robot, který kreslí portréty"
         lead="Revoluční bot, který pomocí AI vytváří portréty v reálném čase. Jedinečné zážitky na každé vaší akci!"
       >
         <Button href="/kontakt" variant="light">Napište nám</Button>
@@ -71,7 +68,7 @@ export default function AiDrawBotPage() {
       <Section>
         <Container>
           <SectionTitle
-            title="AI kreslí jako mistr!"
+            title="Kreslící robot s umělou inteligencí"
             subtitle="Náš AI Draw Bot využívá pokročilou umělou inteligenci a robotické rameno k vytváření skicových portrétů do půl minuty! Stačí se vyfotit a sledovat, jak s precizností umělce, přenáší vaše rysy na papír."
           />
         </Container>
@@ -79,7 +76,7 @@ export default function AiDrawBotPage() {
 
       <DarkBand image="2025/02/8b7b1641fbb11e2d70c2eaf6156e0db9">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
-          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">AI &amp; Umění</h2>
+          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">AI portrét do 40 vteřin</h2>
           <dl className="grid gap-8 sm:grid-cols-2">
             <div>
               <dd className="text-5xl font-semibold tracking-tight">3</dd>
@@ -101,7 +98,7 @@ export default function AiDrawBotPage() {
         </div>
       </DarkBand>
 
-      <SplitRows rows={rows} />
+      <SplitRows rows={rows} headingAs="h2" />
     </>
   );
 }

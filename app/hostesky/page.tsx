@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import { Img } from "@/components/Img";
 import { PageHero } from "@/components/PageHero";
 import { Button, Container, Section, SectionTitle, TextLink } from "@/components/ui";
@@ -6,16 +7,12 @@ import { CtaBand, DarkBand, Steps } from "@/components/sections";
 import { hosteskyGrid } from "@/lib/data";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Partypack - hostesky",
-  description: "Naše hostesky budou nejkrásnější ozdobou na každé vaší akci! Hostesky, modelky, promotéři a debaras na míru.",
-  alternates: { canonical: "/hostesky" },
-};
+export const metadata: Metadata = pageMetadata(seo.hostesky);
 
 const offer = [
   { title: "Hostesky", image: "2024/03/IMG_1034-scaled" },
   { title: "Modelky", image: "2024/03/3803D970-314D-4E9B-AC80-289E5A4C2318" },
-  { title: "Promotéry", image: "2024/03/IMG_3216-2-scaled" },
+  { title: "Promotéři", image: "2024/03/IMG_3216-2-scaled" },
   { title: "Debaras", image: "2024/03/IMG_1139-3-scaled" },
 ];
 
@@ -29,13 +26,13 @@ const steps = [
 export default function HosteskyPage() {
   return (
     <>
-      <PageHero image="2023/09/adamcostey-4" title="Naše hostesky budou nejkrásnější ozdobou na každé vaší akci!">
+      <PageHero image="2023/09/adamcostey-4" title="Hostesky na akce" lead="Naše hostesky budou nejkrásnější ozdobou na každé vaší akci!">
         <Button href="/kontakt" variant="light">Objednat</Button>
       </PageHero>
 
       <Section>
         <Container>
-          <SectionTitle title="Zajistíme pro vás" />
+          <SectionTitle title="Hostesky, modelky a promotéři" subtitle="Zajistíme pro vás personál na konference, veletrhy, firemní akce i luxusní eventy." />
           <ul className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
             {offer.map((o) => (
               <li key={o.title} className="relative aspect-[3/4] overflow-hidden rounded-md bg-ink">
@@ -49,7 +46,7 @@ export default function HosteskyPage() {
       </Section>
 
       <DarkBand image="2024/02/1942">
-        <SectionTitle title="Jak to u nás funguje?" light />
+        <SectionTitle title="Jak probíhá výběr hostesek" light />
         <div className="mx-auto mt-8 max-w-3xl space-y-4 text-center leading-relaxed text-white text-pretty">
           <p>
             Hostesky na akce vybíráme vždy na míru dle požadavků a představ klienta. Naše velká databáze
@@ -112,7 +109,7 @@ export default function HosteskyPage() {
         </Container>
       </Section>
 
-      <CtaBand image="2024/02/1902" title="Objednejte si svou první akci s námi!">
+      <CtaBand image="2024/02/1902" title="Objednejte si hostesky na svou akci">
         <Button href="/kontakt" variant="outline">Objednat</Button>
       </CtaBand>
     </>

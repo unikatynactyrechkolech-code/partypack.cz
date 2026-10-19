@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import { PageHero } from "@/components/PageHero";
-import { Button, Container, Section } from "@/components/ui";
+import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { FilterGrid } from "@/components/FilterGrid";
 import { aiFiltersGroup } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Skupinové AI filtry",
-  description: "Výběr AI filtrů pro skupiny až 8 osob. Na místě lze vybírat ze všech dostupných filtrů.",
-  alternates: { canonical: "/skupinove-ai-filtry" },
-};
+export const metadata: Metadata = pageMetadata(seo.skupinoveAiFiltry);
 
 export default function SkupinoveAiFiltryPage() {
   return (
@@ -23,7 +20,10 @@ export default function SkupinoveAiFiltryPage() {
       </PageHero>
       <Section>
         <Container>
-          <FilterGrid items={aiFiltersGroup} />
+          <SectionTitle title="AI filtry pro skupiny 2–8 osob" />
+          <div className="mt-12">
+            <FilterGrid items={aiFiltersGroup} />
+          </div>
         </Container>
       </Section>
     </>

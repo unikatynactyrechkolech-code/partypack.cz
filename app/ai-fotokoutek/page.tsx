@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import { Img } from "@/components/Img";
 import { PageHero } from "@/components/PageHero";
 import { BeforeAfter } from "@/components/BeforeAfter";
-import { Button, Container, Divider, Heading, Section } from "@/components/ui";
+import { Button, Container, Divider, Heading, Section, SectionTitle } from "@/components/ui";
 import { CtaBand, Steps } from "@/components/sections";
 
-export const metadata: Metadata = {
-  title: "AI fotokoutek",
-  description: "Staň se kýmkoli, kdekoli a to díky AI! Fotokoutek s umělou inteligencí, až 8 filtrů pro jednotlivce a výběr filtrů pro skupinky.",
-  alternates: { canonical: "/ai-fotokoutek" },
-};
+export const metadata: Metadata = pageMetadata(seo.aiFotokoutek);
 
 const steps = [
   { title: "Výběr filtru", text: "Přímo na akci si host vybírá z našich různých AI filtrů svého favorita." },
@@ -36,16 +33,17 @@ const features = [
 export default function AiFotokoutekPage() {
   return (
     <>
-      <PageHero image="2024/08/foto-AI-web-cenik" title="Staň se kýmkoli, kdekoli a to díky AI!" align="left">
+      <PageHero image="2024/08/foto-AI-web-cenik" title="AI fotokoutek na vaši akci" lead="Staň se kýmkoli, kdekoli a to díky AI!" align="left">
         <Button href="/kontakt" variant="light">Napište nám</Button>
         <Button href="/cena" variant="outline">Cena</Button>
       </PageHero>
 
       <Section>
         <Container>
-          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+          <SectionTitle title="AI filtry pro jednotlivce i skupiny" />
+          <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-16">
             <div>
-              <Heading as="h3">Až 8 filtrů!</Heading>
+              <Heading as="h3">Až 8 filtrů pro jednotlivce</Heading>
               <Divider className="mt-4" />
               <p className="mt-5 leading-relaxed text-ink text-pretty">
                 Mrkněte na naší bohatou nabídku AI filtrů, které jsou určené pro jednotlivce. Všechny naše
@@ -56,7 +54,7 @@ export default function AiFotokoutekPage() {
               </div>
             </div>
             <div>
-              <Heading as="h3">Ještě větší výběr!</Heading>
+              <Heading as="h3">Skupinové filtry pro 2–8 osob</Heading>
               <Divider className="mt-4" />
               <p className="mt-5 leading-relaxed text-ink text-pretty">
                 Filtry pro skupiny 2-8 osob není potřeba vybírat dopředu. Na místě lze vybírat ze všech
@@ -72,7 +70,7 @@ export default function AiFotokoutekPage() {
 
       <section className="grid border-y border-line lg:grid-cols-2">
         <div className="flex flex-col justify-center px-5 py-16 sm:px-12 lg:px-16 lg:py-24">
-          <Heading>Jak to funguje?</Heading>
+          <Heading>Jak funguje AI fotokoutek</Heading>
           <Divider className="mt-5" />
           <div className="mt-10">
             <Steps items={steps} />
@@ -85,7 +83,7 @@ export default function AiFotokoutekPage() {
 
       <Section>
         <Container>
-          <Heading>Před &amp; po</Heading>
+          <Heading>AI fotky před a po</Heading>
           <Divider className="mt-5" />
           <ul className="mt-10 grid gap-6 sm:grid-cols-3">
             {beforeAfter.map(([before, after]) => (
@@ -99,7 +97,8 @@ export default function AiFotokoutekPage() {
 
       <Section className="border-t border-line bg-paper-soft">
         <Container>
-          <ul className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <SectionTitle title="Co umí fotokoutek s umělou inteligencí" />
+          <ul className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((f) => (
               <li key={f.title}>
                 <span aria-hidden className="block h-px w-8 bg-accent" />
@@ -111,7 +110,7 @@ export default function AiFotokoutekPage() {
         </Container>
       </Section>
 
-      <CtaBand image="2025/04/IMG_2202-scaled" title="Kolik to stojí?">
+      <CtaBand image="2025/04/IMG_2202-scaled" title="Kolik stojí AI fotokoutek?">
         <Button href="/cena" variant="outline">Cena</Button>
       </CtaBand>
     </>

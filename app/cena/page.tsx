@@ -1,20 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import Link from "next/link";
 import { Img } from "@/components/Img";
 import { PageHero } from "@/components/PageHero";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { SplitRows, Stats } from "@/components/sections";
 import { Faq } from "@/components/Faq";
+import { JsonLd } from "@/components/JsonLd";
 
-export const metadata: Metadata = {
-  title: "Partypack - Nejlepší fotokoutek na akci",
-  description: "Kolik to u nás stojí? Fotobudka Partysnap od 10 000 Kč, Partyspin 360° od 9 900 Kč, fotobudka s AI od 14 000 Kč, hostesky od 270 Kč / hod., AI Draw Bot od 19 000 Kč.",
-  alternates: { canonical: "/cena" },
-};
+export const metadata: Metadata = pageMetadata(seo.cena);
 
 const rows = [
   {
-    title: "Fotobudka Partysnap",
+    title: "Cena fotokoutku Partysnap",
     price: "Cena od 10 000 Kč",
     image: "2023/05/1676056892027",
     children: (
@@ -25,7 +23,7 @@ const rows = [
     ),
   },
   {
-    title: "Partyspin 360°",
+    title: "Cena 360° fotokoutku Partyspin",
     price: "Cena od 9 900 Kč",
     image: "2024/01/3M0A0668-scaled",
     children: (
@@ -36,7 +34,7 @@ const rows = [
     ),
   },
   {
-    title: "Fotobudka s AI - umělou inteligencí",
+    title: "Cena AI fotokoutku",
     price: "Cena od 14 000 Kč",
     image: "2024/08/AI-cenik",
     children: (
@@ -47,7 +45,7 @@ const rows = [
     ),
   },
   {
-    title: "Hostesky | Promotéři | Modelky",
+    title: "Cena hostesek, promotérů a modelek",
     price: "Cena od 270 Kč / hod.",
     image: "2024/02/1902",
     children: (
@@ -58,7 +56,7 @@ const rows = [
     ),
   },
   {
-    title: "AI Draw Bot",
+    title: "Cena AI Draw Bota",
     price: "Cena od 19 000 Kč",
     image: "2025/10/WhatsApp-Image-2025-10-09-at-08.51.22-scaled",
     children: (
@@ -90,19 +88,30 @@ const packages = [
 
 const packageIncludes = "dopravu po ČR | obsluhu 2x | pozadí z naší nabídky | plesové rekvizity | online galerii po akci | grafiku na míru";
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function CenaPage() {
   return (
     <>
-      <PageHero image="2022/01/33103039_1018111845036421_263485012270120960_n" title="Kolik to u nás stojí?">
+      <JsonLd data={faqSchema} />
+      <PageHero image="2022/01/33103039_1018111845036421_263485012270120960_n" title="Ceník služeb na akce" lead="Kolik to u nás stojí?">
         <Button href="/kontakt" variant="light">Napište nám</Button>
       </PageHero>
 
-      <SplitRows rows={rows} />
+      <SplitRows rows={rows} headingAs="h2" />
 
       <Section className="border-t border-line bg-paper-soft">
         <Container>
           <div className="mx-auto max-w-3xl rounded-lg border border-line bg-white p-6 sm:p-10">
-            <SectionTitle title="FAQ" subtitle="Nejčastější dotazy" />
+            <SectionTitle title="Nejčastější dotazy" />
             <div className="mt-10">
               <Faq items={faq} />
             </div>
@@ -123,7 +132,7 @@ export default function CenaPage() {
       <Section>
         <Container>
           <SectionTitle
-            title="Plesové | Maturitní balíčky"
+            title="Fotokoutek na ples a maturitní ples"
             subtitle="Pokud pořádáte ples nebo chystáte maturák, občas prostě na všechno není budget. Proto jsme pro vás připravily tyhle balíčky, které vám zajistí nálož zábavy a nebude to ani tolik stát!"
           />
           <ul className="mt-14 grid gap-6 lg:grid-cols-3">
@@ -134,9 +143,9 @@ export default function CenaPage() {
                   p.featured ? "border-ink bg-ink text-white" : "border-line bg-white"
                 }`}
               >
-                <p className={`text-xs font-semibold uppercase tracking-[0.3em] ${p.featured ? "text-white" : "text-ink"}`}>
+                <h3 className={`text-xs font-semibold uppercase tracking-[0.3em] ${p.featured ? "text-white" : "text-ink"}`}>
                   {p.name}
-                </p>
+                </h3>
                 <p className="mt-3 text-4xl font-semibold uppercase tracking-tight">{p.price}</p>
                 <span aria-hidden className={`mt-5 block h-px w-10 ${p.featured ? "bg-white/40" : "bg-line"}`} />
                 <div className={`mt-5 space-y-2 text-sm leading-relaxed ${p.featured ? "text-white" : "text-ink"}`}>

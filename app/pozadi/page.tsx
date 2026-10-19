@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { ContactForm } from "@/components/ContactForm";
@@ -7,11 +8,7 @@ import { Container, Heading, Prose, Section, SectionTitle } from "@/components/u
 import { CardLink } from "@/components/sections";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Partypack - Nabídka pozadí",
-  description: "Naše nabídka pozadí obsahuje 3 sekce: speciální pozadí, tištěná pozadí a klíčovací greenscreen. Plus AI filtry pro jednotlivce i skupinky.",
-  alternates: { canonical: "/pozadi" },
-};
+export const metadata: Metadata = pageMetadata(seo.pozadi);
 
 const options = [
   { href: "/specialni-pozadi", title: "Speciální pozadí", image: "2024/02/Partypack-21-2" },
@@ -23,13 +20,13 @@ const options = [
 export default function PozadiPage() {
   return (
     <>
-      <PageHero image="2022/01/Maslikovaa" title="Vyberte si svého favorita" />
+      <PageHero image="2022/01/Maslikovaa" title="Pozadí do fotokoutku" lead="Vyberte si svého favorita" />
 
       <Section>
         <Container>
           <SectionTitle
-            title="Naše nabídka pozadí"
-            subtitle="obsahuje 3 sekce, ze kterých si lze libovolně vybrat vašeho favorita!"
+            title="Speciální, tištěná a klíčovací pozadí"
+            subtitle="Naše nabídka pozadí obsahuje 3 sekce, ze kterých si lze libovolně vybrat vašeho favorita!"
           />
           <Prose className="mx-auto mt-8 max-w-3xl text-center">
             <p>
@@ -72,7 +69,7 @@ export default function PozadiPage() {
         <div className="absolute inset-0 bg-ink/40" />
         <Container className="relative py-16 sm:py-24">
           <div className="mx-auto max-w-3xl rounded-lg bg-white p-6 sm:p-10">
-            <Heading as="h3" className="text-2xl uppercase tracking-wide">Máte dotazy?</Heading>
+            <Heading as="h2" className="text-2xl uppercase tracking-wide">Máte dotazy k pozadí?</Heading>
             <span aria-hidden className="mt-4 block h-px w-10 bg-accent" />
             <div className="mt-8">
               <ContactForm />

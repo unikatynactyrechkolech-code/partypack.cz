@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata, seo } from "@/lib/seo";
 import { HeroSlider, type Slide } from "@/components/HeroSlider";
 import { Container, Section, SectionTitle } from "@/components/ui";
 import { CardLink, ContactSection, Partners, Stats } from "@/components/sections";
 
-export const metadata: Metadata = {
-  title: "Partypack - Ta nejlepší zábava na akce",
-  description: "Fotokoutek, virtuální realita a další služby do jednoho Partypacku!",
-  alternates: { canonical: "/" },
-};
+export const metadata: Metadata = pageMetadata(seo.home);
 
 const slides: Slide[] = [
   {
     image: "2023/07/MiaGebauer-302",
     title: "Partypack",
-    text: "… balíček služeb na vaše akce, který promění každý event v nezapomenutelný zážitek.",
+    text: "Balíček služeb na firemní akce, svatby a oslavy",
   },
   {
     image: "2024/04/Partypack-specialni-Pozadi-31",
@@ -29,12 +26,12 @@ const slides: Slide[] = [
 ];
 
 const services = [
-  { href: "/fotokoutek", title: "Fotobudka | GIFy", image: "2022/01/43531135_2220002654881285_3040242971850047488_n" },
-  { href: "/hostesky", title: "Hostesky | Modelky", image: "2023/05/2023-04-25_PIANA_DO_SKOL_photo-adam-costey-copyright-adam-costey.com-015" },
-  { href: "/ai-fotokoutek", title: "Fotokoutek s AI", image: "2024/04/819a14bd-a2ed-44ee-9e42-29a22cbe3d57" },
-  { href: "/partyspin360", title: "360° Partyspin", image: "2023/02/Partyspin-2-promo-foto-scaled" },
+  { href: "/fotokoutek", title: "Fotokoutek a GIFy", image: "2022/01/43531135_2220002654881285_3040242971850047488_n" },
+  { href: "/hostesky", title: "Hostesky a modelky", image: "2023/05/2023-04-25_PIANA_DO_SKOL_photo-adam-costey-copyright-adam-costey.com-015" },
+  { href: "/ai-fotokoutek", title: "AI fotokoutek", image: "2024/04/819a14bd-a2ed-44ee-9e42-29a22cbe3d57" },
+  { href: "/partyspin360", title: "Partyspin 360°", image: "2023/02/Partyspin-2-promo-foto-scaled" },
   { href: "/ai-draw-bot", title: "AI Draw Bot", image: "2025/03/DMB1" },
-  { href: "/dalsisluzby", title: "Další služby", image: "2024/04/Partypack-35" },
+  { href: "/dalsisluzby", title: "Další služby na akce", image: "2024/04/Partypack-35" },
 ];
 
 const highlights = [
@@ -51,7 +48,10 @@ export default function HomePage() {
 
       <Section>
         <Container>
-          <SectionTitle title="Co dokážeme zajistit?" subtitle="… sestavte si svůj balíček!" />
+          <SectionTitle
+            title="Služby na akce v jednom balíčku"
+            subtitle="Fotokoutek, hostesky, AI fotokoutek, Partyspin 360° i AI Draw Bot. Sestavte si balíček na míru a celou akci vyřešíte s jedním dodavatelem."
+          />
           <ul className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 xl:grid-cols-6">
             {services.map((s) => (
               <li key={s.href}>
@@ -80,8 +80,8 @@ export default function HomePage() {
       <Section className="bg-paper-soft">
         <Container>
           <SectionTitle
-            title="Milujeme naší práci"
-            subtitle="… proto do toho dáváme srdce a je to znát! Na trhu jsme již pěknou řadu let a nyní nás můžete najít jako balíček služeb Partypack."
+            title="Zábava na firemní akce, konference i svatby"
+            subtitle="Milujeme naši práci, a proto do ní dáváme srdce. Na trhu jsme pěknou řádku let a dnes nás najdete jako balíček služeb Partypack."
           />
           <p className="mx-auto mt-8 max-w-3xl text-center leading-relaxed text-ink text-pretty">
             Specializujeme se na jedinečné zážitky, které oživí každý event, konferenci, firemní večírek,

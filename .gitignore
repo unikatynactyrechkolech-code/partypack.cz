@@ -42,3 +42,4 @@ next-env.d.ts
 
 # screenshoty původního webu (jen referenční, velké soubory)
 /docs/puvodni-web/
+!.env.example

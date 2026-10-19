@@ -4,7 +4,11 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Button, Container, Heading, Prose, Section, SectionTitle, TextLink } from "@/components/ui";
 import { CardLink, Checkerboard, CtaBand, ImageGrid } from "@/components/sections";
-import { fotokoutekGallery, gallery, ledWallImages, partyTouchImages } from "@/lib/data";
+import { fotokoutekGallery, ledWallImages, partyTouchImages } from "@/lib/data";
+import { EventCard } from "@/components/EventCard";
+import { recentEvents } from "@/lib/events";
+
+export const revalidate = 600;
 
 export const metadata: Metadata = pageMetadata(seo.fotokoutek);
 
@@ -64,8 +68,8 @@ const otherServices = [
   { href: "/hostesky", title: "Hostesky", image: "2024/08/IMG_9544-2" },
 ];
 
-export default function FotokoutekPage() {
-  const recent = gallery.slice(0, 6);
+export default async function FotokoutekPage() {
+  const recent = await recentEvents(6);
   return (
     <>
       <PageHero
@@ -191,13 +195,7 @@ export default function FotokoutekPage() {
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {recent.map((g) => (
               <li key={g.slug}>
-                <CardLink
-                  href={g.album ?? "/galerie"}
-                  external={Boolean(g.album)}
-                  image={g.img}
-                  title={g.title}
-                  aspect="aspect-[3/2]"
-                />
+                <EventCard event={g} />
               </li>
             ))}
           </ul>

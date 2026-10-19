@@ -1,34 +1,47 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-
-const products = [
-  "Fotokoutek",
-  "Hostesky",
-  "AI fotokoutek",
-  "AI Draw Bot",
-  "360 Partyspin",
-  "Něco jiného?",
-];
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import { INQUIRY_SERVICES } from "@/lib/services";
 
 const inputCls =
   "w-full rounded-lg border border-line bg-white px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10";
 
-type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sending" | "sent" | "error" | "missing-service";
 
 export function ContactForm({ dark = false }: { dark?: boolean }) {
   const [status, setStatus] = useState<Status>("idle");
+  const startedAt = useRef(0);
+  const id = useId();
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
+    const fd = new FormData(form);
+    const services = fd.getAll("services").map(String);
+    if (services.length === 0) {
+      setStatus("missing-service");
+      return;
+    }
     setStatus("sending");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          name: fd.get("name"),
+          email: fd.get("email"),
+          phone: fd.get("phone"),
+          source: fd.get("source"),
+          services,
+          message: fd.get("message"),
+          web: fd.get("web"),
+          page: window.location.pathname,
+          elapsed: startedAt.current ? Date.now() - startedAt.current : null,
+        }),
       });
       if (!res.ok) throw new Error("request failed");
       setStatus("sent");
@@ -38,57 +51,75 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
     }
   }
 
-  const labelCls = `text-xs font-semibold uppercase tracking-[0.15em] ${
-    dark ? "text-white" : "text-ink"
-  }`;
+  const labelCls = `text-xs font-semibold uppercase tracking-[0.15em] ${dark ? "text-white" : "text-ink"}`;
+  const f = (name: string) => `${id}-${name}`;
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2" noValidate={false}>
       <div className="grid gap-2">
-        <label htmlFor="name" className={labelCls}>
+        <label htmlFor={f("name")} className={labelCls}>
           Jméno*
         </label>
-        <input id="name" name="name" required maxLength={400} className={inputCls} autoComplete="name" />
+        <input id={f("name")} name="name" required maxLength={200} className={inputCls} autoComplete="name" />
       </div>
       <div className="grid gap-2">
-        <label htmlFor="email" className={labelCls}>
+        <label htmlFor={f("email")} className={labelCls}>
           Váš email*
         </label>
-        <input id="email" name="email" type="email" required maxLength={400} className={inputCls} autoComplete="email" />
+        <input id={f("email")} name="email" type="email" required maxLength={320} className={inputCls} autoComplete="email" />
       </div>
       <div className="grid gap-2">
-        <label htmlFor="phone" className={labelCls}>
+        <label htmlFor={f("phone")} className={labelCls}>
           Váš telefon*
         </label>
-        <input id="phone" name="phone" type="tel" required maxLength={400} className={inputCls} autoComplete="tel" />
+        <input id={f("phone")} name="phone" type="tel" required maxLength={50} className={inputCls} autoComplete="tel" />
       </div>
       <div className="grid gap-2">
-        <label htmlFor="source" className={labelCls}>
+        <label htmlFor={f("source")} className={labelCls}>
           Kde jste na nás narazili?*
         </label>
-        <input id="source" name="source" required maxLength={400} className={inputCls} />
+        <input id={f("source")} name="source" required maxLength={200} className={inputCls} />
       </div>
-      <div className="grid gap-2 sm:col-span-2">
-        <label htmlFor="product" className={labelCls}>
-          O jaký produkt máte zájem?*
-        </label>
-        <select id="product" name="product" required defaultValue="" className={inputCls}>
-          <option value="" disabled>
-            Vyberte
-          </option>
-          {products.map((p) => (
-            <option key={p} value={p}>
-              {p}
-            </option>
+
+      <fieldset className="grid gap-3 sm:col-span-2">
+        <legend className={labelCls}>O jaké služby máte zájem?*</legend>
+        <p className={`-mt-1 text-sm ${dark ? "text-white" : "text-ink"}`}>Můžete vybrat více služeb a sestavit si balíček.</p>
+        <div className="flex flex-wrap gap-2">
+          {INQUIRY_SERVICES.map((s) => (
+            <label key={s} className="cursor-pointer">
+              <input
+                type="checkbox"
+                name="services"
+                value={s}
+                className="peer sr-only"
+                onChange={() => status === "missing-service" && setStatus("idle")}
+              />
+              <span className="inline-flex items-center rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-medium text-ink transition-colors peer-checked:border-ink peer-checked:bg-ink peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-accent hover:border-ink">
+                {s}
+              </span>
+            </label>
           ))}
-        </select>
-      </div>
+        </div>
+        {status === "missing-service" ? (
+          <p className="text-sm font-medium text-red-600" role="alert">
+            Vyberte prosím alespoň jednu službu.
+          </p>
+        ) : null}
+      </fieldset>
+
       <div className="grid gap-2 sm:col-span-2">
-        <label htmlFor="message" className={labelCls}>
+        <label htmlFor={f("message")} className={labelCls}>
           Datum akce + vaše zpráva
         </label>
-        <textarea id="message" name="message" rows={6} maxLength={2000} className={inputCls} />
+        <textarea id={f("message")} name="message" rows={6} maxLength={2000} className={inputCls} />
       </div>
+
+      {/* Past na roboty – skryté pole, které člověk nevyplní. */}
+      <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <label htmlFor={f("web")}>Web</label>
+        <input id={f("web")} name="web" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
         <button
           type="submit"
@@ -98,13 +129,13 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
           {status === "sending" ? "Odesílám…" : "Odeslat"}
         </button>
         {status === "sent" ? (
-          <p className={`text-sm ${dark ? "text-white" : "text-ink"}`}>
-            Děkujeme, zpráva byla odeslána.
+          <p className={`text-sm font-medium ${dark ? "text-white" : "text-ink"}`} role="status">
+            Děkujeme, poptávka je odeslaná. Ozveme se vám co nejdříve.
           </p>
         ) : null}
         {status === "error" ? (
-          <p className="text-sm text-red-600">
-            Zprávu se nepodařilo odeslat. Zkuste to prosím znovu nebo nám napište na info@partypack.cz.
+          <p className="text-sm text-red-600" role="alert">
+            Poptávku se nepodařilo odeslat. Zkuste to prosím znovu nebo nám napište na info@partypack.cz.
           </p>
         ) : null}
       </div>

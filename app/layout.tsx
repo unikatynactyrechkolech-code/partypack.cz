@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import { GoogleTagManager } from "@next/third-parties/google";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { CookieConsent } from "@/components/CookieConsent";
 import { consentDefaultScript } from "@/lib/consent";
 import { JsonLd } from "@/components/JsonLd";
 import { OG_IMAGE, SITE_URL, seo } from "@/lib/seo";
@@ -60,10 +56,6 @@ const organization = {
   ],
 };
 
-// Měření jako na původním webu: Google Tag Manager (v něm Google Analytics).
-// Souhlas s cookies řeší vlastní lišta s Google Consent Mode v2 (components/CookieConsent.tsx).
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-KNHLSBW";
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="cs" data-scroll-behavior="smooth" className={`${montserrat.variable} h-full antialiased`}>
@@ -71,13 +63,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script id="consent-default" dangerouslySetInnerHTML={{ __html: consentDefaultScript }} />
         <JsonLd data={organization} />
       </head>
-      <GoogleTagManager gtmId={GTM_ID} />
-      <body className="flex min-h-full flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <CookieConsent />
-      </body>
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }

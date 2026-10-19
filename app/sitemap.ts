@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL, seo } from "@/lib/seo";
+import { allEventSlugs } from "@/lib/events";
 
 const priority: Record<string, number> = {
   "/": 1,
@@ -19,12 +20,24 @@ const priority: Record<string, number> = {
   "/skupinove-ai-filtry": 0.5,
 };
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  return Object.values(seo).map((p) => ({
+  const events = await allEventSlugs();
+  const pages: MetadataRoute.Sitemap = Object.values(seo).map((p) => ({
     url: `${SITE_URL}${p.path === "/" ? "" : p.path}`,
     lastModified: now,
     changeFrequency: p.path === "/galerie" ? "weekly" : "monthly",
     priority: priority[p.path] ?? 0.5,
   }));
+  return [
+    ...pages,
+    ...events.map((e) => ({
+      url: `${SITE_URL}/portfolio/${e.slug}`,
+      lastModified: e.updatedAt ? new Date(e.updatedAt) : now,
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+    })),
+  ];
 }

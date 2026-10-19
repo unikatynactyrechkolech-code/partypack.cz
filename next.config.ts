@@ -3,6 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Vlevo dole je cookies kolečko, vývojový indikátor Next.js proto vpravo.
   devIndicators: { position: "bottom-right" },
+  experimental: {
+    // Fotky se před odesláním zmenšují v prohlížeči, limit je jen pojistka.
+    serverActions: { bodySizeLimit: "8mb" },
+  },
+  async redirects() {
+    return [
+      // Stránkování galerie z původního WordPressu
+      { source: "/galerie/page/:n", destination: "/galerie?strana=:n", permanent: true },
+    ];
+  },
   images: {
     remotePatterns: [
       {

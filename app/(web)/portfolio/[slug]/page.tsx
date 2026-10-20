@@ -14,7 +14,7 @@ function describe(title: string, date: string | null, service: string | null) {
   const parts = [`Fotky z akce ${title}${date ? ` (${date})` : ""}.`];
   const label = serviceLabel(service);
   if (label) parts.push(`${label} od Partypacku.`);
-  parts.push("Celou galerii najdete na Zoneramě. Chcete podobnou akci? Pošlete nezávaznou poptávku.");
+  parts.push("Celou galerii najdete na Zoneramě. Chcete podobnou akci? Pošlete poptávku.");
   return parts.join(" ").slice(0, 160);
 }
 

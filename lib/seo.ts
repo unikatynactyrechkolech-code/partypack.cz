@@ -97,9 +97,9 @@ export const seo = {
   },
   kontakt: {
     path: "/kontakt",
-    title: "Kontakt a nezávazná poptávka služeb na akce",
+    title: "Kontakt a poptávka fotokoutku a služeb na akce",
     description:
-      "Napište, zavolejte nebo se stavte na kafe. Partypack, Mandloňová 1175/16, Praha 9. Tel. +420 720 448 660, info@partypack.cz. Pošlete nezávaznou poptávku.",
+      "Napište, zavolejte nebo se stavte na kafe. Partypack, Mandloňová 1175/16, Praha 9. Tel. +420 720 448 660, info@partypack.cz. Pošlete poptávku.",
   },
 } satisfies Record<string, PageSeo>;
 

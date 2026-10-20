@@ -27,7 +27,7 @@ export function Partners({ items = partners }: { items?: Partner[] }) {
 }
 
 export function ContactSection({
-  title = "Nezávazná poptávka",
+  title = "Poptávka fotokoutku, hostesek a dalších služeb",
   lead,
 }: {
   title?: string;

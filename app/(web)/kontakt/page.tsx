@@ -19,7 +19,7 @@ const team = [
 export default function KontaktPage() {
   return (
     <>
-      <PageHero image="2025/04/Partypack-7" title="Kontakt a nezávazná poptávka" lead="Napište, zavolejte nebo se u nás stavte na kafe" />
+      <PageHero image="2025/04/Partypack-7" title="Kontakt a poptávka služeb na akce" lead="Napište, zavolejte nebo se u nás stavte na kafe" />
 
       <Section className="bg-paper-soft">
         <Container>

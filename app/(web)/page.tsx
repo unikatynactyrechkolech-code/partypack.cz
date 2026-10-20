@@ -1,29 +1,10 @@
 import type { Metadata } from "next";
 import { pageMetadata, seo } from "@/lib/seo";
-import { HeroSlider, type Slide } from "@/components/HeroSlider";
+import { ConversionHero } from "@/components/ConversionHero";
 import { Container, Section, SectionTitle } from "@/components/ui";
 import { CardLink, ContactSection, Partners, Stats } from "@/components/sections";
 
 export const metadata: Metadata = pageMetadata(seo.home);
-
-const slides: Slide[] = [
-  {
-    image: "2023/07/MiaGebauer-302",
-    title: "Partypack",
-    text: "Balíček služeb na firemní akce, svatby a oslavy",
-  },
-  {
-    image: "2024/04/Partypack-specialni-Pozadi-31",
-    title: "Partysnap",
-    text: "… alias nejlepší fotokoutek široko daleko, který za vámi dorazí klidně na druhý konec světa!",
-    cta: { href: "/fotokoutek", label: "Více info" },
-  },
-  {
-    image: "2024/10/038_2024-10-16-Makro-Chefs-Dinner-VIP_Full-scaled",
-    title: "Akce bez starostí",
-    text: "… pro vás zajišťujeme již 7 let!",
-  },
-];
 
 const services = [
   { href: "/fotokoutek", title: "Fotokoutek a GIFy", image: "2022/01/43531135_2220002654881285_3040242971850047488_n" },
@@ -44,7 +25,7 @@ const highlights = [
 export default function HomePage() {
   return (
     <>
-      <HeroSlider slides={slides} />
+      <ConversionHero />
 
       <Section>
         <Container>

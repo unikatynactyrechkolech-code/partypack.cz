@@ -5,6 +5,7 @@ import { sessionClient } from "@/lib/supabase/server";
 import { isAdminRequest } from "@/lib/admin";
 import { formatEventDate } from "@/lib/events";
 import { serviceLabel } from "@/lib/services";
+import { T } from "@/lib/supabase/tables";
 
 export const metadata: Metadata = { title: "Akce" };
 const PER_PAGE = 30;
@@ -20,7 +21,7 @@ export default async function AdminEventsPage(props: PageProps<"/admin">) {
   if (!(await isAdminRequest())) return null;
   const supabase = await sessionClient();
   let query = supabase
-    .from("events")
+    .from(T.events)
     .select("id,slug,title,event_date,service,published,cover_key", { count: "exact" })
     .order("event_date", { ascending: false })
     .order("created_at", { ascending: false })

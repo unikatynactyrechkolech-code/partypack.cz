@@ -4,6 +4,7 @@ import { gallery } from "@/lib/data";
 import { inferService, isEventTypeValue, isServiceValue, type EventTypeValue, type ServiceValue } from "@/lib/services";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { publicClient } from "@/lib/supabase/public";
+import { T } from "@/lib/supabase/tables";
 
 export type EventItem = {
   slug: string;
@@ -81,7 +82,7 @@ export async function listEvents({
 
   if (isSupabaseConfigured()) {
     let q = publicClient()
-      .from("events")
+      .from(T.events)
       .select(COLUMNS, { count: "exact" })
       .eq("published", true)
       .order("event_date", { ascending: false })
@@ -108,7 +109,7 @@ export async function listEvents({
 
 export const getEvent = cache(async (slug: string): Promise<EventItem | null> => {
   if (isSupabaseConfigured()) {
-    const { data, error } = await publicClient().from("events").select(COLUMNS).eq("slug", slug).eq("published", true).maybeSingle();
+    const { data, error } = await publicClient().from(T.events).select(COLUMNS).eq("slug", slug).eq("published", true).maybeSingle();
     if (!error) return data ? fromRow(data as Row) : null;
     console.error("[events] get failed, using fallback:", error.message);
   }
@@ -126,13 +127,14 @@ export async function allEventSlugs(): Promise<{ slug: string; updatedAt: string
   const out: { slug: string; updatedAt: string | null }[] = [];
   for (let from = 0; from < 20000; from += 1000) {
     const { data, error } = await publicClient()
-      .from("events")
+      .from(T.events)
       .select("slug,updated_at")
       .eq("published", true)
       .order("event_date", { ascending: false })
       .range(from, from + 999);
     if (error || !data) {
       console.error("[events] sitemap failed:", error?.message);
+      if (out.length === 0) return fallbackEvents().map((e) => ({ slug: e.slug, updatedAt: null }));
       break;
     }
     out.push(...(data as { slug: string; updated_at: string | null }[]).map((r) => ({ slug: r.slug, updatedAt: r.updated_at })));

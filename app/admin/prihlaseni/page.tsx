@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Img } from "@/components/Img";
 import { LoginForm } from "@/components/admin/LoginForm";
@@ -24,6 +25,12 @@ export default async function LoginPage() {
         <div className="mt-6">
           <LoginForm />
         </div>
+        <p className="mt-6 text-sm">
+          Poprvé tady?{" "}
+          <Link href="/admin/registrace" className="font-medium underline underline-offset-4">
+            Nastavit heslo
+          </Link>
+        </p>
       </div>
     </div>
   );

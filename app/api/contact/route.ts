@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { INQUIRY_SERVICES } from "@/lib/services";
-import { isServiceRoleConfigured } from "@/lib/supabase/config";
+import { isServiceRoleConfigured, isSupabaseConfigured } from "@/lib/supabase/config";
 import { serviceClient } from "@/lib/supabase/service";
+import { publicClient } from "@/lib/supabase/public";
+import { RPC, T } from "@/lib/supabase/tables";
 import { isEmailConfigured, sendInquiryEmail, type InquiryEmail } from "@/lib/notify";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -45,11 +47,22 @@ export async function POST(req: Request) {
   }
 
   const webhook = process.env.CONTACT_WEBHOOK_URL;
-  const channels = { db: isServiceRoleConfigured(), email: isEmailConfigured(), webhook: Boolean(webhook) };
+  const channels = { db: isServiceRoleConfigured() || isSupabaseConfigured(), email: isEmailConfigured(), webhook: Boolean(webhook) };
   const delivered = { db: false, email: false, webhook: false };
 
   if (channels.db) {
-    const { error } = await serviceClient().from("inquiries").insert(inquiry);
+    // S tajným klíčem zapisujeme přímo, jinak přes databázovou funkci s veřejným klíčem.
+    const { error } = isServiceRoleConfigured()
+      ? await serviceClient().from(T.inquiries).insert(inquiry)
+      : await publicClient().rpc(RPC.submitInquiry, {
+          p_name: inquiry.name,
+          p_email: inquiry.email,
+          p_phone: inquiry.phone,
+          p_source: inquiry.source,
+          p_services: inquiry.services,
+          p_message: inquiry.message,
+          p_page: inquiry.page,
+        });
     if (error) console.error("[contact] db insert failed:", error.message);
     else delivered.db = true;
   }

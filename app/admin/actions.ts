@@ -2,12 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { adminClient } from "@/lib/admin";
 import { isR2Configured, uploadImageAsWebp } from "@/lib/r2";
 import { isEventTypeValue, isServiceValue } from "@/lib/services";
 import { slugify } from "@/lib/slug";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { sessionClient } from "@/lib/supabase/server";
+import { RPC, T } from "@/lib/supabase/tables";
 
 export type FormState = { error?: string; fieldErrors?: Record<string, string> };
 
@@ -22,6 +24,35 @@ export async function signIn(_prev: FormState, fd: FormData): Promise<FormState>
   const { error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) return { error: "Nesprávný e-mail nebo heslo." };
   redirect("/admin");
+}
+
+/** Nastavení hesla pro e-mail, který je v partypack_admins (bez zakládání účtu v Supabase). */
+export async function register(_prev: FormState, fd: FormData): Promise<FormState & { done?: boolean }> {
+  if (!isSupabaseConfigured()) return { error: "Supabase zatím není nastavené." };
+  const email = s(fd, "email", 320).toLowerCase();
+  const password = String(fd.get("password") ?? "");
+  const password2 = String(fd.get("password2") ?? "");
+  if (!email) return { error: "Vyplňte e-mail." };
+  if (password.length < 8) return { error: "Heslo musí mít aspoň 8 znaků." };
+  if (password !== password2) return { error: "Hesla se neshodují." };
+  const supabase = await sessionClient();
+  const { data: allowed, error: rpcError } = await supabase.rpc(RPC.canRegister, { p_email: email });
+  if (rpcError) {
+    console.error("[admin] can_register failed:", rpcError.message);
+    return { error: "Databáze zatím není připravená. Zkuste to prosím později." };
+  }
+  if (allowed !== true) return { error: "Tento e-mail nemá do administrace přístup." };
+  const h = await headers();
+  const origin = h.get("origin") ?? `https://${h.get("host") ?? "partypack.cz"}`;
+  const { data, error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${origin}/admin/prihlaseni` } });
+  if (error) {
+    if (/already registered|already exists/i.test(error.message)) {
+      return { error: "Účet s tímto e-mailem už existuje. Přihlaste se jeho heslem." };
+    }
+    return { error: "Účet se nepodařilo vytvořit: " + error.message };
+  }
+  if (data.session) redirect("/admin");
+  return { done: true };
 }
 
 export async function signOut() {
@@ -94,12 +125,12 @@ export async function saveEvent(_prev: FormState, fd: FormData): Promise<FormSta
 
   let previousSlug: string | null = null;
   if (id) {
-    const { data: prev } = await supabase.from("events").select("slug").eq("id", id).maybeSingle();
+    const { data: prev } = await supabase.from(T.events).select("slug").eq("id", id).maybeSingle();
     previousSlug = (prev as { slug: string } | null)?.slug ?? null;
-    const { error } = await supabase.from("events").update(row).eq("id", id);
+    const { error } = await supabase.from(T.events).update(row).eq("id", id);
     if (error) return dbError(error);
   } else {
-    const { error } = await supabase.from("events").insert(row);
+    const { error } = await supabase.from(T.events).insert(row);
     if (error) return dbError(error);
   }
 
@@ -117,8 +148,8 @@ export async function deleteEvent(fd: FormData) {
   const supabase = await adminClient();
   if (!supabase) redirect("/admin/prihlaseni");
   const id = s(fd, "id", 64);
-  const { data } = await supabase.from("events").select("slug").eq("id", id).maybeSingle();
-  const { error } = await supabase.from("events").delete().eq("id", id);
+  const { data } = await supabase.from(T.events).select("slug").eq("id", id).maybeSingle();
+  const { error } = await supabase.from(T.events).delete().eq("id", id);
   if (error) {
     console.error("[admin] delete failed:", error.message);
     redirect(`/admin/akce/${id}?chyba=1`);
@@ -135,7 +166,7 @@ export async function setInquiryStatus(fd: FormData) {
   const id = s(fd, "id", 64);
   const status = s(fd, "status", 20);
   if (!(INQUIRY_STATUSES as readonly string[]).includes(status)) return;
-  const { error } = await supabase.from("inquiries").update({ status }).eq("id", id);
+  const { error } = await supabase.from(T.inquiries).update({ status }).eq("id", id);
   if (error) console.error("[admin] status update failed:", error.message);
   revalidatePath("/admin/poptavky");
 }

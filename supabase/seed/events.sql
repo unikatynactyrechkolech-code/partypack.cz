@@ -2,7 +2,7 @@
 -- Spusťte v Supabase → SQL Editor až po supabase/migrations/0001_partypack.sql.
 -- Opakované spuštění je bezpečné (upsert podle slug), ruční úpravy služby a typu akce nepřepíše.
 
-insert into partypack.events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
+insert into public.partypack_events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
 (114362, 'dm-summit-2026', 'DM Summit 2026', '2026-10-16', 'partyspin', null, 'https://eu.zonerama.com/Link/Open/6ad1e1d9aa78182f845eb1c2', '2026/10/DM-Summit-2026', 1844, 1240, true),
 (114346, 'red-bull-overtime', 'Red Bull OVERTIME', '2026-10-13', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/7e9bfa90-993b-47b4-84cd-f649f7af09ff', null, null, null, true),
 (114326, 'ai-draw-bot-anezsky-klaster', 'AI DRAW BOT – Anežský Klášter', '2026-10-13', 'ai-draw-bot', null, null, '2026/10/Anezsky-klaster-web', 1600, 1200, true),
@@ -205,13 +205,13 @@ insert into partypack.events (legacy_id, slug, title, event_date, service, event
 (110340, 'gcp-novorocni-vecirek-2025', 'GČP – Novoroční večírek 2025', '2025-01-08', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/12709628', '2025/01/Partypack-57-4', 2000, 1333, true)
 on conflict (slug) do update set
   title = excluded.title, event_date = excluded.event_date,
-  service = coalesce(partypack.events.service, excluded.service),
-  event_type = coalesce(partypack.events.event_type, excluded.event_type),
-  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, partypack.events.cover_key),
-  cover_w = coalesce(excluded.cover_w, partypack.events.cover_w), cover_h = coalesce(excluded.cover_h, partypack.events.cover_h),
+  service = coalesce(public.partypack_events.service, excluded.service),
+  event_type = coalesce(public.partypack_events.event_type, excluded.event_type),
+  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, public.partypack_events.cover_key),
+  cover_w = coalesce(excluded.cover_w, public.partypack_events.cover_w), cover_h = coalesce(excluded.cover_h, public.partypack_events.cover_h),
   legacy_id = excluded.legacy_id;
 
-insert into partypack.events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
+insert into public.partypack_events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
 (110336, 'silvestrovsky-vecirek-nh-collection-hotel', 'Silvestrovský večírek Nh Collection Hotel', '2025-01-06', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/12685557', '2025/01/Partypack-308', 2000, 1333, true),
 (110333, 'silvestrovsky-vecirek-royal-regent', 'Silvestrovský večírek – Royal Regent', '2025-01-03', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/12684803', '2025/01/Partypack-48-3', 2000, 1333, true),
 (110330, 'silvestrovsky-vecirek-casino-palasino-dolni-dvoriste', 'Silvestrovský večírek Casino Palasino Dolní Dvořiště', '2025-01-03', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/12684681', '2025/01/Partypack-21', 2000, 1345, true),
@@ -414,13 +414,13 @@ insert into partypack.events (legacy_id, slug, title, event_date, service, event
 (109620, 'spolecensky-vecer-pocitace-detem', 'Společenský večer – Počítače dětem', '2024-08-30', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/11960171', '2024/08/Partypack-146', 2000, 1333, true)
 on conflict (slug) do update set
   title = excluded.title, event_date = excluded.event_date,
-  service = coalesce(partypack.events.service, excluded.service),
-  event_type = coalesce(partypack.events.event_type, excluded.event_type),
-  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, partypack.events.cover_key),
-  cover_w = coalesce(excluded.cover_w, partypack.events.cover_w), cover_h = coalesce(excluded.cover_h, partypack.events.cover_h),
+  service = coalesce(public.partypack_events.service, excluded.service),
+  event_type = coalesce(public.partypack_events.event_type, excluded.event_type),
+  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, public.partypack_events.cover_key),
+  cover_w = coalesce(excluded.cover_w, public.partypack_events.cover_w), cover_h = coalesce(excluded.cover_h, public.partypack_events.cover_h),
   legacy_id = excluded.legacy_id;
 
-insert into partypack.events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
+insert into public.partypack_events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
 (109616, 'svatba-j-and-m', 'Svatba J and M', '2024-08-26', 'fotokoutek', 'svatba', 'https://eu.zonerama.com/Partypack/Album/11937987', '2024/08/Partypack-52', 2000, 1333, true),
 (109610, 'the-culture-festival-liberec', 'The CULTURE FESTIVAL – Liberec', '2024-08-26', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/11937168', '2024/08/Partypack-14-5', 2000, 1333, true),
 (109607, 'svatba-dominika-a-lukas', 'Svatba Dominika a Lukáš', '2024-08-26', 'fotokoutek', null, 'https://eu.zonerama.com/Partypack/Album/11937073', '2024/08/Partypack-103', 2000, 1333, true),
@@ -623,13 +623,13 @@ insert into partypack.events (legacy_id, slug, title, event_date, service, event
 (107966, 'partyspin-vanocni-vecirek-synett', 'PARTYSPIN – Vánoční večírek Synett', '2023-12-21', 'partyspin', 'event', 'https://eu.zonerama.com/Partypack/Album/10849897', '2023/12/nahled-spin-synett', 812, 538, true)
 on conflict (slug) do update set
   title = excluded.title, event_date = excluded.event_date,
-  service = coalesce(partypack.events.service, excluded.service),
-  event_type = coalesce(partypack.events.event_type, excluded.event_type),
-  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, partypack.events.cover_key),
-  cover_w = coalesce(excluded.cover_w, partypack.events.cover_w), cover_h = coalesce(excluded.cover_h, partypack.events.cover_h),
+  service = coalesce(public.partypack_events.service, excluded.service),
+  event_type = coalesce(public.partypack_events.event_type, excluded.event_type),
+  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, public.partypack_events.cover_key),
+  cover_w = coalesce(excluded.cover_w, public.partypack_events.cover_w), cover_h = coalesce(excluded.cover_h, public.partypack_events.cover_h),
   legacy_id = excluded.legacy_id;
 
-insert into partypack.events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
+insert into public.partypack_events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
 (107957, 'vanocni-vecirek-centra-2023', 'Vánoční večírek CENTRA 2023', '2023-12-19', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/10841717', '2023/12/Partypack-19', 2000, 1333, true),
 (107954, 'vanocni-besidka-ppf-17-12', 'Vánoční besídka PPF 17.12.', '2023-12-19', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/10841572', '2023/12/Partypack-209', 2000, 1345, true),
 (107951, 'vanocni-besidka-ppf-16-12', 'Vánoční besídka PPF 16.12.', '2023-12-19', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/10841450', '2023/12/Partypack-294', 2000, 1345, true),
@@ -832,13 +832,13 @@ insert into partypack.events (legacy_id, slug, title, event_date, service, event
 (107052, 'nejdecky-ples-2023', 'Nejdecký ples 2023', '2023-03-14', 'fotokoutek', 'ples', 'https://eu.zonerama.com/Partypack/Album/9538879', '2023/03/Partypack-282', 2000, 1333, true)
 on conflict (slug) do update set
   title = excluded.title, event_date = excluded.event_date,
-  service = coalesce(partypack.events.service, excluded.service),
-  event_type = coalesce(partypack.events.event_type, excluded.event_type),
-  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, partypack.events.cover_key),
-  cover_w = coalesce(excluded.cover_w, partypack.events.cover_w), cover_h = coalesce(excluded.cover_h, partypack.events.cover_h),
+  service = coalesce(public.partypack_events.service, excluded.service),
+  event_type = coalesce(public.partypack_events.event_type, excluded.event_type),
+  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, public.partypack_events.cover_key),
+  cover_w = coalesce(excluded.cover_w, public.partypack_events.cover_w), cover_h = coalesce(excluded.cover_h, public.partypack_events.cover_h),
   legacy_id = excluded.legacy_id;
 
-insert into partypack.events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
+insert into public.partypack_events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
 (107043, 'partyspin-ples-ftvs-uk', 'PARTYSPIN – Ples FTVS UK', '2023-03-08', 'partyspin', 'event', 'https://eu.zonerama.com/Partypack/Album/9518123', '2023/03/Partyspin-FTVS-UK-uvodka', 2000, 1330, true),
 (107040, 'ples-ftvs-uk', 'Ples FTVS UK', '2023-03-08', 'fotokoutek', 'ples', 'https://eu.zonerama.com/Partypack/Album/9517619', '2023/03/Partypack-169', 2000, 1333, true),
 (107036, 'biatlon-iv-5-3-2023', 'Biatlon IV. – 5.3.2023', '2023-03-06', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/9510937', '2023/03/Partypack-453', 2000, 1327, true),
@@ -1041,13 +1041,13 @@ insert into partypack.events (legacy_id, slug, title, event_date, service, event
 (105951, '22-narozeniny-trilux', '22.narozeniny Trilux', '2022-06-02', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/8487665', '2022/07/Partypack-2', 2000, 1345, true)
 on conflict (slug) do update set
   title = excluded.title, event_date = excluded.event_date,
-  service = coalesce(partypack.events.service, excluded.service),
-  event_type = coalesce(partypack.events.event_type, excluded.event_type),
-  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, partypack.events.cover_key),
-  cover_w = coalesce(excluded.cover_w, partypack.events.cover_w), cover_h = coalesce(excluded.cover_h, partypack.events.cover_h),
+  service = coalesce(public.partypack_events.service, excluded.service),
+  event_type = coalesce(public.partypack_events.event_type, excluded.event_type),
+  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, public.partypack_events.cover_key),
+  cover_w = coalesce(excluded.cover_w, public.partypack_events.cover_w), cover_h = coalesce(excluded.cover_h, public.partypack_events.cover_h),
   legacy_id = excluded.legacy_id;
 
-insert into partypack.events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
+insert into public.partypack_events (legacy_id, slug, title, event_date, service, event_type, album_url, cover_key, cover_w, cover_h, published) values
 (105942, 'letni-sportovni-hry-gcp-2', 'Letní sportovní hry GČP', '2022-06-02', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/8486522', '2022/07/Partypack-49', 2000, 1333, true),
 (105581, 'detsky-den-pwc', 'Dětský den pwc', '2022-06-01', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/8468752', '2022/06/Partypack-108', 2000, 1333, true),
 (105578, 'setkani-nejlepsich', 'Setkání nejlepších', '2022-06-01', 'fotokoutek', 'event', 'https://eu.zonerama.com/Partypack/Album/8468707', '2022/06/Partypack-55', 2000, 1345, true),
@@ -1149,8 +1149,8 @@ insert into partypack.events (legacy_id, slug, title, event_date, service, event
 (105757, 'ples-mesta-nejdek-2016', 'Ples města NEJDEK 2016', '2016-07-19', 'fotokoutek', 'ples', 'https://www.facebook.com/media/set/?set=a.531623003685310&type=3', '2016/07/12719263_531623767018567_6916810009389418846_o', 2000, 1332, true)
 on conflict (slug) do update set
   title = excluded.title, event_date = excluded.event_date,
-  service = coalesce(partypack.events.service, excluded.service),
-  event_type = coalesce(partypack.events.event_type, excluded.event_type),
-  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, partypack.events.cover_key),
-  cover_w = coalesce(excluded.cover_w, partypack.events.cover_w), cover_h = coalesce(excluded.cover_h, partypack.events.cover_h),
+  service = coalesce(public.partypack_events.service, excluded.service),
+  event_type = coalesce(public.partypack_events.event_type, excluded.event_type),
+  album_url = excluded.album_url, cover_key = coalesce(excluded.cover_key, public.partypack_events.cover_key),
+  cover_w = coalesce(excluded.cover_w, public.partypack_events.cover_w), cover_h = coalesce(excluded.cover_h, public.partypack_events.cover_h),
   legacy_id = excluded.legacy_id;

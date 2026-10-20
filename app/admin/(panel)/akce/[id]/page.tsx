@@ -5,6 +5,7 @@ import { EventForm, type EventFormValues } from "@/components/admin/EventForm";
 import { DeleteEventButton } from "@/components/admin/DeleteEventButton";
 import { sessionClient } from "@/lib/supabase/server";
 import { isAdminRequest } from "@/lib/admin";
+import { T } from "@/lib/supabase/tables";
 
 export const metadata: Metadata = { title: "Upravit akci" };
 
@@ -15,7 +16,7 @@ export default async function EditEventPage(props: PageProps<"/admin/akce/[id]">
   if (!(await isAdminRequest())) return null;
   const supabase = await sessionClient();
   const { data } = await supabase
-    .from("events")
+    .from(T.events)
     .select("id,title,slug,event_date,service,event_type,album_url,description,published,cover_key")
     .eq("id", id)
     .maybeSingle();

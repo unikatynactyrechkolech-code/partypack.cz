@@ -3,6 +3,7 @@ import { cache } from "react";
 import { connection } from "next/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { sessionClient } from "@/lib/supabase/server";
+import { RPC } from "@/lib/supabase/tables";
 
 export type AdminStatus =
   | { state: "not-configured" }
@@ -19,7 +20,7 @@ export const getAdminStatus = cache(async (): Promise<AdminStatus> => {
   const { data } = await supabase.auth.getUser();
   const email = data.user?.email;
   if (!email) return { state: "signed-out" };
-  const { data: isAdmin, error } = await supabase.rpc("is_admin");
+  const { data: isAdmin, error } = await supabase.rpc(RPC.isAdmin);
   if (error) console.error("[admin] is_admin failed:", error.message);
   return isAdmin === true ? { state: "ok", email } : { state: "forbidden", email };
 });
@@ -35,6 +36,6 @@ export async function adminClient() {
   const supabase = await sessionClient();
   const { data } = await supabase.auth.getUser();
   if (!data.user?.email) return null;
-  const { data: isAdmin } = await supabase.rpc("is_admin");
+  const { data: isAdmin } = await supabase.rpc(RPC.isAdmin);
   return isAdmin === true ? supabase : null;
 }

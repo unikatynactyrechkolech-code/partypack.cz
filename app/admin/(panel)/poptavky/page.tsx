@@ -3,6 +3,7 @@ import Link from "next/link";
 import { InquiryStatusSelect } from "@/components/admin/InquiryStatusSelect";
 import { sessionClient } from "@/lib/supabase/server";
 import { isAdminRequest } from "@/lib/admin";
+import { T } from "@/lib/supabase/tables";
 
 export const metadata: Metadata = { title: "Poptávky" };
 const PER_PAGE = 30;
@@ -37,7 +38,7 @@ export default async function InquiriesPage(props: PageProps<"/admin/poptavky">)
   if (!(await isAdminRequest())) return null;
   const supabase = await sessionClient();
   let query = supabase
-    .from("inquiries")
+    .from(T.inquiries)
     .select("id,created_at,name,email,phone,source,services,message,page,status", { count: "exact" })
     .order("created_at", { ascending: false })
     .range(from, from + PER_PAGE - 1);

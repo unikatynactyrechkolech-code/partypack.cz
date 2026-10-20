@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { INQUIRY_SERVICES } from "@/lib/services";
+import { trackUmami } from "@/lib/umami";
 
 const inputCls =
   "w-full rounded-lg border border-line bg-white px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10";
@@ -23,6 +24,7 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
     const fd = new FormData(form);
     const services = fd.getAll("services").map(String);
     if (services.length === 0) {
+      trackUmami("Nedokončená poptávka", { "Důvod": "Nevybraná služba" });
       setStatus("missing-service");
       return;
     }
@@ -43,10 +45,20 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
           elapsed: startedAt.current ? Date.now() - startedAt.current : null,
         }),
       });
-      if (!res.ok) throw new Error("request failed");
+      if (!res.ok) {
+        trackUmami("Nedokončená poptávka", {
+          "Důvod": res.status === 400 ? "Špatně vyplněný formulář" : "Chyba při odesílání",
+        });
+        setStatus("error");
+        return;
+      }
+      if (!fd.get("web")) {
+        trackUmami("Odeslaná poptávka", { "Služby": services.join(", "), "Stránka": window.location.pathname });
+      }
       setStatus("sent");
       form.reset();
     } catch {
+      trackUmami("Nedokončená poptávka", { "Důvod": "Výpadek připojení" });
       setStatus("error");
     }
   }

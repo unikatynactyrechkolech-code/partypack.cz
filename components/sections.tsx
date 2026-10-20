@@ -9,14 +9,14 @@ export function Partners({ items = partners }: { items?: Partner[] }) {
   return (
     <Section className="bg-paper-soft">
       <Container>
-        <ul className="mx-auto grid max-w-6xl grid-cols-2 items-center gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 lg:gap-y-14">
+        <ul className="mx-auto grid max-w-5xl grid-cols-3 items-center gap-x-6 gap-y-8 sm:grid-cols-4 md:grid-cols-6 lg:gap-x-10">
           {items.map((p) => (
             <li key={p.img} className="flex items-center justify-center">
               <Img
                 k={p.img}
                 alt={p.name}
-                sizes="(min-width: 1024px) 280px, (min-width: 640px) 33vw, 50vw"
-                className="h-auto w-full max-w-[260px] object-contain"
+                sizes="120px"
+                className="h-auto w-full max-w-[110px] object-contain"
               />
             </li>
           ))}

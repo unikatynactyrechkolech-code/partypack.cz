@@ -19,7 +19,7 @@ const s = (fd: FormData, k: string, max = 2000) => String(fd.get(k) ?? "").trim(
 async function confirmRedirect() {
   const h = await headers();
   const origin = h.get("origin") ?? `https://${h.get("host") ?? "partypack.cz"}`;
-  return `${origin}/admin/prihlaseni?potvrzeno=1`;
+  return `${origin}/admin/potvrzeni`;
 }
 
 export async function signIn(_prev: AuthState, fd: FormData): Promise<AuthState> {

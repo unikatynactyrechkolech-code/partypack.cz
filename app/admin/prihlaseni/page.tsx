@@ -8,7 +8,10 @@ import { getAdminStatus } from "@/lib/admin";
 
 export const metadata: Metadata = { title: "Přihlášení" };
 
-export default async function LoginPage() {
+export default async function LoginPage(props: PageProps<"/admin/prihlaseni">) {
+  const sp = await props.searchParams;
+  const confirmed = sp.potvrzeno === "1" && !sp.error;
+  const linkError = typeof sp.error_description === "string" || typeof sp.error === "string";
   const status = await getAdminStatus();
   if (status.state === "not-configured") return <SetupNotice />;
   if (status.state === "ok") redirect("/admin");
@@ -17,6 +20,12 @@ export default async function LoginPage() {
       <div className="w-full max-w-sm rounded-lg border border-line bg-white p-8">
         <Img k="2022/01/cropped-cropped-logo-znak-png-male" alt="PARTYPACK" className="h-8 w-auto" sizes="120px" />
         <h1 className="mt-6 text-xl font-semibold">Přihlášení do administrace</h1>
+        {confirmed ? <p className="mt-3 text-sm" role="status">E-mail je potvrzený. Teď se přihlaste.</p> : null}
+        {linkError ? (
+          <p className="mt-3 text-sm" role="alert">
+            Odkaz z e-mailu už neplatí. Přihlaste se a nechte si poslat nový.
+          </p>
+        ) : null}
         {status.state === "forbidden" ? (
           <p className="mt-3 text-sm">
             Účet {status.email} nemá přístup. Přihlaste se jiným účtem.

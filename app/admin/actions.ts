@@ -12,22 +12,54 @@ import { sessionClient } from "@/lib/supabase/server";
 import { RPC, T } from "@/lib/supabase/tables";
 
 export type FormState = { error?: string; fieldErrors?: Record<string, string> };
+export type AuthState = FormState & { done?: boolean; unconfirmed?: boolean; email?: string; notice?: string };
 
 const s = (fd: FormData, k: string, max = 2000) => String(fd.get(k) ?? "").trim().slice(0, max);
 
-export async function signIn(_prev: FormState, fd: FormData): Promise<FormState> {
+async function confirmRedirect() {
+  const h = await headers();
+  const origin = h.get("origin") ?? `https://${h.get("host") ?? "partypack.cz"}`;
+  return `${origin}/admin/prihlaseni?potvrzeno=1`;
+}
+
+export async function signIn(_prev: AuthState, fd: FormData): Promise<AuthState> {
   if (!isSupabaseConfigured()) return { error: "Supabase zatím není nastavené." };
   const email = s(fd, "email", 320).toLowerCase();
   const password = String(fd.get("password") ?? "");
   if (!email || !password) return { error: "Vyplňte e-mail i heslo." };
   const supabase = await sessionClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) return { error: "Nesprávný e-mail nebo heslo." };
+  if (error) {
+    if (error.code === "email_not_confirmed" || /not confirmed/i.test(error.message)) {
+      return {
+        error: "E-mail ještě není potvrzený. Otevřete odkaz z e-mailu, který přišel po nastavení hesla, a podívejte se i do spamu.",
+        unconfirmed: true,
+        email,
+      };
+    }
+    return { error: "Nesprávný e-mail nebo heslo." };
+  }
   redirect("/admin");
 }
 
+/** Znovu pošle odkaz pro potvrzení e-mailu, jen pro e-maily s přístupem do administrace. */
+export async function resendConfirmation(_prev: AuthState, fd: FormData): Promise<AuthState> {
+  if (!isSupabaseConfigured()) return { error: "Supabase zatím není nastavené." };
+  const email = s(fd, "email", 320).toLowerCase();
+  if (!email) return { error: "Chybí e-mail." };
+  const supabase = await sessionClient();
+  const { data: allowed } = await supabase.rpc(RPC.canRegister, { p_email: email });
+  if (allowed !== true) return { error: "Tento e-mail nemá do administrace přístup." };
+  const { error } = await supabase.auth.resend({ type: "signup", email, options: { emailRedirectTo: await confirmRedirect() } });
+  if (error) {
+    console.error("[admin] resend failed:", error.message);
+    return { error: "Odkaz se nepodařilo poslat. Zkuste to za minutu znovu." };
+  }
+  return { notice: `Odkaz jsme poslali znovu na ${email}.` };
+}
+
 /** Nastavení hesla pro e-mail, který je v partypack_admins (bez zakládání účtu v Supabase). */
-export async function register(_prev: FormState, fd: FormData): Promise<FormState & { done?: boolean }> {
+export async function register(_prev: AuthState, fd: FormData): Promise<AuthState> {
   if (!isSupabaseConfigured()) return { error: "Supabase zatím není nastavené." };
   const email = s(fd, "email", 320).toLowerCase();
   const password = String(fd.get("password") ?? "");
@@ -42,17 +74,19 @@ export async function register(_prev: FormState, fd: FormData): Promise<FormStat
     return { error: "Databáze zatím není připravená. Zkuste to prosím později." };
   }
   if (allowed !== true) return { error: "Tento e-mail nemá do administrace přístup." };
-  const h = await headers();
-  const origin = h.get("origin") ?? `https://${h.get("host") ?? "partypack.cz"}`;
-  const { data, error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${origin}/admin/prihlaseni` } });
+  const { data, error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: await confirmRedirect() } });
   if (error) {
     if (/already registered|already exists/i.test(error.message)) {
       return { error: "Účet s tímto e-mailem už existuje. Přihlaste se jeho heslem." };
     }
     return { error: "Účet se nepodařilo vytvořit: " + error.message };
   }
+  // Supabase u už potvrzeného účtu nevrací chybu, jen uživatele bez identit. Heslo se v tom případě nemění.
+  if (data.user && (data.user.identities?.length ?? 0) === 0) {
+    return { error: "Účet s tímto e-mailem už existuje. Přihlaste se heslem, které jste si nastavili dřív." };
+  }
   if (data.session) redirect("/admin");
-  return { done: true };
+  return { done: true, email };
 }
 
 export async function signOut() {

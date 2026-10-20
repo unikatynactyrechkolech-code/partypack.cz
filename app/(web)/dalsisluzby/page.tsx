@@ -33,7 +33,7 @@ export default function DalsiSluzbyPage() {
           />
         </Container>
       </Section>
-      <Checkerboard items={services} />
+      <Checkerboard items={services} headingAs="h2" />
 
       <Partners />
 

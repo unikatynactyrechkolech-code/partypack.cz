@@ -1,16 +1,16 @@
 "use client";
 
 import { useActionState } from "react";
-import { register, type FormState } from "@/app/admin/actions";
+import { register, type AuthState } from "@/app/admin/actions";
 
 const input = "w-full rounded-lg border border-line bg-white px-4 py-3 text-sm focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10";
 
 export function RegisterForm() {
-  const [state, action, pending] = useActionState<FormState & { done?: boolean }, FormData>(register, {});
+  const [state, action, pending] = useActionState<AuthState, FormData>(register, {});
   if (state.done) {
     return (
       <p className="text-sm leading-relaxed" role="status">
-        Hotovo. Na e-mail vám přišel odkaz pro potvrzení účtu. Po potvrzení se přihlaste e-mailem a heslem.
+        Heslo je nastavené. Na {state.email} jsme poslali odkaz pro potvrzení e-mailu. Bez potvrzení se nepřihlásíte. Když e-mail nevidíte, podívejte se do spamu.
       </p>
     );
   }

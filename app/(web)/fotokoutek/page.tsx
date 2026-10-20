@@ -181,7 +181,7 @@ export default async function FotokoutekPage() {
           <ul className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
             {occasions.map((o) => (
               <li key={o.title}>
-                <h3 className="text-lg font-semibold uppercase tracking-wide text-ink">{o.title}</h3>
+                <h2 className="text-lg font-semibold uppercase tracking-wide text-ink">{o.title}</h2>
                 <p className="mt-2 leading-relaxed text-ink text-pretty">{o.text}</p>
               </li>
             ))}

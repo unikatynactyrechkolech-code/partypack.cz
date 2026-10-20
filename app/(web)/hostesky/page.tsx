@@ -38,7 +38,7 @@ export default function HosteskyPage() {
               <li key={o.title} className="relative aspect-[3/4] overflow-hidden rounded-md bg-ink">
                 <Img k={o.image} alt={o.title} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
-                <h3 className="absolute inset-x-0 bottom-0 p-5 text-center text-lg font-medium text-white">{o.title}</h3>
+                <h2 className="absolute inset-x-0 bottom-0 p-5 text-center text-lg font-medium text-white">{o.title}</h2>
               </li>
             ))}
           </ul>

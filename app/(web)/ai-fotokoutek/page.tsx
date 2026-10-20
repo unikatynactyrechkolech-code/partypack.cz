@@ -43,7 +43,7 @@ export default function AiFotokoutekPage() {
           <SectionTitle title="AI filtry pro jednotlivce i skupiny" />
           <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-16">
             <div>
-              <Heading as="h3">Až 8 filtrů pro jednotlivce</Heading>
+              <h2 className="font-semibold tracking-tight text-ink text-balance text-xl sm:text-2xl">Až 8 filtrů pro jednotlivce</h2>
               <Divider className="mt-4" />
               <p className="mt-5 leading-relaxed text-ink text-pretty">
                 Mrkněte na naší bohatou nabídku AI filtrů, které jsou určené pro jednotlivce. Všechny naše
@@ -54,7 +54,7 @@ export default function AiFotokoutekPage() {
               </div>
             </div>
             <div>
-              <Heading as="h3">Skupinové filtry pro 2–8 osob</Heading>
+              <h2 className="font-semibold tracking-tight text-ink text-balance text-xl sm:text-2xl">Skupinové filtry pro 2–8 osob</h2>
               <Divider className="mt-4" />
               <p className="mt-5 leading-relaxed text-ink text-pretty">
                 Filtry pro skupiny 2-8 osob není potřeba vybírat dopředu. Na místě lze vybírat ze všech

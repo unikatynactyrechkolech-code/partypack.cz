@@ -100,9 +100,9 @@ export function CardLink({
         className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
-      <h3 className="absolute inset-x-0 bottom-0 p-5 text-center text-base font-medium text-white sm:text-lg">
+      <h2 className="absolute inset-x-0 bottom-0 p-5 text-center text-base font-medium text-white sm:text-lg">
         {title}
-      </h3>
+      </h2>
     </div>
   );
   if (external) {
@@ -160,7 +160,7 @@ export type CheckerItem = { title: ReactNode; text: ReactNode; image: string };
  * Šachovnice text / fotka ve třech sloupcích – rozvržení výhod a dalších služeb
  * z původního webu. Fotka vždy sousedí se svým textem.
  */
-export function Checkerboard({ items }: { items: CheckerItem[] }) {
+export function Checkerboard({ items, headingAs: H = "h3" }: { items: CheckerItem[]; headingAs?: "h2" | "h3" }) {
   const cells: ReactNode[] = [];
   let t = 0;
   let p = 0;
@@ -173,7 +173,7 @@ export function Checkerboard({ items }: { items: CheckerItem[] }) {
       const it = items[t++];
       cells.push(
         <div key={`t${i}`} className="flex min-h-[260px] flex-col items-center justify-center px-6 py-12 text-center sm:min-h-[320px] lg:min-h-[400px]">
-          <h3 className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">{it.title}</h3>
+          <H className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">{it.title}</H>
           <div className="mt-4 max-w-sm text-sm leading-relaxed text-ink text-pretty [&_a]:underline [&_a]:underline-offset-4">
             {it.text}
           </div>

@@ -97,7 +97,7 @@ export function Header() {
         </div>
 
         <div className="flex-1 overflow-y-auto">
-          <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 pb-12 pt-6 sm:px-8 lg:min-h-full lg:grid-cols-12 lg:items-center lg:gap-16 lg:py-12">
+          <div className="mx-auto flex min-h-full w-full max-w-7xl flex-col justify-end gap-14 px-5 pb-[max(3.5rem,env(safe-area-inset-bottom))] pt-6 sm:px-8 lg:grid lg:grid-cols-12 lg:items-center lg:justify-normal lg:gap-16 lg:py-12">
             <nav aria-label="Služby" className="lg:col-span-7">
               <ul className="space-y-1 sm:space-y-2">
                 {primaryNav.map((item, i) => (
@@ -152,8 +152,8 @@ export function Header() {
                 </ul>
               </nav>
 
-              <div className="mt-10 border-t border-line pt-8 text-base">
-                <ul className="space-y-2">
+              <div className="mt-10 text-base lg:border-t lg:border-line lg:pt-8">
+                <ul className="hidden space-y-2 lg:block">
                   <li>
                     <a href={site.phoneHref} className="font-medium hover:underline hover:underline-offset-4">
                       {site.phone}
@@ -166,7 +166,7 @@ export function Header() {
                   </li>
                   <li>{site.address}</li>
                 </ul>
-                <SocialLinks facebook={site.facebook} instagram={site.instagram} className="mt-6" />
+                <SocialLinks facebook={site.facebook} instagram={site.instagram} className="lg:mt-6" />
               </div>
             </div>
           </div>

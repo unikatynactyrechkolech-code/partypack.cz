@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Figtree } from "next/font/google";
 import { consentDefaultScript } from "@/lib/consent";
 import { JsonLd } from "@/components/JsonLd";
 import { OG_IMAGE, SITE_URL, seo } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -58,7 +58,7 @@ const organization = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="cs" data-scroll-behavior="smooth" className={`${montserrat.variable} h-full antialiased`}>
+    <html lang="cs" data-scroll-behavior="smooth" className={`${figtree.variable} h-full antialiased`}>
       <head>
         <script id="consent-default" dangerouslySetInnerHTML={{ __html: consentDefaultScript }} />
         <JsonLd data={organization} />

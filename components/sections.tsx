@@ -293,7 +293,7 @@ export function CtaBand({
       <Img k={image} alt="" fill sizes="100vw" className="object-cover opacity-50" />
       <div className="absolute inset-0 bg-ink/50" />
       <Container className="relative flex flex-col items-center py-24 text-center sm:py-32">
-        <h2 className="max-w-3xl text-xl font-semibold uppercase tracking-[0.2em] text-balance sm:text-2xl">
+        <h2 className="max-w-3xl text-xl font-extrabold uppercase tracking-[0.2em] text-balance sm:text-2xl">
           {title}
         </h2>
         {children ? <div className="mt-8 flex flex-wrap justify-center gap-3">{children}</div> : null}

@@ -157,7 +157,7 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex items-center justify-center rounded-lg bg-ink px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:opacity-60"
+          className="inline-flex items-center justify-center rounded-lg bg-ink px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 disabled:opacity-60"
         >
           {status === "sending" ? "Odesílám…" : "Odeslat"}
         </button>

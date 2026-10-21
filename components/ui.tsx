@@ -47,13 +47,13 @@ export function Heading({
 }) {
   const size =
     Tag === "h1"
-      ? "text-3xl sm:text-5xl lg:text-6xl uppercase"
+      ? "text-3xl leading-[1.05] sm:text-5xl lg:text-6xl uppercase"
       : Tag === "h2"
         ? "text-2xl sm:text-3xl lg:text-4xl uppercase"
         : "text-xl sm:text-2xl";
   return (
     <Tag
-      className={`font-semibold tracking-tight text-ink text-balance ${size} ${
+      className={`${Tag === "h3" ? "font-semibold tracking-[-0.01em]" : "font-extrabold tracking-[0.005em]"} text-ink text-balance ${size} ${
         align === "center" ? "text-center" : ""
       } ${className}`}
     >
@@ -142,7 +142,7 @@ export function Button({
   external,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+    "inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
   const styles = {
     primary: "bg-ink text-white hover:bg-zinc-800",
     secondary: "border border-line bg-white text-ink hover:border-ink",

@@ -1,7 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+
+  /* Figtree je užší než původní Montserrat, proto je základní text o kus větší. */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.6;
 
   --color-ink: #0b0b0c;
   --color-line: #e4e4e7;

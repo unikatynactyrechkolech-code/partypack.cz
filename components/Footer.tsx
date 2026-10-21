@@ -19,7 +19,7 @@ const columns = [
   },
 ];
 
-const heading = "text-[17px] font-medium text-white";
+const heading = "text-[17px] font-semibold text-white";
 const linkCls = "text-[15px] text-white hover:text-[#00b1ff]";
 
 /**

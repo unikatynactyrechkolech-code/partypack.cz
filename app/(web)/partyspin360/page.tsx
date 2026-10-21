@@ -92,7 +92,7 @@ export default function PartyspinPage() {
         <Img k="2024/08/455199354_18437708977064219_8281298651533021347_n" alt="" fill sizes="100vw" className="object-cover opacity-50" />
         <div className="absolute inset-0 bg-ink/50" />
         <Container className="relative flex flex-col items-center py-20 text-center sm:py-24">
-          <h2 className="text-3xl font-semibold uppercase tracking-tight sm:text-4xl">Pronájem Partyspinu 360° od 9 900 Kč</h2>
+          <h2 className="text-3xl font-extrabold uppercase tracking-[0.005em] sm:text-4xl">Pronájem Partyspinu 360° od 9 900 Kč</h2>
           <div className="mt-8">
             <Button href="/kontakt" variant="outline">Chci si objednat Partyspin</Button>
           </div>

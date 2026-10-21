@@ -57,7 +57,7 @@ export default async function HomePage() {
     <>
       <ConversionHero />
 
-      <Section>
+      <Section className="overflow-x-clip">
         <Container>
           <SectionTitle
             title="Služby na akce v jednom balíčku"

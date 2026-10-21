@@ -28,7 +28,7 @@ const linkCls = "text-[15px] text-white hover:text-[#00b1ff]";
  */
 export function Footer() {
   return (
-    <footer className="relative isolate overflow-hidden border-t border-white/10 bg-ink text-white">
+    <footer className="relative isolate overflow-hidden bg-ink text-white">
       <Glow variant="footer" />
       <div className="mx-auto w-full max-w-7xl px-5 pt-14 pb-12 sm:px-8 lg:pt-16">
         <nav aria-label="Patička" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:gap-8">

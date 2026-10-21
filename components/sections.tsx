@@ -11,9 +11,10 @@ import { CountUp } from "@/components/home/CountUp";
 const GLOWS = {
   events:
     "radial-gradient(34% 48% at 78% 14%, rgb(0 177 255 / 0.17), transparent 70%), radial-gradient(22% 30% at 12% 82%, rgb(0 212 243 / 0.09), transparent 70%)",
+  // Záře u poptávky dozní před spodním okrajem, aby navazovala na patičku bez viditelné hrany.
   contact:
-    "radial-gradient(46% 36% at 27% 94%, rgb(58 125 255 / 0.19), transparent 72%), radial-gradient(20% 26% at 91% 9%, rgb(0 177 255 / 0.11), transparent 70%), radial-gradient(14% 18% at 63% 38%, rgb(0 212 243 / 0.05), transparent 70%)",
-  footer: "radial-gradient(28% 70% at 96% 64%, rgb(0 177 255 / 0.12), transparent 70%)",
+    "radial-gradient(44% 30% at 26% 62%, rgb(58 125 255 / 0.19), transparent 72%), radial-gradient(20% 24% at 91% 12%, rgb(0 177 255 / 0.11), transparent 70%), radial-gradient(14% 16% at 64% 36%, rgb(0 212 243 / 0.05), transparent 70%)",
+  footer: "radial-gradient(26% 60% at 95% 72%, rgb(0 177 255 / 0.11), transparent 70%)",
 } as const;
 
 /** Sekce musí mít relative isolate overflow-hidden. */

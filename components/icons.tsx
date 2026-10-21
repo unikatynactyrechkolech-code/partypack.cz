@@ -71,13 +71,15 @@ export function SocialLinks({
   instagram: string;
   className?: string;
   iconClassName?: string;
-  /** square = světlé čtverce se zaoblením jako tlačítka (patička). */
-  shape?: "circle" | "square";
+  /** square = světlé čtverce se zaoblením jako tlačítka, plain = jen ikona (tmavá patička). */
+  shape?: "circle" | "square" | "plain";
 }) {
   const link =
     shape === "square"
       ? "inline-flex h-11 w-11 items-center justify-center rounded-lg bg-paper-soft text-ink transition-colors hover:bg-ink hover:text-white"
-      : "inline-flex h-10 w-10 items-center justify-center rounded-full border border-current/15 transition-colors hover:bg-ink hover:text-white";
+      : shape === "plain"
+        ? "inline-flex h-10 w-10 items-center justify-center rounded-lg text-white transition-colors hover:text-[#00b1ff]"
+        : "inline-flex h-10 w-10 items-center justify-center rounded-full border border-current/15 transition-colors hover:bg-ink hover:text-white";
   return (
     <ul className={`flex items-center gap-2 ${className}`}>
       <li>

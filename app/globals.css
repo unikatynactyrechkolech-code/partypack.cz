@@ -26,3 +26,23 @@ body {
   background: var(--color-ink);
   color: var(--color-paper);
 }
+
+/* Pomalé vznášení dekorativních tvarů (components/BrandShape.tsx). */
+@keyframes pp-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(calc(var(--r, 0deg) + 4deg));
+  }
+}
+.pp-float {
+  transform: rotate(var(--r, 0deg));
+  animation: pp-float 7s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pp-float {
+    animation: none;
+  }
+}

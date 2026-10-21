@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { BrandShape } from "@/components/BrandShape";
 import { Img } from "@/components/Img";
-import { ArrowUpRightIcon, SocialLinks } from "@/components/icons";
+import { SocialLinks } from "@/components/icons";
 import { primaryNav, site } from "@/lib/site";
 
 const LOGO = "2022/01/cropped-cropped-logo-znak-png-male";
@@ -18,39 +19,38 @@ const columns = [
   },
 ];
 
-const heading = "text-[15px] uppercase text-ink";
-const linkCls = "text-[15px] text-ink hover:underline hover:underline-offset-4";
+const heading = "text-[17px] font-medium text-white";
+const linkCls = "text-[15px] text-white hover:text-[#00b1ff]";
 
 /**
- * Patička, na počítači zrcadlově: sítě vlevo, sloupce Kontakt, Partypack, Služby a vpravo logo
- * s výzvou k poptávce (zarovnané doprava). Na telefonu je logo nahoře. Dole dokumenty a ©.
+ * Tmavá patička: vlevo výzva k poptávce, vpravo sloupce Služby, Partypack a Kontakt.
+ * Pod čarou velké logo, dokumenty a sítě, úplně dole ©. Dva tvary z čáry loga pro oživení.
  */
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-paper text-ink">
-      <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 py-14 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:py-16">
-        <div className="lg:order-3 lg:col-span-4 lg:flex lg:flex-col lg:items-end lg:text-right">
-          <Link href="/" aria-label="PARTYPACK – domů" className="inline-flex">
-            <Img k={LOGO} alt="PARTYPACK" className="h-8 w-auto" sizes="120px" />
-          </Link>
-          <p className="mt-6 text-[15px]">{site.tagline}</p>
-          <p className="mt-1 max-w-xs text-[15px] text-pretty">Fotokoutky, hostesky a další zábava na firemní akce, svatby i oslavy.</p>
+    <footer className="relative isolate overflow-hidden border-t border-white/10 bg-ink text-white">
+
+      <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 pt-14 pb-12 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:pt-16">
+        <div className="relative lg:col-span-5">
+          {/* Tvar z čáry loga ve volném místě pod výzvou (jen na počítači). */}
+          <BrandShape kind="zigzag" id="footer-zigzag" rotate={10} className="-z-10 top-[62%] right-[14%] hidden w-28 opacity-90 lg:block" />
+          <p className={heading}>Plánujete akci?</p>
+          <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-pretty">
+            Napište nám datum a představu o akci. Ozveme se vám co nejdříve a sestavíme balíček na míru.
+          </p>
           <Link
             href="/kontakt"
-            className="group mt-6 flex w-full max-w-xs items-center justify-between rounded-lg border border-line py-1 pl-4 pr-1 text-left text-[15px] transition-colors hover:border-ink"
+            className="mt-6 inline-flex items-center justify-center rounded-lg bg-[#3a7dff] px-6 py-3 text-[15px] font-semibold text-white transition-colors hover:bg-[#2f6df6] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             Chci akci
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-ink text-white transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-              <ArrowUpRightIcon />
-            </span>
           </Link>
         </div>
 
-        <nav aria-label="Patička" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:order-2 lg:col-span-6 lg:gap-8 lg:text-right">
-          {columns.map((c, i) => (
-            <div key={c.title} className={i === 0 ? "lg:order-3" : "lg:order-2"}>
+        <nav aria-label="Patička" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-7 lg:gap-8">
+          {columns.map((c) => (
+            <div key={c.title}>
               <p className={heading}>{c.title}</p>
-              <ul className="mt-5 space-y-2.5">
+              <ul className="mt-5 space-y-3">
                 {c.links.map((l) => (
                   <li key={l.href}>
                     <Link href={l.href} className={linkCls}>
@@ -61,9 +61,9 @@ export function Footer() {
               </ul>
             </div>
           ))}
-          <div className="col-span-2 sm:col-span-1 lg:order-1">
+          <div className="col-span-2 sm:col-span-1">
             <p className={heading}>Kontakt</p>
-            <ul className="mt-5 space-y-2.5 text-[15px]">
+            <ul className="mt-5 space-y-3 text-[15px]">
               <li>
                 <a href={site.phoneHref} className={linkCls}>
                   {site.phone}
@@ -74,27 +74,32 @@ export function Footer() {
                   {site.email}
                 </a>
               </li>
-              <li className="max-w-[14rem] text-pretty lg:ml-auto">{site.address}</li>
+              <li className="max-w-[14rem] text-pretty">{site.address}</li>
             </ul>
           </div>
         </nav>
-
-        <div className="lg:order-1 lg:col-span-2">
-          <SocialLinks facebook={site.facebook} instagram={site.instagram} shape="square" iconClassName="h-[18px] w-[18px]" />
-        </div>
       </div>
 
-      <div className="border-t border-line">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-5 py-6 text-sm sm:px-8 md:flex-row-reverse md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Partypack.cz</p>
-          <div className="flex flex-col gap-2 md:flex-row md:gap-8">
-            <a href={site.termsUrl} target="_blank" rel="noopener noreferrer" className="hover:underline hover:underline-offset-4">
-              Všeobecné obchodní podmínky
-            </a>
-            <a href={site.privacyUrl} target="_blank" rel="noopener noreferrer" className="hover:underline hover:underline-offset-4">
-              Zásady o zpracování osobních údajů
-            </a>
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+        <div className="flex flex-col gap-8 border-t border-white/15 py-8 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
+            <Link href="/" aria-label="PARTYPACK – domů" className="inline-flex">
+              <Img k={LOGO} alt="PARTYPACK" className="h-11 w-auto" sizes="160px" />
+            </Link>
+            <div className="flex flex-col gap-3 text-[15px] sm:flex-row sm:gap-10">
+              <a href={site.termsUrl} target="_blank" rel="noopener noreferrer" className={linkCls}>
+                Všeobecné obchodní podmínky
+              </a>
+              <a href={site.privacyUrl} target="_blank" rel="noopener noreferrer" className={linkCls}>
+                Zásady o zpracování osobních údajů
+              </a>
+            </div>
           </div>
+          <SocialLinks facebook={site.facebook} instagram={site.instagram} shape="plain" iconClassName="h-6 w-6" />
+        </div>
+        <div className="relative border-t border-white/15 py-8 text-sm">
+          © {new Date().getFullYear()} Partypack.cz
+          <BrandShape kind="ring" id="footer-ring" delay={2} className="-z-10 top-1/2 right-2 w-12 -translate-y-1/2 opacity-80 sm:w-14" />
         </div>
       </div>
     </footer>

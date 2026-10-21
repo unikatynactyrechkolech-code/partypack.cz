@@ -52,10 +52,10 @@ export function Header() {
           se světlými ikonami (a jemným stínem), po odrolování světlý s tmavými ikonami. */}
       <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
         <div
-          className={`pointer-events-auto mx-auto flex h-14 w-full max-w-7xl items-center justify-between rounded-lg border px-4 backdrop-blur-md backdrop-saturate-[1.8] transition-[background-color,border-color,box-shadow,color] duration-300 sm:h-16 sm:px-6 ${
+          className={`pointer-events-auto mx-auto flex h-14 w-full max-w-7xl items-center justify-between rounded-lg px-4 backdrop-blur-md backdrop-saturate-[1.8] transition-[background-color,box-shadow,color] duration-300 sm:h-16 sm:px-6 ${
             scrolled
-              ? "border-white/60 bg-white/45 text-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.7),0_10px_30px_-14px_rgb(0_0_0/0.25)]"
-              : "border-white/25 bg-white/[0.06] text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.3),0_10px_30px_-18px_rgb(0_0_0/0.45)]"
+              ? "bg-white/45 text-ink shadow-[0_10px_30px_-14px_rgb(0_0_0/0.25)]"
+              : "bg-white/[0.06] text-white shadow-[0_10px_30px_-18px_rgb(0_0_0/0.45)]"
           }`}
         >
           <Link href="/" className={`flex items-center transition-[filter] duration-300 ${scrolled ? "" : "drop-shadow-[0_0_10px_rgb(0_0_0/0.65)]"}`} aria-label="PARTYPACK – domů">
@@ -87,7 +87,7 @@ export function Header() {
       >
         {/* Stejné rozměry jako hlavička, aby křížek byl přesně na místě hamburgeru. */}
         <div className="shrink-0 px-3 pt-3 sm:px-5 sm:pt-4">
-          <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between rounded-lg border border-transparent px-4 sm:h-16 sm:px-6">
+          <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between rounded-lg px-4 sm:h-16 sm:px-6">
             <Link href="/" onClick={close} className="flex items-center" aria-label="PARTYPACK – domů">
               <Img k={LOGO} alt="PARTYPACK" className="h-7 w-auto sm:h-8" sizes="120px" />
             </Link>

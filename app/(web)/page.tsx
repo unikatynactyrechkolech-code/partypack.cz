@@ -4,7 +4,6 @@ import { ConversionHero } from "@/components/ConversionHero";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection, Glow, Partners, Stats } from "@/components/sections";
 import { ServiceCards } from "@/components/home/ServiceCards";
-import { BrandShape } from "@/components/BrandShape";
 import { PackageBar } from "@/components/home/PackagePicker";
 import { OccasionTabs, type OccasionGroup } from "@/components/home/OccasionTabs";
 import { listEvents } from "@/lib/events";
@@ -58,16 +57,14 @@ export default async function HomePage() {
     <>
       <ConversionHero />
 
-      {/* Služby na střídačku přes celou šířku na černém pozadí. */}
-      <Section className="bg-ink text-white">
+      <Section>
         <Container>
           <SectionTitle
             title="Služby na akce v jednom balíčku"
             subtitle="Vyberte jednu službu, nebo si poskládejte celý balíček. Při více službách vám připravíme zvýhodněnou nabídku."
-            light
           />
+          <ServiceCards />
         </Container>
-        <ServiceCards />
       </Section>
 
       <Stats
@@ -81,11 +78,7 @@ export default async function HomePage() {
         ]}
       />
 
-      <Section className="relative isolate overflow-hidden">
-        {/* Pár tvarů z čáry loga, ať bílá sekce není prázdná. */}
-        <BrandShape kind="zigzag" id="steps-zigzag" rotate={-14} className="-z-10 top-8 left-[4%] w-20 sm:top-14 sm:w-32 lg:left-[8%]" />
-        <BrandShape kind="ring" id="steps-ring" delay={1.5} className="-z-10 top-10 right-[5%] w-12 sm:top-20 sm:w-20 lg:right-[9%]" />
-        <BrandShape kind="chevron" id="steps-chevron" rotate={12} delay={3} className="-z-10 hidden bottom-14 right-[16%] w-16 md:block" />
+      <Section>
         <Container>
           <SectionTitle title="Jak objednat fotokoutek a další služby na akci" />
           <ol className="relative mx-auto mt-12 grid max-w-md gap-8 md:mt-14 md:max-w-none md:grid-cols-3 md:gap-8">
@@ -118,7 +111,7 @@ export default async function HomePage() {
 
       {occasions.length ? (
         <Section className="relative isolate overflow-hidden bg-ink text-white">
-          <Glow />
+          <Glow variant="events" />
           <Container>
             <SectionTitle title="Zábava na firemní akce, konference i svatby" subtitle="Podívejte se, jak to u nás vypadá." light />
             <OccasionTabs groups={occasions} dark />

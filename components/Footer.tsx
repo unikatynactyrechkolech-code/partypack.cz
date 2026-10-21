@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { BrandShape } from "@/components/BrandShape";
 import { Img } from "@/components/Img";
+import { Glow } from "@/components/sections";
 import { SocialLinks } from "@/components/icons";
 import { primaryNav, site } from "@/lib/site";
 
@@ -23,30 +23,15 @@ const heading = "text-[17px] font-medium text-white";
 const linkCls = "text-[15px] text-white hover:text-[#00b1ff]";
 
 /**
- * Tmavá patička: vlevo výzva k poptávce, vpravo sloupce Služby, Partypack a Kontakt.
- * Pod čarou velké logo, dokumenty a sítě, úplně dole ©. Dva tvary z čáry loga pro oživení.
+ * Tmavá patička: sloupce Služby, Partypack a Kontakt, pod čarou velké logo, dokumenty a sítě,
+ * úplně dole ©.
  */
 export function Footer() {
   return (
     <footer className="relative isolate overflow-hidden border-t border-white/10 bg-ink text-white">
-
-      <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 pt-14 pb-12 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:pt-16">
-        <div className="relative lg:col-span-5">
-          {/* Tvar z čáry loga ve volném místě pod výzvou (jen na počítači). */}
-          <BrandShape kind="zigzag" id="footer-zigzag" rotate={10} className="-z-10 top-[62%] right-[14%] hidden w-28 opacity-90 lg:block" />
-          <p className={heading}>Plánujete akci?</p>
-          <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-pretty">
-            Napište nám datum a představu o akci. Ozveme se vám co nejdříve a sestavíme balíček na míru.
-          </p>
-          <Link
-            href="/kontakt"
-            className="mt-6 inline-flex items-center justify-center rounded-lg bg-[#3a7dff] px-6 py-3 text-[15px] font-semibold text-white transition-colors hover:bg-[#2f6df6] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          >
-            Chci akci
-          </Link>
-        </div>
-
-        <nav aria-label="Patička" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-7 lg:gap-8">
+      <Glow variant="footer" />
+      <div className="mx-auto w-full max-w-7xl px-5 pt-14 pb-12 sm:px-8 lg:pt-16">
+        <nav aria-label="Patička" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:gap-8">
           {columns.map((c) => (
             <div key={c.title}>
               <p className={heading}>{c.title}</p>
@@ -97,10 +82,7 @@ export function Footer() {
           </div>
           <SocialLinks facebook={site.facebook} instagram={site.instagram} shape="plain" iconClassName="h-6 w-6" />
         </div>
-        <div className="relative border-t border-white/15 py-8 text-sm">
-          © {new Date().getFullYear()} Partypack.cz
-          <BrandShape kind="ring" id="footer-ring" delay={2} className="-z-10 top-1/2 right-2 w-12 -translate-y-1/2 opacity-80 sm:w-14" />
-        </div>
+        <div className="border-t border-white/15 py-8 text-sm">© {new Date().getFullYear()} Partypack.cz</div>
       </div>
     </footer>
   );

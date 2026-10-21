@@ -71,53 +71,40 @@ const cards: Card[] = [
 ];
 
 /**
- * Služby pod sebou na střídačku: fotka v černém bloku se zaobleným rohem a vedle světlý panel
- * s názvem služby, větou, fakty, cenou a tlačítky. Lichá služba má fotku vlevo, sudá vpravo.
- * Řádky jdou přes celou šířku, sekce kolem musí být černá.
+ * Služby pod sebou na střídačku: bílá karta s tenkým tmavým okrajem, na jedné straně fotka,
+ * na druhé název služby, věta, fakta, cena a tlačítka. Lichá služba má fotku vlevo, sudá vpravo.
  */
 export function ServiceCards() {
   return (
-    <ul className="mt-12 grid gap-10 sm:mt-14 sm:gap-14">
+    <ul className="mt-12 grid gap-6 sm:mt-14 sm:gap-8">
       {cards.map((c, i) => {
         const left = i % 2 === 0;
         return (
           <li key={c.href}>
-            <article className="group grid bg-paper-soft text-ink md:grid-cols-2">
-              <div
-                className={`flex bg-ink px-5 pb-8 sm:px-8 md:items-center md:px-10 md:py-10 lg:px-16 ${
-                  left ? "md:justify-end md:rounded-br-[2.5rem]" : "md:order-2 md:justify-start md:rounded-tl-[2.5rem]"
-                }`}
-              >
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg ring-[#00b1ff] md:aspect-[4/5] ring-offset-4 ring-offset-ink transition-shadow duration-300 group-has-[[aria-pressed=true]]:ring-2 md:max-w-sm">
-                  <Img
-                    k={c.image}
-                    alt={c.title}
-                    fill
-                    sizes="(min-width: 768px) 384px, 90vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                  />
-                </div>
+            <article className="group grid overflow-hidden rounded-lg border border-ink/20 bg-white text-ink ring-[#00b1ff] ring-offset-2 ring-offset-paper transition-shadow duration-300 has-[[aria-pressed=true]]:ring-2 md:grid-cols-2">
+              <div className={`relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[440px] ${left ? "" : "md:order-2"}`}>
+                <Img
+                  k={c.image}
+                  alt={c.title}
+                  fill
+                  sizes="(min-width: 1280px) 620px, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                />
               </div>
-              <div
-                className={`@container flex flex-col justify-center px-5 py-10 sm:px-8 md:py-16 lg:px-16 ${
-                  left ? "" : "md:order-1 md:items-end"
-                }`}
-              >
-                <div className="flex w-full max-w-xl flex-col gap-6">
-                  <div className="text-2xl leading-snug font-medium tracking-tight text-pretty sm:text-3xl lg:text-[2.6rem] lg:leading-[1.2]">
-                    <h2 className="inline font-semibold text-[#3a7dff]">{c.title}:</h2> {c.statement}
-                  </div>
-                  <p className="text-[15px]">{c.facts.join(" · ")}</p>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {c.price ? <p className="mr-3 text-base font-semibold tabular-nums">{c.price}</p> : null}
-                    <Link
-                      href={c.href}
-                      className="inline-flex items-center justify-center rounded-lg border border-ink/25 px-3.5 py-2 text-xs font-semibold text-ink transition-colors duration-200 outline-none hover:border-ink hover:bg-ink hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
-                    >
-                      Více<span className="sr-only">: {c.title}</span>
-                    </Link>
-                    <PackageToggle service={c.inquiry} label={c.title} tone="light" />
-                  </div>
+              <div className={`@container flex flex-col justify-center gap-6 p-6 sm:p-10 lg:p-14 ${left ? "" : "md:order-1"}`}>
+                <div className="text-2xl leading-snug font-medium tracking-tight text-pretty sm:text-3xl lg:text-[2.4rem] lg:leading-[1.2]">
+                  <h2 className="inline font-semibold text-[#3a7dff]">{c.title}:</h2> {c.statement}
+                </div>
+                <p className="text-[15px]">{c.facts.join(" · ")}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  {c.price ? <p className="mr-3 text-base font-semibold tabular-nums">{c.price}</p> : null}
+                  <Link
+                    href={c.href}
+                    className="inline-flex items-center justify-center rounded-lg border border-ink/25 px-3.5 py-2 text-xs font-semibold text-ink transition-colors duration-200 outline-none hover:border-ink hover:bg-ink hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
+                  >
+                    Více<span className="sr-only">: {c.title}</span>
+                  </Link>
+                  <PackageToggle service={c.inquiry} label={c.title} tone="light" />
                 </div>
               </div>
             </article>

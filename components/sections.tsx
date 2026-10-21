@@ -6,21 +6,19 @@ import { Container, Heading, Prose, Section, SectionTitle } from "@/components/u
 import { partners, type Partner } from "@/lib/data";
 import { CountUp } from "@/components/home/CountUp";
 
-/**
- * Jemná modrá záře z barev loga v tmavých sekcích (vlevo nahoře a vpravo dole).
- * Sekce musí mít relative isolate overflow-hidden.
- */
-export function Glow() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 -z-10"
-      style={{
-        background:
-          "radial-gradient(55% 45% at 10% 0%, rgb(0 177 255 / 0.16), transparent 70%), radial-gradient(45% 40% at 92% 100%, rgb(58 125 255 / 0.14), transparent 70%)",
-      }}
-    />
-  );
+// Modrá záře z barev loga v tmavých sekcích. Každá sekce ji má jinde, jinak velkou a jinak silnou,
+// aby nepůsobila jako opakovaný vzor.
+const GLOWS = {
+  events:
+    "radial-gradient(34% 48% at 78% 14%, rgb(0 177 255 / 0.17), transparent 70%), radial-gradient(22% 30% at 12% 82%, rgb(0 212 243 / 0.09), transparent 70%)",
+  contact:
+    "radial-gradient(46% 36% at 27% 94%, rgb(58 125 255 / 0.19), transparent 72%), radial-gradient(20% 26% at 91% 9%, rgb(0 177 255 / 0.11), transparent 70%), radial-gradient(14% 18% at 63% 38%, rgb(0 212 243 / 0.05), transparent 70%)",
+  footer: "radial-gradient(28% 70% at 96% 64%, rgb(0 177 255 / 0.12), transparent 70%)",
+} as const;
+
+/** Sekce musí mít relative isolate overflow-hidden. */
+export function Glow({ variant }: { variant: keyof typeof GLOWS }) {
+  return <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: GLOWS[variant] }} />;
 }
 
 export function Partners({ items = partners, className = "bg-paper-soft" }: { items?: Partner[]; className?: string }) {
@@ -53,7 +51,7 @@ export function ContactSection({
 }) {
   return (
     <Section id="kontakt" className="relative isolate overflow-hidden bg-ink text-white">
-      <Glow />
+      <Glow variant="contact" />
       <Container>
         <SectionTitle title={title} subtitle={lead} light />
         <div className="mx-auto mt-12 max-w-3xl rounded-lg bg-white p-6 text-ink sm:p-10">

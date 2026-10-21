@@ -48,20 +48,21 @@ export function Header() {
 
   return (
     <>
+      {/* Nad videem a fotkami (průhledná hlavička) mají logo a menu jemný stín, ať jsou vidět i na světlém záběru. */}
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
           scrolled ? "border-b border-line bg-white/90 text-ink backdrop-blur" : "bg-transparent text-white"
         }`}
       >
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:h-20 sm:px-8">
-          <Link href="/" className="flex items-center" aria-label="PARTYPACK – domů">
+          <Link href="/" className={`flex items-center transition-[filter] duration-300 ${scrolled ? "" : "drop-shadow-[0_0_10px_rgb(0_0_0/0.65)]"}`} aria-label="PARTYPACK – domů">
             <Img k={LOGO} alt="PARTYPACK" className="h-7 w-auto sm:h-8" sizes="120px" priority />
           </Link>
           <button
             ref={openButton}
             type="button"
             onClick={() => setOpen(true)}
-            className="group -mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className={`group -mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md outline-none transition-[filter] duration-300 focus-visible:ring-2 focus-visible:ring-accent ${scrolled ? "" : "drop-shadow-[0_0_10px_rgb(0_0_0/0.65)]"}`}
             aria-expanded={open}
             aria-controls="site-menu"
             aria-label="Otevřít menu"

@@ -11,20 +11,27 @@ export function ConversionHero() {
   return (
     <div className="flex min-h-svh flex-col">
       <section className="relative isolate flex flex-1 overflow-hidden bg-ink text-white">
-        <HeroVideo />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/50 to-ink/5" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-ink/35" />
-        <div className="pointer-events-none absolute inset-0 bg-ink/30 lg:hidden" />
-        <Container className="relative flex flex-col justify-center pb-10 pt-24 sm:pb-14 sm:pt-28">
+        {/* Na telefonu je video v horní části (méně oříznuté) a dole přejde do tmavé plochy s nadpisem. */}
+        <div className="absolute inset-x-0 top-0 h-[64%] lg:inset-y-0 lg:h-auto">
+          <HeroVideo />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-b from-transparent to-ink lg:hidden" />
+        </div>
+        {/* Na počítači jen měkký stín za nadpisem, zbytek videa zůstává světlý. */}
+        <div className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(ellipse_50%_58%_at_20%_52%,rgb(11_11_12/0.72),transparent_75%)] lg:block" />
+        <Container className="relative flex flex-col justify-end pb-8 pt-24 sm:pb-12 lg:justify-center lg:pb-14 lg:pt-28">
           <div className="max-w-2xl">
-            <h1 className="text-[2rem] font-semibold leading-[1.1] tracking-tight text-balance sm:text-5xl lg:text-6xl">
+            <h1 className="text-[2rem] font-semibold leading-[1.1] tracking-tight text-balance [text-shadow:0_0_32px_rgb(0_0_0/0.45),0_2px_10px_rgb(0_0_0/0.5),0_1px_2px_rgb(0_0_0/0.5)] sm:text-5xl lg:text-6xl">
               Zábava na celou akci od jednoho dodavatele
             </h1>
             <div className="mt-8 flex gap-3">
-              <Button href="#kontakt" variant="light" className="px-5 py-3 sm:px-7 sm:py-3.5 sm:text-base">
+              <Button href="#kontakt" variant="light" className="px-5 py-3 shadow-[0_8px_24px_-8px_rgb(0_0_0/0.55)] sm:px-7 sm:py-3.5 sm:text-base">
                 Poptat akci
               </Button>
-              <Button href="/cena" variant="outline" className="px-5 py-3 sm:px-7 sm:py-3.5 sm:text-base">
+              <Button
+                href="/cena"
+                variant="outline"
+                className="bg-ink/25! px-5 py-3 backdrop-blur-sm [text-shadow:0_1px_3px_rgb(0_0_0/0.5)] hover:bg-ink/40! sm:px-7 sm:py-3.5 sm:text-base"
+              >
                 Ceník
               </Button>
             </div>

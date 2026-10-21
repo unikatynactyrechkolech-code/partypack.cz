@@ -29,8 +29,7 @@ export default function KontaktPage() {
               <ContactForm />
             </div>
             <div className="lg:pt-10">
-              <span aria-hidden className="block h-px w-10 bg-accent" />
-              <dl className="mt-8 space-y-7">
+              <dl className="space-y-7">
                 <div>
                   <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-ink">Kancelář</dt>
                   <dd className="mt-2 text-ink">{site.address}</dd>

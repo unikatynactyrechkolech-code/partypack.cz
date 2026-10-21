@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Img } from "@/components/Img";
-import { Container, Divider, Heading } from "@/components/ui";
+import { Container, Heading } from "@/components/ui";
 
 export function PageHero({
   image,
@@ -32,7 +32,6 @@ export function PageHero({
           <Heading as="h1" align={align} className="text-white">
             {title}
           </Heading>
-          <Divider align={align} light className="mt-6" />
           {lead ? (
             <p className="mt-6 text-lg leading-relaxed text-white text-pretty sm:text-xl">
               {lead}

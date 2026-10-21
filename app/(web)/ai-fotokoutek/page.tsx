@@ -3,7 +3,7 @@ import { pageMetadata, seo } from "@/lib/seo";
 import { Img } from "@/components/Img";
 import { PageHero } from "@/components/PageHero";
 import { BeforeAfter } from "@/components/BeforeAfter";
-import { Button, Container, Divider, Heading, Section, SectionTitle } from "@/components/ui";
+import { Button, Container, Heading, Section, SectionTitle } from "@/components/ui";
 import { CtaBand, Steps } from "@/components/sections";
 
 export const metadata: Metadata = pageMetadata(seo.aiFotokoutek);
@@ -44,7 +44,6 @@ export default function AiFotokoutekPage() {
           <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-16">
             <div>
               <h2 className="font-semibold tracking-tight text-ink text-balance text-xl sm:text-2xl">Až 8 filtrů pro jednotlivce</h2>
-              <Divider className="mt-4" />
               <p className="mt-5 leading-relaxed text-ink text-pretty">
                 Mrkněte na naší bohatou nabídku AI filtrů, které jsou určené pro jednotlivce. Všechny naše
                 filtry fungují pro muže, ženy i děti.
@@ -55,7 +54,6 @@ export default function AiFotokoutekPage() {
             </div>
             <div>
               <h2 className="font-semibold tracking-tight text-ink text-balance text-xl sm:text-2xl">Skupinové filtry pro 2–8 osob</h2>
-              <Divider className="mt-4" />
               <p className="mt-5 leading-relaxed text-ink text-pretty">
                 Filtry pro skupiny 2-8 osob není potřeba vybírat dopředu. Na místě lze vybírat ze všech
                 dostupných filtrů! Mrkněte se, jaké máme k dispozici.
@@ -71,7 +69,6 @@ export default function AiFotokoutekPage() {
       <section className="grid border-y border-line lg:grid-cols-2">
         <div className="flex flex-col justify-center px-5 py-16 sm:px-12 lg:px-16 lg:py-24">
           <Heading>Jak funguje AI fotokoutek</Heading>
-          <Divider className="mt-5" />
           <div className="mt-10">
             <Steps items={steps} />
           </div>
@@ -84,7 +81,6 @@ export default function AiFotokoutekPage() {
       <Section>
         <Container>
           <Heading>AI fotky před a po</Heading>
-          <Divider className="mt-5" />
           <ul className="mt-10 grid gap-6 sm:grid-cols-3">
             {beforeAfter.map(([before, after]) => (
               <li key={before}>
@@ -101,8 +97,7 @@ export default function AiFotokoutekPage() {
           <ul className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((f) => (
               <li key={f.title}>
-                <span aria-hidden className="block h-px w-8 bg-accent" />
-                <h3 className="mt-4 text-lg font-semibold tracking-tight text-ink">{f.title}</h3>
+                <h3 className="text-lg font-semibold tracking-tight text-ink">{f.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink text-pretty">{f.text}</p>
               </li>
             ))}

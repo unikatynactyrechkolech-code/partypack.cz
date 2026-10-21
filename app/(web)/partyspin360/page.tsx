@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata, seo } from "@/lib/seo";
 import { Img } from "@/components/Img";
 import { PageHero } from "@/components/PageHero";
-import { Button, Container, Divider, Heading, Section, SectionTitle } from "@/components/ui";
+import { Button, Container, Heading, Section, SectionTitle } from "@/components/ui";
 import { CardLink, DarkBand, SplitRows, Steps } from "@/components/sections";
 
 export const metadata: Metadata = pageMetadata(seo.partyspin);
@@ -65,7 +65,6 @@ export default function PartyspinPage() {
       <section className="grid lg:grid-cols-2">
         <div className="flex flex-col justify-center px-5 py-16 sm:px-12 lg:px-16 lg:py-24">
           <Heading>Jak funguje 360° fotokoutek</Heading>
-          <Divider className="mt-5" />
           <div className="mt-10">
             <Steps items={steps} />
           </div>
@@ -105,7 +104,6 @@ export default function PartyspinPage() {
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-20">
             <div>
               <Heading>Doplňky k 360° fotokoutku</Heading>
-              <Divider className="mt-5" />
             </div>
             <p className="text-lg leading-relaxed text-ink text-pretty">
               Kromě vlastního textu do emailu, tisku fotek nebo tvorbě GIFů, umíme i rekvizity na míru a nebo

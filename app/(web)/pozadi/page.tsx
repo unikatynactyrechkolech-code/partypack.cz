@@ -70,7 +70,6 @@ export default function PozadiPage() {
         <Container className="relative py-16 sm:py-24">
           <div className="mx-auto max-w-3xl rounded-lg bg-white p-6 sm:p-10">
             <Heading as="h2" className="text-2xl uppercase tracking-wide">Máte dotazy k pozadí?</Heading>
-            <span aria-hidden className="mt-4 block h-px w-10 bg-accent" />
             <div className="mt-8">
               <ContactForm />
             </div>

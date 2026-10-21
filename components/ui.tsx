@@ -33,25 +33,6 @@ export function Section({
 
 type Align = "left" | "center";
 
-/** Krátká linka pod nadpisem – motiv převzatý z původního webu. */
-export function Divider({
-  align = "left",
-  light = false,
-  className = "",
-}: {
-  align?: Align;
-  light?: boolean;
-  className?: string;
-}) {
-  return (
-    <span
-      aria-hidden
-      className={`block h-px w-10 ${light ? "bg-white/60" : "bg-accent"} ${
-        align === "center" ? "mx-auto" : ""
-      } ${className}`}
-    />
-  );
-}
 
 export function Heading({
   children,
@@ -102,7 +83,6 @@ export function SectionTitle({
       <Heading as={as} align={align} className={light ? "text-white" : ""}>
         {title}
       </Heading>
-      <Divider align={align} light={light} className="mt-5" />
       {subtitle ? (
         <p
           className={`mt-5 text-lg leading-relaxed text-pretty ${

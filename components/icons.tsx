@@ -32,6 +32,14 @@ export function CookieIcon({ className = "h-6 w-6" }: IconProps) {
 }
 
 /** Hamburger podle vzoru: dvě silné zaoblené linky, horní kratší. */
+export function ArrowUpRightIcon({ className = "h-4 w-4" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      <path d="M7 17 17 7M8 7h9v9" />
+    </svg>
+  );
+}
+
 export function MenuIcon() {
   return (
     <span className="flex w-7 flex-col items-start gap-[6px]" aria-hidden>
@@ -57,14 +65,19 @@ export function SocialLinks({
   instagram,
   className = "",
   iconClassName = "h-5 w-5",
+  shape = "circle",
 }: {
   facebook: string;
   instagram: string;
   className?: string;
   iconClassName?: string;
+  /** square = světlé čtverce se zaoblením jako tlačítka (patička). */
+  shape?: "circle" | "square";
 }) {
   const link =
-    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-current/15 transition-colors hover:bg-ink hover:text-white";
+    shape === "square"
+      ? "inline-flex h-11 w-11 items-center justify-center rounded-lg bg-paper-soft text-ink transition-colors hover:bg-ink hover:text-white"
+      : "inline-flex h-10 w-10 items-center justify-center rounded-full border border-current/15 transition-colors hover:bg-ink hover:text-white";
   return (
     <ul className={`flex items-center gap-2 ${className}`}>
       <li>

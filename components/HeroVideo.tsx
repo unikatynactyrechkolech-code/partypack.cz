@@ -43,7 +43,7 @@ export function HeroVideo() {
       playsInline
       preload="auto"
       poster={POSTER}
-      className="absolute inset-0 h-full w-full object-cover"
+      className="absolute inset-0 h-full w-full object-cover lg:object-top"
     >
       <source src={`${BASE}-1080.mp4`} type="video/mp4" media="(max-width: 1023px)" />
       <source src={`${BASE}-1440.mp4`} type="video/mp4" />

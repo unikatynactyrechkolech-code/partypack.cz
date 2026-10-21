@@ -20,6 +20,22 @@ export type EventItem = {
 };
 
 export const EVENTS_PER_PAGE = 24;
+
+/**
+ * Na webu se ukazují jen akce za poslední dva roky (přání klientky). Starší zůstávají
+ * v databázi i v administraci, jejich stránky přesměrují do galerie.
+ */
+export const GALLERY_YEARS = 2;
+
+export function galleryCutoff(now = new Date()): string {
+  const d = new Date(now);
+  d.setUTCFullYear(d.getUTCFullYear() - GALLERY_YEARS);
+  return d.toISOString().slice(0, 10);
+}
+
+export function isInGallery(e: Pick<EventItem, "eventDate">) {
+  return !e.eventDate || e.eventDate >= galleryCutoff();
+}
 const COLUMNS = "slug,title,event_date,service,event_type,album_url,description,cover_key,cover_w,cover_h";
 
 type Row = {
@@ -85,6 +101,7 @@ export async function listEvents({
       .from(T.events)
       .select(COLUMNS, { count: "exact" })
       .eq("published", true)
+      .gte("event_date", galleryCutoff())
       .order("event_date", { ascending: false })
       .order("created_at", { ascending: false })
       .range(from, from + perPage - 1);
@@ -98,7 +115,7 @@ export async function listEvents({
     console.error("[events] list failed, using fallback:", error?.message);
   }
 
-  const all = fallbackEvents().filter((e) => (!service || e.service === service) && (!type || e.eventType === type));
+  const all = fallbackEvents().filter((e) => isInGallery(e) && (!service || e.service === service) && (!type || e.eventType === type));
   return {
     items: all.slice(from, from + perPage),
     total: all.length,
@@ -130,6 +147,7 @@ export async function allEventSlugs(): Promise<{ slug: string; updatedAt: string
       .from(T.events)
       .select("slug,updated_at")
       .eq("published", true)
+      .gte("event_date", galleryCutoff())
       .order("event_date", { ascending: false })
       .range(from, from + 999);
     if (error || !data) {

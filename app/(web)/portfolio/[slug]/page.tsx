@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { PageHero } from "@/components/PageHero";
 import { EventCard } from "@/components/EventCard";
 import { Button, Container, Prose, Section, SectionTitle } from "@/components/ui";
 import { ContactSection } from "@/components/sections";
-import { formatEventDate, getEvent, recentEvents } from "@/lib/events";
+import { formatEventDate, getEvent, isInGallery, recentEvents } from "@/lib/events";
 import { serviceLabel, SERVICES } from "@/lib/services";
 import { R2_BASE } from "@/lib/site";
 
@@ -21,7 +21,7 @@ function describe(title: string, date: string | null, service: string | null) {
 export async function generateMetadata(props: PageProps<"/portfolio/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
   const e = await getEvent(slug);
-  if (!e) return {};
+  if (!e || !isInGallery(e)) return {};
   const date = formatEventDate(e.eventDate);
   const description = describe(e.title, date, e.service);
   return {
@@ -42,6 +42,8 @@ export default async function EventPage(props: PageProps<"/portfolio/[slug]">) {
   const { slug } = await props.params;
   const e = await getEvent(slug);
   if (!e) notFound();
+  // Akce starší než dva roky už na webu nejsou, odkazy na ně vedou do galerie.
+  if (!isInGallery(e)) permanentRedirect("/galerie");
   const [more, date] = [await recentEvents(6, e.slug), formatEventDate(e.eventDate)];
   const service = SERVICES.find((s) => s.value === e.service);
   const lead = [date, service?.label].filter(Boolean).join(" · ");

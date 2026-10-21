@@ -3,7 +3,7 @@ import { pageMetadata, seo } from "@/lib/seo";
 import { ConversionHero } from "@/components/ConversionHero";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection, Glow, Partners, Stats } from "@/components/sections";
-import { ServiceTiles } from "@/components/home/ServiceTiles";
+import { ServiceCards } from "@/components/home/ServiceCards";
 import { PackageBar } from "@/components/home/PackagePicker";
 import { OccasionTabs, type OccasionGroup } from "@/components/home/OccasionTabs";
 import { listEvents } from "@/lib/events";
@@ -63,7 +63,7 @@ export default async function HomePage() {
             title="Služby na akce v jednom balíčku"
             subtitle="Vyberte jednu službu, nebo si poskládejte celý balíček. Při více službách vám připravíme zvýhodněnou nabídku."
           />
-          <ServiceTiles />
+          <ServiceCards />
         </Container>
       </Section>
 

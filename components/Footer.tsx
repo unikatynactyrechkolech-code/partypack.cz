@@ -21,12 +21,15 @@ const columns = [
 const heading = "text-[15px] uppercase text-ink";
 const linkCls = "text-[15px] text-ink hover:underline hover:underline-offset-4";
 
-/** Patička: logo s výzvou k poptávce, sloupce odkazů, kontakt a sítě; dole © a dokumenty. */
+/**
+ * Patička, na počítači zrcadlově: sítě vlevo, sloupce Kontakt, Partypack, Služby a vpravo logo
+ * s výzvou k poptávce (zarovnané doprava). Na telefonu je logo nahoře. Dole dokumenty a ©.
+ */
 export function Footer() {
   return (
     <footer className="border-t border-line bg-paper text-ink">
       <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 py-14 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:py-16">
-        <div className="lg:col-span-4">
+        <div className="lg:order-3 lg:col-span-4 lg:flex lg:flex-col lg:items-end lg:text-right">
           <Link href="/" aria-label="PARTYPACK – domů" className="inline-flex">
             <Img k={LOGO} alt="PARTYPACK" className="h-8 w-auto" sizes="120px" />
           </Link>
@@ -34,7 +37,7 @@ export function Footer() {
           <p className="mt-1 max-w-xs text-[15px] text-pretty">Fotokoutky, hostesky a další zábava na firemní akce, svatby i oslavy.</p>
           <Link
             href="/kontakt"
-            className="group mt-6 flex max-w-xs items-center justify-between rounded-lg border border-line py-1 pl-4 pr-1 text-[15px] transition-colors hover:border-ink"
+            className="group mt-6 flex w-full max-w-xs items-center justify-between rounded-lg border border-line py-1 pl-4 pr-1 text-left text-[15px] transition-colors hover:border-ink"
           >
             Chci akci
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-ink text-white transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
@@ -43,9 +46,9 @@ export function Footer() {
           </Link>
         </div>
 
-        <nav aria-label="Patička" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-6 lg:gap-8">
-          {columns.map((c) => (
-            <div key={c.title}>
+        <nav aria-label="Patička" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:order-2 lg:col-span-6 lg:gap-8 lg:text-right">
+          {columns.map((c, i) => (
+            <div key={c.title} className={i === 0 ? "lg:order-3" : "lg:order-2"}>
               <p className={heading}>{c.title}</p>
               <ul className="mt-5 space-y-2.5">
                 {c.links.map((l) => (
@@ -58,7 +61,7 @@ export function Footer() {
               </ul>
             </div>
           ))}
-          <div className="col-span-2 sm:col-span-1">
+          <div className="col-span-2 sm:col-span-1 lg:order-1">
             <p className={heading}>Kontakt</p>
             <ul className="mt-5 space-y-2.5 text-[15px]">
               <li>
@@ -71,18 +74,18 @@ export function Footer() {
                   {site.email}
                 </a>
               </li>
-              <li className="max-w-[14rem] text-pretty">{site.address}</li>
+              <li className="max-w-[14rem] text-pretty lg:ml-auto">{site.address}</li>
             </ul>
           </div>
         </nav>
 
-        <div className="lg:col-span-2 lg:flex lg:justify-end">
+        <div className="lg:order-1 lg:col-span-2">
           <SocialLinks facebook={site.facebook} instagram={site.instagram} shape="square" iconClassName="h-[18px] w-[18px]" />
         </div>
       </div>
 
       <div className="border-t border-line">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-5 py-6 text-sm sm:px-8 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-5 py-6 text-sm sm:px-8 md:flex-row-reverse md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Partypack.cz</p>
           <div className="flex flex-col gap-2 md:flex-row md:gap-8">
             <a href={site.termsUrl} target="_blank" rel="noopener noreferrer" className="hover:underline hover:underline-offset-4">

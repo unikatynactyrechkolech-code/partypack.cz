@@ -77,7 +77,7 @@ export function OccasionTabs({ groups, dark = false }: { groups: OccasionGroup[]
         <ul
           ref={track}
           key={group.key}
-          className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 [scrollbar-width:none] sm:-mx-8 sm:scroll-px-8 sm:px-8 [&::-webkit-scrollbar]:hidden"
+          className="relative -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 [scrollbar-width:none] sm:-mx-8 sm:scroll-px-8 sm:px-8 [&::-webkit-scrollbar]:hidden"
         >
           {group.events.map((e) => (
             <li key={e.slug} className="w-[80%] shrink-0 snap-start sm:w-[46%] lg:w-[31%] starting:translate-y-2 starting:opacity-0 transition-[opacity,transform] duration-500">

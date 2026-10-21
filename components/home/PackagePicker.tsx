@@ -4,7 +4,18 @@ import { useEffect, useState } from "react";
 import { packageStore, usePackage, type InquiryService } from "@/lib/package";
 
 /** Tlačítko na dlaždici služby: přidá službu do poptávky, nebo ji z ní odebere. */
-export function PackageToggle({ service, label, className = "" }: { service: InquiryService; label: string; className?: string }) {
+export function PackageToggle({
+  service,
+  label,
+  className = "",
+  tone = "dark",
+}: {
+  service: InquiryService;
+  label: string;
+  className?: string;
+  /** dark = na fotce (světlé tlačítko), light = na světlém panelu (tmavé tlačítko). */
+  tone?: "dark" | "light";
+}) {
   const picked = usePackage().includes(service);
   return (
     <button
@@ -12,8 +23,14 @@ export function PackageToggle({ service, label, className = "" }: { service: Inq
       onClick={() => packageStore.toggle(service)}
       aria-pressed={picked}
       aria-label={picked ? `Odebrat z poptávky: ${label}` : `Přidat do poptávky: ${label}`}
-      className={`relative z-10 inline-flex items-center justify-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-semibold transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white ${className} ${
-        picked ? "border-white bg-white text-ink" : "border-white/70 text-white hover:bg-white hover:text-ink"
+      className={`relative z-10 inline-flex items-center justify-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-semibold transition-colors duration-200 outline-none focus-visible:ring-2 ${tone === "light" ? "focus-visible:ring-accent" : "focus-visible:ring-white"} ${className} ${
+        tone === "light"
+          ? picked
+            ? "border-ink bg-ink text-white"
+            : "border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-white"
+          : picked
+            ? "border-white bg-white text-ink"
+            : "border-white/70 text-white hover:bg-white hover:text-ink"
       }`}
     >
       <span aria-hidden className={`relative block h-2.5 w-2.5 transition-transform duration-300 ${picked ? "rotate-45" : ""}`}>

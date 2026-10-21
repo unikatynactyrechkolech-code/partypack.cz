@@ -27,7 +27,7 @@ export function PackageToggle({
         tone === "light"
           ? picked
             ? "border-ink bg-ink text-white"
-            : "border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-white"
+            : "border-ink text-ink hover:bg-ink hover:text-white"
           : picked
             ? "border-white bg-white text-ink"
             : "border-white/70 text-white hover:bg-white hover:text-ink"

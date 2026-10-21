@@ -71,8 +71,9 @@ const cards: Card[] = [
 ];
 
 /**
- * Služby pod sebou na střídačku: bílá karta s tenkým tmavým okrajem, na jedné straně fotka,
- * na druhé název služby, věta, fakta, cena a tlačítka. Lichá služba má fotku vlevo, sudá vpravo.
+ * Služby pod sebou na střídačku: bílá karta s černým okrajem a větším zaoblením, fotka zasazená
+ * dovnitř karty, na druhé straně název služby, věta, fakta, cena a tlačítka (vše černé).
+ * Lichá služba má fotku vlevo, sudá vpravo.
  */
 export function ServiceCards() {
   return (
@@ -81,8 +82,9 @@ export function ServiceCards() {
         const left = i % 2 === 0;
         return (
           <li key={c.href}>
-            <article className="group grid overflow-hidden rounded-lg border border-ink/20 bg-white text-ink ring-[#00b1ff] ring-offset-2 ring-offset-paper transition-shadow duration-300 has-[[aria-pressed=true]]:ring-2 md:grid-cols-2">
-              <div className={`relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[440px] ${left ? "" : "md:order-2"}`}>
+            <article className="group grid rounded-2xl border border-ink bg-white text-ink ring-[#00b1ff] ring-offset-2 ring-offset-paper transition-shadow duration-300 has-[[aria-pressed=true]]:ring-2 md:grid-cols-2">
+              <div className={`p-2.5 sm:p-3 ${left ? "" : "md:order-2"}`}>
+                <div className="relative aspect-[4/3] h-full overflow-hidden rounded-xl md:aspect-auto md:min-h-[420px]">
                 <Img
                   k={c.image}
                   alt={c.title}
@@ -90,17 +92,18 @@ export function ServiceCards() {
                   sizes="(min-width: 1280px) 620px, (min-width: 768px) 50vw, 100vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
+                </div>
               </div>
-              <div className={`@container flex flex-col justify-center gap-6 p-6 sm:p-10 lg:p-14 ${left ? "" : "md:order-1"}`}>
+              <div className={`@container flex flex-col justify-center gap-6 px-6 pt-4 pb-8 sm:px-10 sm:pb-10 md:py-12 lg:px-14 ${left ? "" : "md:order-1"}`}>
                 <div className="text-2xl leading-snug font-medium tracking-tight text-pretty sm:text-3xl lg:text-[2.4rem] lg:leading-[1.2]">
-                  <h2 className="inline font-semibold text-[#3a7dff]">{c.title}:</h2> {c.statement}
+                  <h2 className="inline font-semibold">{c.title}:</h2> {c.statement}
                 </div>
                 <p className="text-[15px]">{c.facts.join(" · ")}</p>
                 <div className="flex flex-wrap items-center gap-2">
                   {c.price ? <p className="mr-3 text-base font-semibold tabular-nums">{c.price}</p> : null}
                   <Link
                     href={c.href}
-                    className="inline-flex items-center justify-center rounded-lg border border-ink/25 px-3.5 py-2 text-xs font-semibold text-ink transition-colors duration-200 outline-none hover:border-ink hover:bg-ink hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
+                    className="inline-flex items-center justify-center rounded-lg border border-ink px-3.5 py-2 text-xs font-semibold text-ink transition-colors duration-200 outline-none hover:bg-ink hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
                   >
                     Více<span className="sr-only">: {c.title}</span>
                   </Link>

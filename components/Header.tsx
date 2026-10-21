@@ -52,10 +52,10 @@ export function Header() {
           se světlými ikonami (a jemným stínem), po odrolování světlý s tmavými ikonami. */}
       <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
         <div
-          className={`pointer-events-auto mx-auto flex h-14 w-full max-w-7xl items-center justify-between rounded-lg border px-4 backdrop-blur-xl backdrop-saturate-150 transition-[background-color,border-color,box-shadow,color] duration-300 sm:h-16 sm:px-6 ${
+          className={`pointer-events-auto mx-auto flex h-14 w-full max-w-7xl items-center justify-between rounded-lg border px-4 backdrop-blur-md backdrop-saturate-[1.8] transition-[background-color,border-color,box-shadow,color] duration-300 sm:h-16 sm:px-6 ${
             scrolled
-              ? "border-ink/10 bg-white/70 text-ink shadow-[0_10px_30px_-12px_rgb(0_0_0/0.25)]"
-              : "border-white/20 bg-white/10 text-white shadow-[0_10px_30px_-16px_rgb(0_0_0/0.4)]"
+              ? "border-white/60 bg-white/45 text-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.7),0_10px_30px_-14px_rgb(0_0_0/0.25)]"
+              : "border-white/25 bg-white/[0.06] text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.3),0_10px_30px_-18px_rgb(0_0_0/0.45)]"
           }`}
         >
           <Link href="/" className={`flex items-center transition-[filter] duration-300 ${scrolled ? "" : "drop-shadow-[0_0_10px_rgb(0_0_0/0.65)]"}`} aria-label="PARTYPACK – domů">

@@ -9,13 +9,12 @@ import { partners } from "@/lib/data";
  */
 export function ConversionHero() {
   return (
-    <div className="flex min-h-svh flex-col">
-      <section className="relative isolate flex flex-1 overflow-hidden bg-ink text-white">
-        {/* Na telefonu začíná video pod hlavičkou, aby ho logo a menu nepřekrývaly, a zabírá většinu úvodu. */}
-        <div className="absolute inset-x-0 top-[4.5rem] h-[79%] sm:top-[5.5rem] lg:inset-0 lg:h-auto">
+    <div className="flex flex-col lg:min-h-svh">
+      {/* Na telefonu je úvod nižší než obrazovka, aby video vyplnilo celou plochu bez černých pruhů
+          a nebylo tolik oříznuté. Skleněná hlavička leží přímo na videu. Na počítači je úvod přes celou obrazovku. */}
+      <section className="relative isolate flex h-[68svh] min-h-[480px] overflow-hidden bg-ink text-white sm:h-[72svh] lg:h-auto lg:min-h-0 lg:flex-1">
+        <div className="absolute inset-0">
           <HeroVideo />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-ink to-transparent lg:hidden" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-b from-transparent to-ink lg:hidden" />
         </div>
         {/* Jen měkký stín za nadpisem, zbytek videa zůstává světlý. */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_30%_at_40%_50%,rgb(11_11_12/0.6),transparent_75%)] lg:bg-[radial-gradient(ellipse_50%_58%_at_20%_52%,rgb(11_11_12/0.72),transparent_75%)]" />

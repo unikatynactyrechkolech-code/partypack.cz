@@ -14,7 +14,7 @@ type Tile = {
   sizes: string;
 };
 
-const SMALL = "(min-width: 1024px) 33vw, 50vw";
+const SMALL = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw";
 
 // Fakta a ceny jsou z ceníku a podstránek služeb.
 const tiles: Tile[] = [
@@ -25,7 +25,7 @@ const tiles: Tile[] = [
     price: "od 10 000 Kč",
     image: "2022/01/43531135_2220002654881285_3040242971850047488_n",
     inquiry: "Fotokoutek",
-    className: "col-span-2 lg:row-span-2 min-h-[320px] lg:min-h-0",
+    className: "sm:col-span-2 lg:row-span-2 min-h-[340px] lg:min-h-0",
     sizes: "(min-width: 1024px) 66vw, 100vw",
   },
   {
@@ -35,7 +35,7 @@ const tiles: Tile[] = [
     price: "od 14 000 Kč",
     image: "2024/04/819a14bd-a2ed-44ee-9e42-29a22cbe3d57",
     inquiry: "AI fotokoutek",
-    className: "min-h-[360px] lg:min-h-0",
+    className: "min-h-[300px] lg:min-h-0",
     sizes: SMALL,
   },
   {
@@ -45,7 +45,7 @@ const tiles: Tile[] = [
     price: "od 9 900 Kč",
     image: "2023/02/Partyspin-2-promo-foto-scaled",
     inquiry: "360° Partyspin",
-    className: "min-h-[360px] lg:min-h-0",
+    className: "min-h-[300px] lg:min-h-0",
     sizes: SMALL,
   },
   {
@@ -55,7 +55,7 @@ const tiles: Tile[] = [
     price: "od 19 000 Kč",
     image: "2025/03/DMB1",
     inquiry: "AI Draw Bot",
-    className: "min-h-[360px] lg:min-h-0",
+    className: "min-h-[300px] lg:min-h-0",
     sizes: SMALL,
   },
   {
@@ -65,7 +65,7 @@ const tiles: Tile[] = [
     price: "od 270 Kč / hod.",
     image: "2023/05/2023-04-25_PIANA_DO_SKOL_photo-adam-costey-copyright-adam-costey.com-015",
     inquiry: "Hostesky",
-    className: "min-h-[360px] lg:min-h-0",
+    className: "min-h-[300px] lg:min-h-0",
     sizes: SMALL,
   },
   {
@@ -74,18 +74,18 @@ const tiles: Tile[] = [
     facts: ["DJ a moderátor", "Fotograf a kameraman", "Pronájem stanů"],
     image: "2024/04/Partypack-35",
     inquiry: "Něco jiného",
-    className: "col-span-2 lg:col-span-1 min-h-[280px] lg:min-h-0",
+    className: "sm:col-span-2 lg:col-span-1 min-h-[300px] lg:min-h-0",
     sizes: "(min-width: 1024px) 33vw, 100vw",
   },
 ];
 
 /**
  * Mozaika služeb: název, tři fakta, cena od, odkaz Více a tlačítko do poptávky.
- * Na telefonu jsou menší služby po dvou vedle sebe; úzká dlaždice skládá tlačítka pod sebe.
+ * Úzká dlaždice skládá cenu a tlačítka pod sebe.
  */
 export function ServiceTiles() {
   return (
-    <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:auto-rows-[360px] lg:grid-cols-3 lg:gap-5">
+    <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:auto-rows-[360px] lg:grid-cols-3 lg:gap-5">
       {tiles.map((t) => (
         <li
           key={t.href}

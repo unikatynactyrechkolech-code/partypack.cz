@@ -18,7 +18,7 @@ const columns = [
   },
 ];
 
-const heading = "text-sm font-semibold uppercase tracking-[0.12em] text-ink";
+const heading = "text-[15px] uppercase text-ink";
 const linkCls = "text-[15px] text-ink hover:underline hover:underline-offset-4";
 
 /** Patička: logo s výzvou k poptávce, sloupce odkazů, kontakt a sítě; dole © a dokumenty. */
@@ -30,7 +30,7 @@ export function Footer() {
           <Link href="/" aria-label="PARTYPACK – domů" className="inline-flex">
             <Img k={LOGO} alt="PARTYPACK" className="h-8 w-auto" sizes="120px" />
           </Link>
-          <p className="mt-6 text-[15px] font-medium">{site.tagline}</p>
+          <p className="mt-6 text-[15px]">{site.tagline}</p>
           <p className="mt-1 max-w-xs text-[15px] text-pretty">Fotokoutky, hostesky a další zábava na firemní akce, svatby i oslavy.</p>
           <Link
             href="/kontakt"

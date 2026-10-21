@@ -6,9 +6,26 @@ import { Container, Heading, Prose, Section, SectionTitle } from "@/components/u
 import { partners, type Partner } from "@/lib/data";
 import { CountUp } from "@/components/home/CountUp";
 
-export function Partners({ items = partners }: { items?: Partner[] }) {
+/**
+ * Jemná modrá záře z barev loga v tmavých sekcích (vlevo nahoře a vpravo dole).
+ * Sekce musí mít relative isolate overflow-hidden.
+ */
+export function Glow() {
   return (
-    <Section className="bg-paper-soft">
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 -z-10"
+      style={{
+        background:
+          "radial-gradient(55% 45% at 10% 0%, rgb(0 177 255 / 0.16), transparent 70%), radial-gradient(45% 40% at 92% 100%, rgb(58 125 255 / 0.14), transparent 70%)",
+      }}
+    />
+  );
+}
+
+export function Partners({ items = partners, className = "bg-paper-soft" }: { items?: Partner[]; className?: string }) {
+  return (
+    <Section className={className}>
       <Container>
         <ul className="mx-auto grid max-w-5xl grid-cols-3 items-center gap-x-6 gap-y-8 sm:grid-cols-4 md:grid-cols-6 lg:gap-x-10">
           {items.map((p) => (
@@ -35,10 +52,11 @@ export function ContactSection({
   lead?: ReactNode;
 }) {
   return (
-    <Section id="kontakt" className="bg-paper-soft">
+    <Section id="kontakt" className="relative isolate overflow-hidden bg-ink text-white">
+      <Glow />
       <Container>
-        <SectionTitle title={title} subtitle={lead} />
-        <div className="mx-auto mt-12 max-w-3xl rounded-lg border border-line bg-white p-6 sm:p-10">
+        <SectionTitle title={title} subtitle={lead} light />
+        <div className="mx-auto mt-12 max-w-3xl rounded-lg bg-white p-6 text-ink sm:p-10">
           <ContactForm />
         </div>
       </Container>

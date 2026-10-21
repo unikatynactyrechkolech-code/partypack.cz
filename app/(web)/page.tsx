@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata, seo } from "@/lib/seo";
 import { ConversionHero } from "@/components/ConversionHero";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
-import { ContactSection, Partners, Stats } from "@/components/sections";
+import { ContactSection, Glow, Partners, Stats } from "@/components/sections";
 import { ServiceTiles } from "@/components/home/ServiceTiles";
 import { PackageBar } from "@/components/home/PackagePicker";
 import { OccasionTabs, type OccasionGroup } from "@/components/home/OccasionTabs";
@@ -78,7 +78,7 @@ export default async function HomePage() {
         ]}
       />
 
-      <Section className="bg-paper-soft">
+      <Section>
         <Container>
           <SectionTitle title="Jak objednat fotokoutek a další služby na akci" />
           <ol className="relative mx-auto mt-12 grid max-w-md gap-8 md:mt-14 md:max-w-none md:grid-cols-3 md:gap-8">
@@ -110,15 +110,16 @@ export default async function HomePage() {
       </Section>
 
       {occasions.length ? (
-        <Section>
+        <Section className="relative isolate overflow-hidden bg-ink text-white">
+          <Glow />
           <Container>
-            <SectionTitle title="Zábava na firemní akce, konference i svatby" subtitle="Podívejte se, jak to u nás vypadá." />
-            <OccasionTabs groups={occasions} />
+            <SectionTitle title="Zábava na firemní akce, konference i svatby" subtitle="Podívejte se, jak to u nás vypadá." light />
+            <OccasionTabs groups={occasions} dark />
           </Container>
         </Section>
       ) : null}
 
-      <Partners />
+      <Partners className="bg-paper" />
 
       <section className="border-b border-line">
         <Container>

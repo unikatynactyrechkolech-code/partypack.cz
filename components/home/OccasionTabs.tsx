@@ -8,7 +8,7 @@ import type { EventItem } from "@/lib/events";
 export type OccasionGroup = { key: string; label: string; href: string; events: EventItem[] };
 
 /** Záložky podle typu akce a pod nimi pás fotek z posledních akcí, který se dá posouvat. */
-export function OccasionTabs({ groups }: { groups: OccasionGroup[] }) {
+export function OccasionTabs({ groups, dark = false }: { groups: OccasionGroup[]; dark?: boolean }) {
   const [active, setActive] = useState(0);
   const track = useRef<HTMLUListElement>(null);
   const id = useId();
@@ -43,7 +43,13 @@ export function OccasionTabs({ groups }: { groups: OccasionGroup[] }) {
               aria-controls={`${id}-panel`}
               onClick={() => pick(i)}
               className={`shrink-0 rounded-lg border px-4 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-                i === active ? "border-ink bg-ink text-white" : "border-line bg-white text-ink hover:border-ink"
+                i === active
+                  ? dark
+                    ? "border-white bg-white text-ink"
+                    : "border-ink bg-ink text-white"
+                  : dark
+                    ? "border-white/25 text-white hover:border-white"
+                    : "border-line bg-white text-ink hover:border-ink"
               }`}
             >
               {g.label}
@@ -57,9 +63,11 @@ export function OccasionTabs({ groups }: { groups: OccasionGroup[] }) {
               type="button"
               onClick={() => move(d)}
               aria-label={d === 1 ? "Další fotky" : "Předchozí fotky"}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-line bg-white text-ink transition-colors hover:border-ink outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-lg border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                dark ? "border-white/25 text-white hover:border-white" : "border-line bg-white text-ink hover:border-ink"
+              }`}
             >
-              <span aria-hidden className={`block h-2.5 w-2.5 border-ink border-t-[1.5px] border-r-[1.5px] ${d === 1 ? "-ml-1 rotate-45" : "-mr-1 -rotate-[135deg]"}`} />
+              <span aria-hidden className={`block h-2.5 w-2.5 border-current border-t-[1.5px] border-r-[1.5px] ${d === 1 ? "-ml-1 rotate-45" : "-mr-1 -rotate-[135deg]"}`} />
             </button>
           ))}
         </div>
@@ -79,7 +87,9 @@ export function OccasionTabs({ groups }: { groups: OccasionGroup[] }) {
           <li className="flex w-[60%] shrink-0 snap-start sm:w-[30%] lg:w-[22%]">
             <Link
               href={group.href}
-              className="flex w-full items-center justify-center rounded-md border border-ink px-6 text-center text-base font-semibold text-ink transition-colors hover:bg-ink hover:text-white"
+              className={`flex w-full items-center justify-center rounded-md border px-6 text-center text-base font-semibold transition-colors ${
+                dark ? "border-white/40 text-white hover:bg-white hover:text-ink" : "border-ink text-ink hover:bg-ink hover:text-white"
+              }`}
             >
               Všechny fotky: {group.label}
             </Link>

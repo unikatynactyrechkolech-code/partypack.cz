@@ -87,7 +87,7 @@ export default async function HomePage() {
               <li key={s.title} className="relative flex items-center gap-5 md:block md:text-center">
                 <span
                   aria-hidden
-                  className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-ink/15 bg-paper-soft text-3xl font-semibold tabular-nums text-ink md:mx-auto md:h-24 md:w-24 md:text-5xl"
+                  className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border border-ink/15 bg-paper-soft text-3xl font-semibold tabular-nums text-ink md:mx-auto md:h-24 md:w-24 md:text-5xl"
                 >
                   {i + 1}
                 </span>

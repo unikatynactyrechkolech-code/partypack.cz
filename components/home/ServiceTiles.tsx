@@ -111,7 +111,7 @@ export function ServiceTiles() {
             <p className="max-w-md text-sm leading-relaxed text-white text-pretty">{t.line}</p>
             <ul className="flex flex-wrap gap-1.5">
               {t.facts.map((f) => (
-                <li key={f} className="rounded-full bg-white/15 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                <li key={f} className="rounded-lg bg-white/15 px-2.5 py-1 text-xs font-medium text-white backdrop-blur-sm">
                   {f}
                 </li>
               ))}

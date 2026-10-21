@@ -42,7 +42,7 @@ export function OccasionTabs({ groups }: { groups: OccasionGroup[] }) {
               aria-selected={i === active}
               aria-controls={`${id}-panel`}
               onClick={() => pick(i)}
-              className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+              className={`shrink-0 rounded-lg border px-4 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                 i === active ? "border-ink bg-ink text-white" : "border-line bg-white text-ink hover:border-ink"
               }`}
             >
@@ -57,7 +57,7 @@ export function OccasionTabs({ groups }: { groups: OccasionGroup[] }) {
               type="button"
               onClick={() => move(d)}
               aria-label={d === 1 ? "Další fotky" : "Předchozí fotky"}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-ink transition-colors hover:border-ink outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-line bg-white text-ink transition-colors hover:border-ink outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               <span aria-hidden className={`block h-2.5 w-2.5 border-ink border-t-[1.5px] border-r-[1.5px] ${d === 1 ? "-ml-1 rotate-45" : "-mr-1 -rotate-[135deg]"}`} />
             </button>

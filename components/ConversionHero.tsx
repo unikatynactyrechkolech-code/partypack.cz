@@ -12,7 +12,7 @@ export function ConversionHero() {
     <div className="flex min-h-svh flex-col">
       <section className="relative isolate flex flex-1 overflow-hidden bg-ink text-white">
         {/* Na telefonu začíná video pod hlavičkou, aby ho logo a menu nepřekrývaly, a zabírá většinu úvodu. */}
-        <div className="absolute inset-x-0 top-16 h-[80%] sm:top-20 lg:inset-0 lg:h-auto">
+        <div className="absolute inset-x-0 top-[4.5rem] h-[79%] sm:top-[5.5rem] lg:inset-0 lg:h-auto">
           <HeroVideo />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-ink to-transparent lg:hidden" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-b from-transparent to-ink lg:hidden" />

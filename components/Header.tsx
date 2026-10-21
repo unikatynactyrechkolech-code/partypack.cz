@@ -48,13 +48,16 @@ export function Header() {
 
   return (
     <>
-      {/* Nad videem a fotkami (průhledná hlavička) mají logo a menu jemný stín, ať jsou vidět i na světlém záběru. */}
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          scrolled ? "border-b border-line bg-white/90 text-ink backdrop-blur" : "bg-transparent text-white"
-        }`}
-      >
-        <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:h-20 sm:px-8">
+      {/* Skleněný panel odsazený od krajů, zaoblený jako tlačítka v úvodu. Nad videem a fotkami je průsvitný
+          se světlými ikonami (a jemným stínem), po odrolování světlý s tmavými ikonami. */}
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+        <div
+          className={`pointer-events-auto mx-auto flex h-14 w-full max-w-7xl items-center justify-between rounded-lg border px-4 backdrop-blur-xl backdrop-saturate-150 transition-[background-color,border-color,box-shadow,color] duration-300 sm:h-16 sm:px-6 ${
+            scrolled
+              ? "border-ink/10 bg-white/70 text-ink shadow-[0_10px_30px_-12px_rgb(0_0_0/0.25)]"
+              : "border-white/20 bg-white/10 text-white shadow-[0_10px_30px_-16px_rgb(0_0_0/0.4)]"
+          }`}
+        >
           <Link href="/" className={`flex items-center transition-[filter] duration-300 ${scrolled ? "" : "drop-shadow-[0_0_10px_rgb(0_0_0/0.65)]"}`} aria-label="PARTYPACK – domů">
             <Img k={LOGO} alt="PARTYPACK" className="h-7 w-auto sm:h-8" sizes="120px" priority />
           </Link>
@@ -82,19 +85,22 @@ export function Header() {
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
-        <div className="mx-auto flex h-16 w-full max-w-7xl shrink-0 items-center justify-between px-5 sm:h-20 sm:px-8">
-          <Link href="/" onClick={close} className="flex items-center" aria-label="PARTYPACK – domů">
-            <Img k={LOGO} alt="PARTYPACK" className="h-7 w-auto sm:h-8" sizes="120px" />
-          </Link>
-          <button
-            ref={closeButton}
-            type="button"
-            onClick={close}
-            className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md outline-none focus-visible:ring-2 focus-visible:ring-accent"
-            aria-label="Zavřít menu"
-          >
-            <CloseIcon />
-          </button>
+        {/* Stejné rozměry jako hlavička, aby křížek byl přesně na místě hamburgeru. */}
+        <div className="shrink-0 px-3 pt-3 sm:px-5 sm:pt-4">
+          <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between rounded-lg border border-transparent px-4 sm:h-16 sm:px-6">
+            <Link href="/" onClick={close} className="flex items-center" aria-label="PARTYPACK – domů">
+              <Img k={LOGO} alt="PARTYPACK" className="h-7 w-auto sm:h-8" sizes="120px" />
+            </Link>
+            <button
+              ref={closeButton}
+              type="button"
+              onClick={close}
+              className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              aria-label="Zavřít menu"
+            >
+              <CloseIcon />
+            </button>
+          </div>
         </div>
 
         <div className="flex-1 overflow-y-auto">

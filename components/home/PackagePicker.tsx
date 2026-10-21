@@ -12,7 +12,7 @@ export function PackageToggle({ service, label }: { service: InquiryService; lab
       onClick={() => packageStore.toggle(service)}
       aria-pressed={picked}
       aria-label={picked ? `Odebrat z poptávky: ${label}` : `Přidat do poptávky: ${label}`}
-      className={`relative z-10 inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white ${
+      className={`relative z-10 inline-flex items-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-semibold transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white ${
         picked ? "border-white bg-white text-ink" : "border-white/70 text-white hover:bg-white hover:text-ink"
       }`}
     >
@@ -53,7 +53,7 @@ export function PackageBar() {
       }`}
       style={{ bottom: "calc(1rem + env(safe-area-inset-bottom, 0px))" }}
     >
-      <div className="flex items-center gap-3 rounded-full bg-ink py-2 pl-5 pr-2 text-white shadow-[0_12px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-white/25 sm:gap-5">
+      <div className="flex items-center gap-3 rounded-lg bg-ink py-2 pl-5 pr-2 text-white shadow-[0_12px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-white/25 sm:gap-5">
         <p className="min-w-0 truncate text-sm">
           <span className="font-semibold tabular-nums">
             {count} {word}
@@ -63,7 +63,7 @@ export function PackageBar() {
         <a
           href="#kontakt"
           tabIndex={show ? 0 : -1}
-          className="shrink-0 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-paper-soft"
+          className="shrink-0 rounded-md bg-white px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-paper-soft"
         >
           Dokončit poptávku
         </a>

@@ -59,7 +59,8 @@ export default async function HomePage() {
 
       <Stats
         animate
-        image="2022/01/33103039_1018111845036421_263485012270120960_n"
+        image="2024/03/IMG_6079-scaled"
+        position="object-[center_12%]"
         items={[
           { value: "10", label: "let na trhu" },
           { value: "3750", label: "úspěšných akcí" },

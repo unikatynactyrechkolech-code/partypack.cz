@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    // 75 = výchozí, 85 = velké fotky přes výřez (statistiky, galerie, karty služeb).
+    qualities: [75, 85],
     remotePatterns: [
       {
         protocol: "https",

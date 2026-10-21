@@ -66,10 +66,13 @@ export function ContactSection({
 export function Stats({
   items,
   image,
+  position = "object-center",
   animate = false,
 }: {
   items: { value: string; label: string }[];
   image?: string;
+  /** Zarovnání fotky v pásu, třeba object-[center_20%], aby byla vidět hlava. */
+  position?: string;
   /** Čísla se při zobrazení natočí od nuly (hlavní stránka). */
   animate?: boolean;
 }) {
@@ -77,8 +80,8 @@ export function Stats({
     <section className="relative isolate overflow-hidden bg-ink text-white">
       {image ? (
         <>
-          <Img k={image} alt="" fill sizes="100vw" className="object-cover opacity-40" />
-          <div className="absolute inset-0 bg-ink/50" />
+          <Img k={image} alt="" fill sizes="100vw" quality={85} className={`object-cover ${position}`} />
+          <div className="absolute inset-0 bg-ink/55" />
         </>
       ) : null}
       <Container className="relative py-20 sm:py-28">

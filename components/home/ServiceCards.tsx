@@ -10,6 +10,8 @@ type Card = {
   statement: string;
   price?: string;
   image: string;
+  /** Zarovnání fotky ve výřezu, u fotek na výšku nahoru, aby byl vidět obličej. */
+  position?: string;
   inquiry: InquiryService;
 };
 
@@ -28,7 +30,8 @@ const cards: Card[] = [
     title: "AI fotokoutek",
     statement: "Umělá inteligence promění hosty v kohokoli, až v 8 různých stylech.",
     price: "od 14 000 Kč",
-    image: "2024/04/819a14bd-a2ed-44ee-9e42-29a22cbe3d57",
+    image: "2024/08/AI-cenik",
+    position: "object-[center_12%]",
     inquiry: "AI fotokoutek",
   },
   {
@@ -37,6 +40,7 @@ const cards: Card[] = [
     statement: "Kamera hosty obtočí a za pár vteřin mají video s hudbou v mobilu.",
     price: "od 9 900 Kč",
     image: "2023/02/Partyspin-2-promo-foto-scaled",
+    position: "object-[center_18%]",
     inquiry: "360° Partyspin",
   },
   {
@@ -53,6 +57,7 @@ const cards: Card[] = [
     statement: "Hostesky, modelky i promotéři, které vybereme společně s vámi.",
     price: "od 270 Kč / hod.",
     image: "2023/05/2023-04-25_PIANA_DO_SKOL_photo-adam-costey-copyright-adam-costey.com-015",
+    position: "object-[center_42%]",
     inquiry: "Hostesky",
   },
   {
@@ -81,15 +86,21 @@ export function ServiceCards() {
           <li key={c.href}>
             <Reveal rotate={TILT[i] ?? 0} from={left ? "left" : "right"}>
               <article className="group grid overflow-hidden rounded-2xl border border-ink bg-white text-ink ring-[#00b1ff] ring-offset-2 ring-offset-paper transition-shadow duration-300 has-[[aria-pressed=true]]:ring-2 md:grid-cols-2">
-                <div className={`relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[420px] ${left ? "" : "md:order-2"}`}>
+                <Link
+                  href={c.href}
+                  tabIndex={-1}
+                  aria-hidden
+                  className={`relative block aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[420px] ${left ? "" : "md:order-2"}`}
+                >
                   <Img
                     k={c.image}
                     alt={c.title}
                     fill
-                    sizes="(min-width: 1280px) 620px, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    sizes="(min-width: 768px) 1000px, 600px"
+                    quality={85}
+                    className={`object-cover ${c.position ?? "object-center"} transition-transform duration-700 ease-out group-hover:scale-[1.04]`}
                   />
-                </div>
+                </Link>
                 <div className={`@container flex flex-col justify-center gap-7 p-6 sm:p-10 lg:px-14 ${left ? "" : "md:order-1"}`}>
                   <div className="text-2xl leading-snug font-medium tracking-tight text-pretty sm:text-3xl lg:text-[2.4rem] lg:leading-[1.2]">
                     <h2 className="inline font-semibold">{c.title}:</h2> {c.statement}

@@ -1,6 +1,7 @@
 import { ScrollLogos } from "@/components/ScrollLogos";
 import { HeroVideo } from "@/components/HeroVideo";
-import { Button, Container } from "@/components/ui";
+import Link from "next/link";
+import { Container } from "@/components/ui";
 import { partners } from "@/lib/data";
 
 /**
@@ -16,24 +17,20 @@ export function ConversionHero() {
         <div className="absolute inset-0">
           <HeroVideo />
         </div>
-        {/* Jen měkký stín za nadpisem, zbytek videa zůstává světlý. */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_30%_at_40%_50%,rgb(11_11_12/0.6),transparent_75%)] lg:bg-[radial-gradient(ellipse_50%_58%_at_20%_52%,rgb(11_11_12/0.72),transparent_75%)]" />
-        <Container className="relative flex flex-col justify-center pb-10 pt-24 sm:pb-14 sm:pt-28">
-          <div className="max-w-2xl">
+        {/* Jen měkký stín za nadpisem uprostřed, zbytek videa zůstává světlý. */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_75%_30%_at_50%_52%,rgb(11_11_12/0.6),transparent_75%)] lg:bg-[radial-gradient(ellipse_40%_38%_at_50%_52%,rgb(11_11_12/0.62),transparent_75%)]" />
+        <Container className="relative flex flex-col items-center justify-center pb-10 pt-24 text-center sm:pb-14 sm:pt-28">
+          <div className="mx-auto max-w-3xl">
             <h1 className="text-[2rem] font-semibold leading-[1.1] tracking-tight text-balance [text-shadow:0_0_32px_rgb(0_0_0/0.45),0_2px_10px_rgb(0_0_0/0.5),0_1px_2px_rgb(0_0_0/0.5)] sm:text-5xl lg:text-6xl">
               Zábava na celou akci od jednoho dodavatele
             </h1>
-            <div className="mt-7 flex gap-2.5">
-              <Button href="#kontakt" variant="light" className="px-4! py-2! shadow-[0_8px_24px_-8px_rgb(0_0_0/0.55)] sm:px-5! sm:py-2.5! sm:text-[15px]!">
-                Poptat akci
-              </Button>
-              <Button
-                href="/cena"
-                variant="outline"
-                className="bg-ink/25! px-4! py-2! backdrop-blur-sm [text-shadow:0_1px_3px_rgb(0_0_0/0.5)] hover:bg-ink/40! sm:px-5! sm:py-2.5! sm:text-[15px]!"
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="#kontakt"
+                className="inline-flex items-center justify-center rounded-lg border border-white/40 bg-white/10 px-6 py-2.5 text-[15px] font-medium text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.35),0_10px_30px_-12px_rgb(0_0_0/0.55)] backdrop-blur-md backdrop-saturate-150 transition-colors [text-shadow:0_1px_3px_rgb(0_0_0/0.45)] hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white sm:px-7 sm:py-3 sm:text-base"
               >
-                Ceník
-              </Button>
+                Chci akci
+              </Link>
             </div>
           </div>
         </Container>

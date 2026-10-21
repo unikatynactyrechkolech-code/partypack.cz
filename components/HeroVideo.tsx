@@ -4,8 +4,9 @@ import { useEffect, useRef, useSyncExternalStore } from "react";
 import { preload } from "react-dom";
 import { R2_BASE } from "@/lib/site";
 
-// Smyčka 8,5 s z videí fotokoutku a AI Draw Bota (bez zvuku). Mobil dostane lehčí 720p verzi.
-const BASE = `${R2_BASE}/video/partypack-hero-v1`;
+// Smyčka 8,5 s z videí fotokoutku a AI Draw Bota (bez zvuku). Počítač dostane 1440p,
+// telefon a tablet Full HD (na displejích s vysokým rozlišením by se 720p rozmazávalo).
+const BASE = `${R2_BASE}/video/partypack-hero-v2`;
 const POSTER = `${BASE}-poster.webp`;
 
 const query = "(prefers-reduced-motion: reduce)";
@@ -44,8 +45,8 @@ export function HeroVideo() {
       poster={POSTER}
       className="absolute inset-0 h-full w-full object-cover"
     >
-      <source src={`${BASE}-720.mp4`} type="video/mp4" media="(max-width: 767px)" />
-      <source src={`${BASE}-1080.mp4`} type="video/mp4" />
+      <source src={`${BASE}-1080.mp4`} type="video/mp4" media="(max-width: 1023px)" />
+      <source src={`${BASE}-1440.mp4`} type="video/mp4" />
     </video>
   );
 }

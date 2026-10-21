@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { packageStore, usePackage, type InquiryService } from "@/lib/package";
 
 /** Tlačítko na dlaždici služby: přidá službu do poptávky, nebo ji z ní odebere. */
-export function PackageToggle({ service, label }: { service: InquiryService; label: string }) {
+export function PackageToggle({ service, label, className = "" }: { service: InquiryService; label: string; className?: string }) {
   const picked = usePackage().includes(service);
   return (
     <button
@@ -12,7 +12,7 @@ export function PackageToggle({ service, label }: { service: InquiryService; lab
       onClick={() => packageStore.toggle(service)}
       aria-pressed={picked}
       aria-label={picked ? `Odebrat z poptávky: ${label}` : `Přidat do poptávky: ${label}`}
-      className={`relative z-10 inline-flex items-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-semibold transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white ${
+      className={`relative z-10 inline-flex items-center justify-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-semibold transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-white ${className} ${
         picked ? "border-white bg-white text-ink" : "border-white/70 text-white hover:bg-white hover:text-ink"
       }`}
     >
@@ -20,7 +20,15 @@ export function PackageToggle({ service, label }: { service: InquiryService; lab
         <span className="absolute inset-x-0 top-1/2 h-[1.5px] -translate-y-1/2 bg-current" />
         <span className="absolute inset-y-0 left-1/2 w-[1.5px] -translate-x-1/2 bg-current" />
       </span>
-      {picked ? "V poptávce" : "Přidat do poptávky"}
+      {/* V úzké dlaždici (telefon, dvě vedle sebe) kratší text, celý je v aria-label. */}
+      {picked ? (
+        "V poptávce"
+      ) : (
+        <>
+          <span className="@[18rem]:hidden">Do poptávky</span>
+          <span className="hidden @[18rem]:inline">Přidat do poptávky</span>
+        </>
+      )}
     </button>
   );
 }

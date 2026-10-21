@@ -98,6 +98,7 @@ export async function signOut() {
 }
 
 function revalidateEvent(...slugs: (string | null | undefined)[]) {
+  revalidatePath("/");
   revalidatePath("/galerie");
   revalidatePath("/fotokoutek");
   revalidatePath("/sitemap.xml");

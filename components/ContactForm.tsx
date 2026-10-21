@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { INQUIRY_SERVICES } from "@/lib/services";
 import { trackUmami } from "@/lib/umami";
+import { packageStore, usePackage, type InquiryService } from "@/lib/package";
 
 const inputCls =
   "w-full rounded-lg border border-line bg-white px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10";
@@ -12,11 +13,27 @@ type Status = "idle" | "sending" | "sent" | "error" | "missing-service";
 export function ContactForm({ dark = false }: { dark?: boolean }) {
   const [status, setStatus] = useState<Status>("idle");
   const startedAt = useRef(0);
+  const formRef = useRef<HTMLFormElement>(null);
   const id = useId();
+  const picked = usePackage();
 
   useEffect(() => {
     startedAt.current = Date.now();
   }, []);
+
+  // Služby přidané do poptávky na dlaždicích se tu samy zaškrtnou (a naopak).
+  useEffect(() => {
+    formRef.current?.querySelectorAll<HTMLInputElement>('input[name="services"]').forEach((input) => {
+      input.checked = picked.includes(input.value as InquiryService);
+    });
+  }, [picked]);
+
+  const syncPicked = () => {
+    const form = formRef.current;
+    if (!form) return;
+    const checked = [...form.querySelectorAll<HTMLInputElement>('input[name="services"]:checked')].map((i) => i.value as InquiryService);
+    packageStore.set(checked);
+  };
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -57,6 +74,7 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
       }
       setStatus("sent");
       form.reset();
+      packageStore.set([]);
     } catch {
       trackUmami("Nedokončená poptávka", { "Důvod": "Výpadek připojení" });
       setStatus("error");
@@ -67,7 +85,7 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
   const f = (name: string) => `${id}-${name}`;
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2" noValidate={false}>
+    <form ref={formRef} onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2" noValidate={false}>
       <div className="grid gap-2">
         <label htmlFor={f("name")} className={labelCls}>
           Jméno*
@@ -104,7 +122,10 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
                 name="services"
                 value={s}
                 className="peer sr-only"
-                onChange={() => status === "missing-service" && setStatus("idle")}
+                onChange={() => {
+                  syncPicked();
+                  if (status === "missing-service") setStatus("idle");
+                }}
               />
               <span className="inline-flex items-center rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-medium text-ink transition-colors peer-checked:border-ink peer-checked:bg-ink peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-accent hover:border-ink">
                 {s}

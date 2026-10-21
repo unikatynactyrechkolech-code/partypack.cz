@@ -4,6 +4,7 @@ import { Img } from "@/components/Img";
 import { ContactForm } from "@/components/ContactForm";
 import { Container, Heading, Prose, Section, SectionTitle } from "@/components/ui";
 import { partners, type Partner } from "@/lib/data";
+import { CountUp } from "@/components/home/CountUp";
 
 export function Partners({ items = partners }: { items?: Partner[] }) {
   return (
@@ -48,9 +49,12 @@ export function ContactSection({
 export function Stats({
   items,
   image,
+  animate = false,
 }: {
   items: { value: string; label: string }[];
   image?: string;
+  /** Čísla se při zobrazení natočí od nuly (hlavní stránka). */
+  animate?: boolean;
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-ink text-white">
@@ -64,7 +68,9 @@ export function Stats({
         <dl className="grid grid-cols-2 gap-10 text-center md:grid-cols-4">
           {items.map((s) => (
             <div key={s.label}>
-              <dd className="text-4xl font-semibold tracking-tight sm:text-5xl">{s.value}</dd>
+              <dd className="text-4xl font-semibold tracking-tight sm:text-5xl">
+                {animate && /^\d+$/.test(s.value) ? <CountUp value={Number(s.value)} /> : s.value}
+              </dd>
               <dt className="mt-2 text-sm text-white">{s.label}</dt>
             </div>
           ))}

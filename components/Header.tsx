@@ -3,11 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { Img } from "@/components/Img";
 import { CloseIcon, MenuIcon, SocialLinks } from "@/components/icons";
 import { primaryNav, secondaryNav, site } from "@/lib/site";
-
-const LOGO = "2022/01/cropped-cropped-logo-znak-png-male";
+import { Logo } from "@/components/Logo";
 
 function subscribe(onChange: () => void) {
   window.addEventListener("scroll", onChange, { passive: true });
@@ -59,7 +57,7 @@ export function Header() {
           }`}
         >
           <Link href="/" className={`flex items-center transition-[filter] duration-300 ${scrolled ? "" : "drop-shadow-[0_0_10px_rgb(0_0_0/0.65)]"}`} aria-label="PARTYPACK – domů">
-            <Img k={LOGO} alt="PARTYPACK" className="h-7 w-auto sm:h-8" sizes="120px" priority />
+            <Logo className="h-[21px] sm:h-6" priority />
           </Link>
           <button
             ref={openButton}
@@ -89,7 +87,7 @@ export function Header() {
         <div className="shrink-0 px-3 pt-3 sm:px-5 sm:pt-4">
           <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between rounded-lg px-4 sm:h-16 sm:px-6">
             <Link href="/" onClick={close} className="flex items-center" aria-label="PARTYPACK – domů">
-              <Img k={LOGO} alt="PARTYPACK" className="h-7 w-auto sm:h-8" sizes="120px" />
+              <Logo className="h-[21px] sm:h-6" />
             </Link>
             <button
               ref={closeButton}

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Img } from "@/components/Img";
 import { SetupNotice } from "@/components/admin/SetupNotice";
 import { signOut } from "@/app/admin/actions";
 import { getAdminStatus } from "@/lib/admin";
+import { Logo } from "@/components/Logo";
 
 export default async function PanelLayout({ children }: { children: React.ReactNode }) {
   const status = await getAdminStatus();
@@ -29,7 +29,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
       <header className="border-b border-line bg-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-5 py-3">
           <Link href="/admin" className="flex items-center gap-3">
-            <Img k="2022/01/cropped-cropped-logo-znak-png-male" alt="PARTYPACK" className="h-6 w-auto" sizes="100px" />
+            <Logo className="h-[18px]" />
             <span className="text-sm font-semibold">Administrace</span>
           </Link>
           <nav className="flex flex-1 items-center gap-1">

@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { Img } from "@/components/Img";
 import { Glow } from "@/components/sections";
 import { SocialLinks } from "@/components/icons";
 import { primaryNav, site } from "@/lib/site";
-
-const LOGO = "2022/01/cropped-cropped-logo-znak-png-male";
+import { Logo } from "@/components/Logo";
 
 const columns = [
   { title: "Služby", links: [...primaryNav, { href: "/dalsisluzby", label: "Další služby" }] },
@@ -69,7 +67,7 @@ export function Footer() {
         <div className="flex flex-col gap-8 border-t border-white/15 py-8 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
             <Link href="/" aria-label="PARTYPACK – domů" className="inline-flex">
-              <Img k={LOGO} alt="PARTYPACK" className="h-11 w-auto" sizes="160px" />
+              <Logo className="h-[33px]" />
             </Link>
             <div className="flex flex-col gap-3 text-[15px] sm:flex-row sm:gap-10">
               <a href={site.termsUrl} target="_blank" rel="noopener noreferrer" className={linkCls}>

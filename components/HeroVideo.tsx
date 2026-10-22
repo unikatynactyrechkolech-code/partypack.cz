@@ -4,8 +4,8 @@ import { useEffect, useRef, useSyncExternalStore } from "react";
 import { preload } from "react-dom";
 import { R2_BASE } from "@/lib/site";
 
-// Smyčka 8,5 s z videí fotokoutku a AI Draw Bota (bez zvuku).
-// Telefon na výšku: vlastní výřez 1080×1920. Tablet a telefon na šířku: Full HD. Počítač: 1440p.
+// Smyčka 8,5 s z videí fotokoutku a AI Draw Bota (bez zvuku). Počítač dostane 1440p,
+// telefon a tablet Full HD (na displejích s vysokým rozlišením by se 720p rozmazávalo).
 const BASE = `${R2_BASE}/video/partypack-hero-v2`;
 const POSTER = `${BASE}-poster.webp`;
 
@@ -91,7 +91,6 @@ export function HeroVideo() {
       disablePictureInPicture
       className="absolute inset-0 h-full w-full object-cover lg:object-top"
     >
-      <source src={`${BASE}-portrait.mp4`} type="video/mp4" media="(max-width: 1023px) and (orientation: portrait)" />
       <source src={`${BASE}-1080.mp4`} type="video/mp4" media="(max-width: 1023px)" />
       <source src={`${BASE}-1440.mp4`} type="video/mp4" />
     </video>

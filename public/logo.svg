@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 137.82 48.75" width="137.82" height="48.75">
+<title>PARTYPACK</title>
+<defs>
+<linearGradient id="pp"><stop offset="0" stop-color="#4577ff"/><stop offset="0.1" stop-color="#3980ff"/><stop offset="0.25" stop-color="#2590ff"/><stop offset="0.4" stop-color="#00a0ff"/><stop offset="0.5" stop-color="#00abff"/><stop offset="0.6" stop-color="#00b5ff"/><stop offset="0.75" stop-color="#00c4fe"/><stop offset="0.9" stop-color="#00d3f3"/><stop offset="1" stop-color="#00deed"/></linearGradient>
+<linearGradient id="pp0" xlink:href="#pp" gradientUnits="userSpaceOnUse" x1="3" y1="3" x2="49.65" y2="3"/>
+<linearGradient id="pp1" xlink:href="#pp" gradientUnits="userSpaceOnUse" x1="73.02" y1="43.05" x2="49.65" y2="3"/>
+<linearGradient id="pp2" xlink:href="#pp" gradientUnits="userSpaceOnUse" x1="73.02" y1="43.05" x2="96.06" y2="3.55"/>
+<linearGradient id="pp3" xlink:href="#pp" gradientUnits="userSpaceOnUse" x1="111.79" y1="6.25" x2="88.75" y2="45.75"/>
+<linearGradient id="pp4" xlink:href="#pp" gradientUnits="userSpaceOnUse" x1="111.79" y1="6.25" x2="134.82" y2="45.75"/>
+</defs>
+<g fill="none" stroke-width="6" stroke-linecap="round">
+<path stroke="url(#pp0)" d="M3 3L49.65 3"/>
+<path stroke="url(#pp1)" d="M73.02 43.05L49.65 3"/>
+<path stroke="url(#pp2)" d="M73.02 43.05L96.06 3.55"/>
+<path stroke="url(#pp3)" d="M111.79 6.25L88.75 45.75"/>
+<path stroke="url(#pp4)" d="M111.79 6.25L134.82 45.75"/>
+</g></svg>

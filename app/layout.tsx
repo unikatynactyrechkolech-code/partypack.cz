@@ -35,7 +35,7 @@ const organization = {
   name: "Partypack",
   description: "Balíček služeb na akce: fotokoutek, AI fotokoutek, Partyspin 360°, AI Draw Bot a hostesky.",
   url: SITE_URL,
-  logo: "https://pub-32c9b24c8e42465eb3608a2e395531b5.r2.dev/2022/01/cropped-cropped-logo-znak-png-male.webp",
+  logo: `${SITE_URL}/icon.png`,
   image: OG_IMAGE,
   telephone: "+420720448660",
   email: site.email,

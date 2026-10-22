@@ -105,8 +105,11 @@ export function ServiceCards() {
                   <div className="text-2xl leading-snug font-medium tracking-tight text-pretty sm:text-3xl lg:text-[2.4rem] lg:leading-[1.2]">
                     <h2 className="inline font-semibold">{c.title}:</h2> {c.statement}
                   </div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {c.price ? <p className="mr-3 text-base font-semibold tabular-nums">{c.price}</p> : null}
+                  {/* V úzké kartě (telefon) je cena nad tlačítky a obě tlačítka jsou vedle sebe. */}
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-3">
+                    {c.price ? (
+                      <p className="w-full text-base font-semibold tabular-nums @[26rem]:mr-3 @[26rem]:w-auto">{c.price}</p>
+                    ) : null}
                     <Link
                       href={c.href}
                       className="inline-flex items-center justify-center rounded-lg border border-ink px-3.5 py-2 text-xs font-semibold text-ink transition-colors duration-200 outline-none hover:bg-ink hover:text-white focus-visible:ring-2 focus-visible:ring-accent"

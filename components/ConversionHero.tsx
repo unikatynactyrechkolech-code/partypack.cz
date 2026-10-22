@@ -10,10 +10,10 @@ import { partners } from "@/lib/data";
  */
 export function ConversionHero() {
   return (
-    <div className="flex flex-col lg:min-h-svh">
-      {/* Na telefonu je úvod nižší než obrazovka, aby video vyplnilo celou plochu bez černých pruhů
-          a nebylo tolik oříznuté. Skleněná hlavička leží přímo na videu. Na počítači je úvod přes celou obrazovku. */}
-      <section className="relative isolate flex h-[68svh] min-h-[480px] overflow-hidden bg-ink text-white sm:h-[72svh] lg:h-auto lg:min-h-0 lg:flex-1">
+    <div className="flex min-h-svh flex-col">
+      {/* Úvod přes celou výšku obrazovky (pod ním jen pruh s logy). Video vyplní celou plochu
+          i za skleněnou hlavičkou; telefon na výšku dostane vlastní video na výšku. */}
+      <section className="relative isolate flex min-h-[520px] flex-1 overflow-hidden bg-ink text-white">
         <div className="absolute inset-0">
           <HeroVideo />
         </div>

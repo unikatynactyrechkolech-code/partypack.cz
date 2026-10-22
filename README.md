@@ -29,6 +29,8 @@ https://pub-32c9b24c8e42465eb3608a2e395531b5.r2.dev/<rok>/<měsíc>/<název>.web
 ```
 
 Cesty kopírují strukturu `wp-content/uploads` původního webu (např. `2024/04/Partypack-35.webp`).
+Ve stejném bucketu jsou pod původní cestou i s příponou dokumenty: VOP, zásady zpracování osobních údajů,
+nabídka oblečení hostesek a katalog tištěných pozadí (např. `2025/07/Zasady-o-zpracovani-osobnich-udaju-Partypack.pdf`).
 Rozměry všech obrázků jsou v `lib/media.json`, komponenta `components/Img.tsx` z nich skládá `next/image`.
 Seznamy (AI filtry, pozadí, partneři, galerie) jsou v `lib/data.ts`.
 

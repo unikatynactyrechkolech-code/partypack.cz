@@ -11,13 +11,13 @@ import { StepsShowcase } from "@/components/service/StepsShowcase";
 import { PriceFaq } from "@/components/service/PriceFaq";
 import { CrossSell } from "@/components/service/CrossSell";
 import { Reveal } from "@/components/Reveal";
-import { site } from "@/lib/site";
+import { R2_BASE, site } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata(seo.hostesky);
 
 const FUNDUS_CANVA =
   "https://www.canva.com/design/DAF-R99nqG4/kcEjzVnX2IUYYvne-RnKQA/view?utm_content=DAF-R99nqG4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1f1322e84c";
-const FUNDUS_PDF = "https://partypack.cz/wp-content/uploads/2024/03/Nabidka-obleceni-hostesky.pdf";
+const FUNDUS_PDF = `${R2_BASE}/2024/03/Nabidka-obleceni-hostesky.pdf`;
 
 const facts: Fact[] = [
   { value: "Setkarty", label: "výběr hostesek ke schválení" },

@@ -10,9 +10,9 @@ export const site = {
   facebook: "https://www.facebook.com/partypackcz",
   instagram: "https://www.instagram.com/partypack_cz/",
   instagramHandle: "@Partypack_cz",
-  termsUrl: "https://partypack.cz/wp-content/uploads/2025/04/VOP-Partypack.pages",
-  privacyUrl:
-    "https://partypack.cz/wp-content/uploads/2025/07/Zasady-o-zpracovani-osobnich-udaju-Partypack.pdf",
+  // Dokumenty jsou na R2 pod původní cestou z wp-content/uploads, aby fungovaly i po přepnutí domény.
+  termsUrl: `${R2_BASE}/2025/04/VOP-Partypack.pages`,
+  privacyUrl: `${R2_BASE}/2025/07/Zasady-o-zpracovani-osobnich-udaju-Partypack.pdf`,
 };
 
 /** Hlavní služby – v menu velkým písmem. */

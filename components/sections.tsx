@@ -17,9 +17,34 @@ const GLOWS = {
   footer: "radial-gradient(26% 60% at 95% 72%, rgb(0 177 255 / 0.11), transparent 70%)",
 } as const;
 
-/** Sekce musí mít relative isolate overflow-hidden. */
-export function Glow({ variant }: { variant: keyof typeof GLOWS }) {
-  return <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: GLOWS[variant] }} />;
+// Záře podle čísla: dvě až tři skvrny v barvách loga, pokaždé jinde a jinak velké.
+// Deterministický generátor, takže server i prohlížeč vykreslí totéž.
+function seededGlow(seed: number) {
+  let a = seed >>> 0;
+  const rnd = () => {
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const colors = ["0 212 243", "0 177 255", "58 125 255"];
+  const count = 2 + Math.floor(rnd() * 2);
+  const parts: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const w = Math.round(16 + rnd() * 30);
+    const h = Math.round(18 + rnd() * 34);
+    const x = Math.round(4 + rnd() * 92);
+    const y = Math.round(rnd() * 100);
+    const alpha = (i === 0 ? 0.13 + rnd() * 0.08 : 0.05 + rnd() * 0.07).toFixed(2);
+    parts.push(`radial-gradient(${w}% ${h}% at ${x}% ${y}%, rgb(${colors[Math.floor(rnd() * 3)]} / ${alpha}), transparent 72%)`);
+  }
+  return parts.join(", ");
+}
+
+/** Sekce musí mít relative isolate overflow-hidden. Buď pojmenovaná záře, nebo `seed` pro nahodilou. */
+export function Glow({ variant, seed }: { variant?: keyof typeof GLOWS; seed?: number }) {
+  const background = variant ? GLOWS[variant] : seededGlow(seed ?? 1);
+  return <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background }} />;
 }
 
 export function Partners({ items = partners, className = "bg-paper-soft" }: { items?: Partner[]; className?: string }) {
@@ -180,43 +205,6 @@ export function ImageGrid({
   );
 }
 
-export type CheckerItem = { title: ReactNode; text: ReactNode; image: string };
-
-/**
- * Šachovnice text / fotka ve třech sloupcích – rozvržení výhod a dalších služeb
- * z původního webu. Fotka vždy sousedí se svým textem.
- */
-export function Checkerboard({ items, headingAs: H = "h3" }: { items: CheckerItem[]; headingAs?: "h2" | "h3" }) {
-  const cells: ReactNode[] = [];
-  let t = 0;
-  let p = 0;
-  const total = items.length * 2;
-  for (let i = 0; i < total; i++) {
-    const row = Math.floor(i / 3);
-    const col = i % 3;
-    const isText = (row + col) % 2 === 0;
-    if (isText && t < items.length) {
-      const it = items[t++];
-      cells.push(
-        <div key={`t${i}`} className="flex min-h-[260px] flex-col items-center justify-center px-6 py-12 text-center sm:min-h-[320px] lg:min-h-[400px]">
-          <H className="text-xl font-semibold tracking-tight text-ink sm:text-2xl">{it.title}</H>
-          <div className="mt-4 max-w-sm text-sm leading-relaxed text-ink text-pretty [&_a]:underline [&_a]:underline-offset-4">
-            {it.text}
-          </div>
-        </div>,
-      );
-    } else if (!isText && p < items.length) {
-      const it = items[p++];
-      cells.push(
-        <div key={`p${i}`} className="relative min-h-[260px] sm:min-h-[320px] lg:min-h-[400px]">
-          <Img k={it.image} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" />
-        </div>,
-      );
-    }
-  }
-  return <div className="grid grid-cols-1 sm:grid-cols-3">{cells}</div>;
-}
-
 export type SplitRow = {
   title: ReactNode;
   price?: ReactNode;
@@ -251,33 +239,6 @@ export function SplitRows({ rows, headingAs = "h3" }: { rows: SplitRow[]; headin
   );
 }
 
-export function Steps({
-  items,
-  light = false,
-}: {
-  items: { title: string; text: ReactNode }[];
-  light?: boolean;
-}) {
-  return (
-    <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-      {items.map((s, i) => (
-        <li key={s.title}>
-          <span className={`text-sm font-semibold ${light ? "text-white" : "text-ink"}`}>
-            {i + 1}.
-          </span>
-          <span aria-hidden className={`mt-3 block h-px w-10 ${light ? "bg-white/40" : "bg-line"}`} />
-          <h3 className={`mt-4 text-lg font-semibold tracking-tight ${light ? "text-white" : "text-ink"}`}>
-            {s.title}
-          </h3>
-          <p className={`mt-2 text-sm leading-relaxed text-pretty ${light ? "text-white" : "text-ink"}`}>
-            {s.text}
-          </p>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
 /** Tmavý pás na fotce s centrovaným nadpisem a tlačítkem. */
 export function CtaBand({
   image,
@@ -298,25 +259,6 @@ export function CtaBand({
         </h2>
         {children ? <div className="mt-8 flex flex-wrap justify-center gap-3">{children}</div> : null}
       </Container>
-    </section>
-  );
-}
-
-/** Tmavý pás na fotce s libovolným obsahem (statistiky, kroky, výroky). */
-export function DarkBand({
-  image,
-  children,
-  className = "",
-}: {
-  image: string;
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <section className={`relative isolate overflow-hidden bg-ink text-white ${className}`}>
-      <Img k={image} alt="" fill sizes="100vw" className="object-cover opacity-40" />
-      <div className="absolute inset-0 bg-ink/55" />
-      <Container className="relative py-20 sm:py-28">{children}</Container>
     </section>
   );
 }

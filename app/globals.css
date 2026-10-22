@@ -46,10 +46,18 @@ body {
 }
 .pp-reveal[data-reveal="hidden"] {
   opacity: 0;
-  transform: translate3d(var(--dx, 0), 90px, 0) rotate(calc(var(--rot, 0deg) * 3));
+  transform: translate3d(var(--dx, 0), var(--dy, 90px), 0) rotate(calc(var(--rot, 0deg) * 3));
 }
 @media (prefers-reduced-motion: reduce) {
   .pp-reveal {
     transition: none;
+  }
+}
+
+/* Pomalé přiblížení fotky v úvodu podstránek (components/service/HeroSlides.tsx). */
+@media (prefers-reduced-motion: reduce) {
+  .pp-zoom {
+    transform: none !important;
+    transition: opacity 1.2s ease !important;
   }
 }

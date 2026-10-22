@@ -101,6 +101,9 @@ function revalidateEvent(...slugs: (string | null | undefined)[]) {
   revalidatePath("/");
   revalidatePath("/galerie");
   revalidatePath("/fotokoutek");
+  revalidatePath("/ai-fotokoutek");
+  revalidatePath("/partyspin360");
+  revalidatePath("/ai-draw-bot");
   revalidatePath("/sitemap.xml");
   revalidatePath("/admin");
   for (const slug of slugs) if (slug) revalidatePath(`/portfolio/${slug}`);

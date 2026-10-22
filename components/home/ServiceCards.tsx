@@ -2,72 +2,9 @@ import Link from "next/link";
 import { Img } from "@/components/Img";
 import { PackageToggle } from "@/components/home/PackagePicker";
 import { Reveal } from "@/components/Reveal";
-import type { InquiryService } from "@/lib/package";
+import { SERVICE_CATALOG } from "@/lib/services-catalog";
 
-type Card = {
-  href: string;
-  title: string;
-  statement: string;
-  price?: string;
-  image: string;
-  /** Zarovnání fotky ve výřezu, u fotek na výšku nahoru, aby byl vidět obličej. */
-  position?: string;
-  inquiry: InquiryService;
-};
-
-// Věty, fakta a ceny vycházejí z ceníku a podstránek služeb.
-const cards: Card[] = [
-  {
-    href: "/fotokoutek",
-    title: "Fotokoutek a GIFy",
-    statement: "Designová fotobudka s obsluhou, která tiskne fotky do 7 vteřin.",
-    price: "od 10 000 Kč",
-    image: "2022/01/43531135_2220002654881285_3040242971850047488_n",
-    inquiry: "Fotokoutek",
-  },
-  {
-    href: "/ai-fotokoutek",
-    title: "AI fotokoutek",
-    statement: "Umělá inteligence promění hosty v kohokoli, až v 8 různých stylech.",
-    price: "od 14 000 Kč",
-    image: "2024/08/AI-cenik",
-    position: "object-[center_12%]",
-    inquiry: "AI fotokoutek",
-  },
-  {
-    href: "/partyspin360",
-    title: "Partyspin 360°",
-    statement: "Kamera hosty obtočí a za pár vteřin mají video s hudbou v mobilu.",
-    price: "od 9 900 Kč",
-    image: "2023/02/Partyspin-2-promo-foto-scaled",
-    position: "object-[center_18%]",
-    inquiry: "360° Partyspin",
-  },
-  {
-    href: "/ai-draw-bot",
-    title: "AI Draw Bot",
-    statement: "Robotická ramena nakreslí portrét hosta přímo na akci do 40 vteřin.",
-    price: "od 19 000 Kč",
-    image: "2025/03/DMB1",
-    inquiry: "AI Draw Bot",
-  },
-  {
-    href: "/hostesky",
-    title: "Hostesky a modelky",
-    statement: "Hostesky, modelky i promotéři, které vybereme společně s vámi.",
-    price: "od 270 Kč / hod.",
-    image: "2023/05/2023-04-25_PIANA_DO_SKOL_photo-adam-costey-copyright-adam-costey.com-015",
-    position: "object-[center_42%]",
-    inquiry: "Hostesky",
-  },
-  {
-    href: "/dalsisluzby",
-    title: "Další služby na akce",
-    statement: "DJ, fotograf, výzdoba, stany i taneční vystoupení. Doplníme, co k akci chybí.",
-    image: "2024/04/Partypack-35",
-    inquiry: "Něco jiného",
-  },
-];
+const cards = SERVICE_CATALOG;
 
 // Mírný náklon karet od první k poslední (ve stupních), ať sekce má charakter.
 const TILT = [-1.2, -0.75, -0.3, 0.3, 0.75, 1.2];

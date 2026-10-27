@@ -6,22 +6,25 @@ import { SERVICE_CATALOG } from "@/lib/services-catalog";
 
 const cards = SERVICE_CATALOG;
 
-// Mírný náklon karet od první k poslední (ve stupních), ať sekce má charakter.
-const TILT = [-1.2, -0.75, -0.3, 0.3, 0.75, 1.2];
-
 /**
  * Služby pod sebou na střídačku: bílá karta s černým okrajem, fotka přitisknutá k okraji
  * na jedné straně, na druhé název služby s větou, tři fakty v pilulkách, cena a tlačítka.
  * Lichá služba má fotku vlevo a přiletí zleva, sudá vpravo a přiletí zprava.
+ * Při scrollu se karty skládají na sebe: první zůstane stát pod hlavičkou a další ji překryje,
+ * takže každým scrollem přijde další služba. Proto karty nejsou nakloněné, vykukovaly by zpod sebe.
  */
 export function ServiceCards() {
   return (
-    <ul className="mt-12 grid gap-8 sm:mt-14 sm:gap-12">
+    <ul className="mt-12 sm:mt-14">
       {cards.map((c, i) => {
         const left = i % 2 === 0;
         return (
-          <li key={c.href}>
-            <Reveal rotate={TILT[i] ?? 0} from={left ? "left" : "right"}>
+          <li
+            key={c.href}
+            className="sticky top-20 bg-paper pb-8 last:pb-0 sm:pb-12 md:top-[max(6rem,calc(50svh-14rem))]"
+            style={{ zIndex: i + 1 }}
+          >
+            <Reveal from={left ? "left" : "right"}>
               <article className="group grid overflow-hidden rounded-2xl border border-ink bg-white text-ink ring-[#00b1ff] ring-offset-2 ring-offset-paper transition-shadow duration-300 has-[[aria-pressed=true]]:ring-2 md:grid-cols-2">
                 <Link
                   href={c.href}

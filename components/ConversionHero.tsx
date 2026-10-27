@@ -1,7 +1,6 @@
 import { ScrollLogos } from "@/components/ScrollLogos";
 import { HeroVideo } from "@/components/HeroVideo";
 import Link from "next/link";
-import { ArrowRightIcon } from "@/components/icons";
 import { Container } from "@/components/ui";
 import { partners } from "@/lib/data";
 
@@ -28,10 +27,9 @@ export function ConversionHero() {
             <div className="mt-8 flex justify-center">
               <Link
                 href="#kontakt"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-[16px] font-semibold text-ink shadow-[0_12px_30px_-12px_rgb(0_0_0/0.6)] transition-colors hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink sm:px-8 sm:py-4 sm:text-[18px]"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-[16px] font-semibold text-ink shadow-[0_12px_30px_-12px_rgb(0_0_0/0.6)] transition-colors hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink sm:px-8 sm:py-4 sm:text-[18px]"
               >
                 Chci akci
-                <ArrowRightIcon />
               </Link>
             </div>
           </div>

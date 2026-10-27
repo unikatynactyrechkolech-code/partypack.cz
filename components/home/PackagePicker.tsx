@@ -13,7 +13,7 @@ export function PackageToggle({
   service: InquiryService;
   label: string;
   className?: string;
-  /** dark = na fotce (světlé tlačítko), light = na světlém panelu (tmavé tlačítko). */
+  /** light = na bílé kartě (černé tlačítko), dark = na černém panelu (bílé tlačítko). Vybraná služba je obráceně. */
   tone?: "dark" | "light";
 }) {
   const picked = usePackage().includes(service);
@@ -23,20 +23,16 @@ export function PackageToggle({
       onClick={() => packageStore.toggle(service)}
       aria-pressed={picked}
       aria-label={picked ? `Odebrat z poptávky: ${label}` : `Přidat do poptávky: ${label}`}
-      className={`relative z-10 inline-flex items-center justify-center gap-2 rounded-full border-2 px-5 py-2 text-sm font-semibold transition-colors duration-200 outline-none focus-visible:ring-2 ${tone === "light" ? "focus-visible:ring-accent" : "focus-visible:ring-white"} ${className} ${
+      className={`relative z-10 inline-flex items-center justify-center rounded-full border-2 px-5 py-2 text-sm font-semibold transition-colors duration-200 outline-none focus-visible:ring-2 ${tone === "light" ? "focus-visible:ring-accent" : "focus-visible:ring-white"} ${className} ${
         tone === "light"
           ? picked
-            ? "border-black bg-black text-white"
-            : "border-ink text-ink hover:bg-ink hover:text-white"
+            ? "border-ink bg-white text-ink hover:bg-gray-50"
+            : "border-black bg-black text-white hover:border-gray-800 hover:bg-gray-800"
           : picked
-            ? "border-white bg-white text-ink"
-            : "border-white/50 text-white hover:border-white hover:bg-white/10"
+            ? "border-white/50 bg-transparent text-white hover:border-white"
+            : "border-white bg-white text-ink hover:bg-gray-100"
       }`}
     >
-      <span aria-hidden className={`relative block h-2.5 w-2.5 transition-transform duration-300 ${picked ? "rotate-45" : ""}`}>
-        <span className="absolute inset-x-0 top-1/2 h-[1.5px] -translate-y-1/2 bg-current" />
-        <span className="absolute inset-y-0 left-1/2 w-[1.5px] -translate-x-1/2 bg-current" />
-      </span>
       {/* V úzké dlaždici (telefon, dvě vedle sebe) kratší text, celý je v aria-label. */}
       {picked ? (
         "V poptávce"

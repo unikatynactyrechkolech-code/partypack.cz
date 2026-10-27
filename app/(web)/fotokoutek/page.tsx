@@ -146,7 +146,7 @@ export default function FotokoutekPage() {
         serviceLabel="Fotokoutek"
         faq={[
           { q: "Jak dlouho dopředu je potřeba rezervovat?", a: "Čím dřív, tím líp, hlavně na oblíbená data. Máme ale 12 strojů, takže akci zvládneme zajistit i když zavoláte den předem." },
-          { q: "Může fotokoutek stát venku?", a: "Ano, jen musí být pod přístřeškem nebo stanem. Když ho nemáte, přivezeme vlastní." },
+          { q: "Může fotokoutek stát venku?", a: "Ano, jen musí být pod přístřeškem nebo stanem. Když ho nemáte, přivezeme vlastní černý stan 3 × 3 m s bočnicemi." },
           {
             q: "Máte nabídku na plesy?",
             a: (

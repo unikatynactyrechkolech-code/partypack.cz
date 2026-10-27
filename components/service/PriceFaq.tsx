@@ -43,7 +43,7 @@ export function PriceFaq({
           <p className="mt-9 text-[15px] font-semibold">{includedLabel}</p>
           <ul className="mt-3 flex flex-wrap gap-2">
             {included.map((x) => (
-              <li key={x} className="rounded-lg border border-white/25 px-3 py-1.5 text-sm">
+              <li key={x} className="rounded-full border border-white/25 px-3.5 py-1.5 text-sm">
                 {x}
               </li>
             ))}
@@ -60,7 +60,7 @@ export function PriceFaq({
           ) : null}
           {note ? <p className="mt-6 text-[15px] leading-relaxed text-pretty">{note}</p> : null}
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <PackageToggle service={service} label={serviceLabel} tone="dark" className="px-5! py-3! text-sm!" />
+            <PackageToggle service={service} label={serviceLabel} tone="dark" className="px-6! py-3! text-[16px]!" />
             <Link href="/cena" className="text-[15px] font-semibold text-white underline decoration-white/50 underline-offset-[6px] hover:decoration-white">
               Celý ceník
             </Link>

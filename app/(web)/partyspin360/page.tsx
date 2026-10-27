@@ -139,7 +139,7 @@ export default function PartyspinPage() {
           { q: "Jak rychle je video hotové?", a: "Za pár vteřin po natáčení. Hosté si ho hned prohlédnou na našem kiosku." },
           { q: "Jak se video dostane k hostům?", a: "E-mailem, přes AirDrop nebo QR kód, vždy v plné kvalitě." },
           { q: "V jakém formátu video je?", a: "Na výšku, takže je připravené pro Instagram Stories, Reels i TikTok." },
-          { q: "Může Partyspin stát venku?", a: "Ano, jen musí být pod přístřeškem nebo stanem. Když ho nemáte, přivezeme vlastní." },
+          { q: "Může Partyspin stát venku?", a: "Ano, jen musí být pod přístřeškem nebo stanem. Když ho nemáte, přivezeme vlastní černý stan 3 × 3 m s bočnicemi." },
         ]}
       />
 

@@ -13,14 +13,14 @@ export default function SkupinoveAiFiltryPage() {
       <PageHero
         image="2025/11/uvodkqsssa"
         title="Skupinové AI filtry"
-        lead="Filtry pro skupiny 2-8 osob není potřeba vybírat dopředu. Na místě lze vybírat ze všech dostupných filtrů!"
+        lead="Filtry pro skupiny až 10 osob není potřeba vybírat dopředu. Na místě lze vybírat ze všech dostupných filtrů!"
       >
         <Button href="/ai-filtry" variant="light">AI filtry pro 1 osobu</Button>
         <Button href="/kontakt" variant="outline">Napište nám</Button>
       </PageHero>
       <Section>
         <Container>
-          <SectionTitle title="AI filtry pro skupiny 2–8 osob" />
+          <SectionTitle title="AI filtry pro skupiny až 10 osob" />
           <div className="mt-12">
             <FilterGrid items={aiFiltersGroup} />
           </div>

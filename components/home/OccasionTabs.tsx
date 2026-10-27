@@ -42,14 +42,14 @@ export function OccasionTabs({ groups, dark = false }: { groups: OccasionGroup[]
               aria-selected={i === active}
               aria-controls={`${id}-panel`}
               onClick={() => pick(i)}
-              className={`shrink-0 rounded-lg border px-4 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+              className={`shrink-0 rounded-full border-2 px-4 py-1.5 text-sm font-semibold transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                 i === active
                   ? dark
                     ? "border-white bg-white text-ink"
                     : "border-ink bg-ink text-white"
                   : dark
-                    ? "border-white/25 text-white hover:border-white"
-                    : "border-line bg-white text-ink hover:border-ink"
+                    ? "border-white/50 text-white hover:border-white"
+                    : "border-ink bg-white text-ink hover:bg-ink hover:text-white"
               }`}
             >
               {g.label}
@@ -63,8 +63,8 @@ export function OccasionTabs({ groups, dark = false }: { groups: OccasionGroup[]
               type="button"
               onClick={() => move(d)}
               aria-label={d === 1 ? "Další fotky" : "Předchozí fotky"}
-              className={`inline-flex h-11 w-11 items-center justify-center rounded-lg border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-                dark ? "border-white/25 text-white hover:border-white" : "border-line bg-white text-ink hover:border-ink"
+              className={`inline-flex h-11 w-11 items-center justify-center rounded-full border-2 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                dark ? "border-white/50 text-white hover:border-white" : "border-ink bg-white text-ink hover:bg-ink hover:text-white"
               }`}
             >
               <span aria-hidden className={`block h-2.5 w-2.5 border-current border-t-[1.5px] border-r-[1.5px] ${d === 1 ? "-ml-1 rotate-45" : "-mr-1 -rotate-[135deg]"}`} />
@@ -87,8 +87,8 @@ export function OccasionTabs({ groups, dark = false }: { groups: OccasionGroup[]
           <li className="flex w-[60%] shrink-0 snap-start sm:w-[30%] lg:w-[22%]">
             <Link
               href={group.href}
-              className={`flex w-full items-center justify-center rounded-md border px-6 text-center text-base font-semibold transition-colors ${
-                dark ? "border-white/40 text-white hover:bg-white hover:text-ink" : "border-ink text-ink hover:bg-ink hover:text-white"
+              className={`flex w-full items-center justify-center rounded-full border-2 px-6 text-center text-base font-semibold transition-colors ${
+                dark ? "border-white/50 text-white hover:border-white hover:bg-white/10" : "border-ink text-ink hover:bg-ink hover:text-white"
               }`}
             >
               Všechny fotky: {group.label}

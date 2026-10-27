@@ -83,8 +83,8 @@ export function BeforeAfter({
         onPointerDown={() => setTouched(true)}
         className="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
       />
-      <span className="pointer-events-none absolute left-3 top-3 rounded-lg bg-ink/70 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">Před</span>
-      <span className="pointer-events-none absolute right-3 top-3 rounded-lg bg-ink/70 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">Po</span>
+      <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-ink/70 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">Před</span>
+      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-ink/70 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">Po</span>
     </div>
   );
 }

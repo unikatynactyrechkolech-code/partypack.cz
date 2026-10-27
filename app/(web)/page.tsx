@@ -41,7 +41,7 @@ const faq: FaqItem[] = [
     a: "Čím dřív, tím líp, hlavně na oblíbená data. Máme ale 12 strojů, takže akci zvládneme zajistit i když zavoláte den předem.",
   },
   { q: "Je sleva při objednání více služeb?", a: "Ano. Když si objednáte víc služeb najednou, získáte slevu 10–30 % podle velikosti objednávky." },
-  { q: "Může akce probíhat venku?", a: "Ano, jen musíme stát pod přístřeškem nebo stanem. Když ho nemáte, přivezeme vlastní." },
+  { q: "Může akce probíhat venku?", a: "Ano, jen musíme stát pod přístřeškem nebo stanem. Když ho nemáte, přivezeme vlastní černý stan 3 × 3 m s bočnicemi." },
   {
     q: "Kdy dostaneme fotky z akce?",
     a: "Fotky z fotokoutku jsou v online galerii do 48 hodin po akci, z AI fotokoutku do 24 hodin. Galerie je pod heslem ke stažení i sdílení.",

@@ -11,7 +11,7 @@ const TILT = [-1.2, -0.75, -0.3, 0.3, 0.75, 1.2];
 
 /**
  * Služby pod sebou na střídačku: bílá karta s černým okrajem, fotka přitisknutá k okraji
- * na jedné straně, na druhé název služby s větou, cena a tlačítka (vše černé).
+ * na jedné straně, na druhé název služby s větou, tři fakty v pilulkách, cena a tlačítka.
  * Lichá služba má fotku vlevo a přiletí zleva, sudá vpravo a přiletí zprava.
  */
 export function ServiceCards() {
@@ -42,6 +42,15 @@ export function ServiceCards() {
                   <div className="text-2xl leading-snug font-medium tracking-tight text-pretty sm:text-3xl lg:text-[2.4rem] lg:leading-[1.2]">
                     <h2 className="inline font-semibold">{c.title}:</h2> {c.statement}
                   </div>
+                  {c.tags ? (
+                    <ul className="-mt-2 flex flex-wrap gap-2" aria-label="Hlavní fakta">
+                      {c.tags.map((t) => (
+                        <li key={t} className="rounded-full bg-paper-soft px-3 py-1 text-xs font-medium text-ink">
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                   {/* V úzké kartě (telefon) je cena nad tlačítky a obě tlačítka jsou vedle sebe. */}
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-3">
                     {c.price ? (
@@ -49,7 +58,7 @@ export function ServiceCards() {
                     ) : null}
                     <Link
                       href={c.href}
-                      className="inline-flex items-center justify-center rounded-lg border border-ink px-3.5 py-2 text-xs font-semibold text-ink transition-colors duration-200 outline-none hover:bg-ink hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
+                      className="inline-flex items-center justify-center rounded-full border-2 border-ink px-5 py-2 text-sm font-semibold text-ink transition-colors duration-200 outline-none hover:bg-ink hover:text-white focus-visible:ring-2 focus-visible:ring-accent"
                     >
                       Více<span className="sr-only">: {c.title}</span>
                     </Link>

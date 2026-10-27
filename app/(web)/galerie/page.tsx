@@ -99,8 +99,8 @@ function Chips({ label, chips }: { label: string; chips: { label: string; to: Fi
           key={c.label}
           href={href(1, c.to)}
           aria-current={c.active ? "page" : undefined}
-          className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
-            c.active ? "border-ink bg-ink text-white" : "border-line bg-white text-ink hover:border-ink"
+          className={`rounded-full border-2 px-4 py-1.5 text-sm font-semibold transition-colors ${
+            c.active ? "border-black bg-black text-white" : "border-ink bg-white text-ink hover:bg-ink hover:text-white"
           }`}
         >
           {c.label}
@@ -113,11 +113,11 @@ function Chips({ label, chips }: { label: string; chips: { label: string; to: Fi
 function Pagination({ page, pages, filter, total }: { page: number; pages: number; filter: Filter; total: number }) {
   const nums = new Set<number>([1, pages, page - 1, page, page + 1].filter((n) => n >= 1 && n <= pages));
   const list = [...nums].sort((a, b) => a - b);
-  const btn = "inline-flex h-10 min-w-10 items-center justify-center rounded-lg border px-3 text-sm font-medium";
+  const btn = "inline-flex h-10 min-w-10 items-center justify-center rounded-full border-2 px-3 text-sm font-semibold transition-colors";
   return (
     <nav aria-label={`Stránkování galerie, celkem ${total} akcí`} className="mt-14 flex flex-wrap items-center justify-center gap-2">
       {page > 1 ? (
-        <Link href={href(page - 1, filter)} rel="prev" className={`${btn} border-line hover:border-ink`}>
+        <Link href={href(page - 1, filter)} rel="prev" className={`${btn} border-ink hover:bg-ink hover:text-white`}>
           Předchozí
         </Link>
       ) : null}
@@ -127,14 +127,14 @@ function Pagination({ page, pages, filter, total }: { page: number; pages: numbe
           <Link
             href={href(n, filter)}
             aria-current={n === page ? "page" : undefined}
-            className={`${btn} ${n === page ? "border-ink bg-ink text-white" : "border-line hover:border-ink"}`}
+            className={`${btn} ${n === page ? "border-black bg-black text-white" : "border-ink hover:bg-ink hover:text-white"}`}
           >
             {n}
           </Link>
         </span>
       ))}
       {page < pages ? (
-        <Link href={href(page + 1, filter)} rel="next" className={`${btn} border-line hover:border-ink`}>
+        <Link href={href(page + 1, filter)} rel="next" className={`${btn} border-ink hover:bg-ink hover:text-white`}>
           Další
         </Link>
       ) : null}

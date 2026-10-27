@@ -150,7 +150,7 @@ export function StepsShowcase({
               className={`relative cursor-pointer overflow-hidden rounded-2xl border p-5 transition-colors duration-300 sm:p-6 ${card}`}
             >
               <div className="flex gap-4">
-                <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border text-sm font-bold tabular-nums transition-colors duration-300 ${badge}`}>
+                <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-sm font-bold tabular-nums transition-colors duration-300 ${badge}`}>
                   {i + 1}
                 </span>
                 <div className="min-w-0 pt-1">

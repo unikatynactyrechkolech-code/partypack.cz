@@ -21,7 +21,7 @@ export const metadata: Metadata = pageMetadata(seo.aiFotokoutek);
 
 const facts: Fact[] = [
   { value: "8", label: "AI filtrů pro jednotlivce", count: true },
-  { value: "2–8", label: "osob ve skupinovém filtru" },
+  { value: "10", label: "osob najednou ve skupinovém filtru", count: true },
   { value: "24 h", label: "online galerie po akci", count: true },
   { value: "2 × 2 m", label: "prostor, který stačí" },
 ];
@@ -120,7 +120,7 @@ export default function AiFotokoutekPage() {
             </Reveal>
             <Reveal from="up" delay={90}>
               <div className="flex h-full flex-col rounded-2xl border border-ink p-6 sm:p-8">
-                <h2 className="text-2xl font-extrabold tracking-tight text-ink">Skupinové filtry pro 2–8 osob</h2>
+                <h2 className="text-2xl font-extrabold tracking-tight text-ink">Skupinové filtry až pro 10 osob</h2>
                 <p className="mt-2 text-[15px] leading-relaxed text-ink">Není potřeba je vybírat dopředu. Na místě jsou k dispozici všechny.</p>
                 <div className="mt-auto pt-6">
                   <Button href="/skupinove-ai-filtry">Skupinové filtry</Button>

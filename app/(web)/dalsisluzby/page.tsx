@@ -26,7 +26,7 @@ const services: GridItem[] = [
   { title: "Scrapbooky a knihy hostů", text: "Ručně dělaný scrapbook na památku ze svatby, narozenin nebo babyshower.", image: "2022/01/28700798_977669922413947_663599014785014599_o" },
   { title: "Dětské aktivity", text: "Malování, tetovačky, hry nebo kouzelník na rodinné dny.", image: "2022/10/IMG_0446-scaled", position: "object-[center_35%]" },
   { title: "DJ a moderátor", text: "Hudba a moderátor, bez kterých se akce neobejde.", image: "2022/10/1331686452939_2" },
-  { title: "Pronájem stanů a techniky", text: "Mokrá varianta pro případ, že počasí nevyjde.", image: "2024/08/IMG_3005", position: "object-[center_20%]" },
+  { title: "Pronájem stanů a techniky", text: "Kvalitní černý stan 3 × 3 m s bočnicemi jako mokrá varianta, když počasí nevyjde.", image: "2024/08/IMG_3005", position: "object-[center_20%]" },
   { title: "Taneční vystoupení", text: "Pole dance, striptéři nebo elegantní kankán.", image: "2022/10/Depositphotos_211251522_S" },
 ];
 

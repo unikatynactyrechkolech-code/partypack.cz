@@ -127,7 +127,7 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
                   if (status === "missing-service") setStatus("idle");
                 }}
               />
-              <span className="inline-flex items-center rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-medium text-ink transition-colors peer-checked:border-ink peer-checked:bg-ink peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-accent hover:border-ink">
+              <span className="inline-flex items-center rounded-full border-2 border-ink bg-white px-4 py-1.5 text-sm font-semibold text-ink transition-colors peer-checked:border-black peer-checked:bg-black peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-accent hover:bg-gray-50 peer-checked:hover:bg-black">
                 {s}
               </span>
             </label>
@@ -157,7 +157,7 @@ export function ContactForm({ dark = false }: { dark?: boolean }) {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex items-center justify-center rounded-lg bg-ink px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 disabled:opacity-60"
+          className="inline-flex items-center justify-center rounded-full bg-black px-8 py-3 text-[16px] font-semibold text-white transition-colors hover:bg-gray-800 disabled:opacity-60"
         >
           {status === "sending" ? "Odesílám…" : "Odeslat"}
         </button>

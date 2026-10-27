@@ -37,9 +37,9 @@ export const seo = {
   },
   skupinoveAiFiltry: {
     path: "/skupinove-ai-filtry",
-    title: "Skupinové AI filtry do fotokoutku pro 2–8 osob",
+    title: "Skupinové AI filtry do fotokoutku až pro 10 osob",
     description:
-      "Skupinové AI filtry pro 2 až 8 osob. Safari, piráti, Římané nebo Mount Everest. Skupinky si na akci vybírají přímo ve fotokoutku z více než 50 filtrů.",
+      "Skupinové AI filtry až pro 10 osob. Safari, piráti, Římané nebo Mount Everest. Skupinky si na akci vybírají přímo ve fotokoutku z více než 50 filtrů.",
   },
   hostesky: {
     path: "/hostesky",

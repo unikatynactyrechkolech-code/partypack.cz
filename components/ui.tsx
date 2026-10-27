@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRightIcon } from "@/components/icons";
 import type { ReactNode } from "react";
 
 export function Container({
@@ -130,40 +131,53 @@ type ButtonProps = {
   href: string;
   children: ReactNode;
   variant?: "primary" | "secondary" | "light" | "outline";
+  /** lg = velké tlačítko v úvodu stránky. */
+  size?: "md" | "lg";
+  /** Šipka doprava za textem. */
+  arrow?: boolean;
   className?: string;
   external?: boolean;
 };
 
+/**
+ * Tlačítka jsou pilulky v barvách první verze webu (ta se klientce líbí nejvíc):
+ * černé s bílým textem, bílé na tmavém pozadí, obrysové bílé na fotce a obrysové černé na bílé.
+ */
 export function Button({
   href,
   children,
   variant = "primary",
+  size = "md",
+  arrow = false,
   className = "",
   external,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+    "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+  const sizes = { md: "px-6 py-2.5 text-[16px]", lg: "px-8 py-4 text-[18px]" }[size];
   const styles = {
-    primary: "bg-ink text-white hover:bg-zinc-800",
-    secondary: "border border-line bg-white text-ink hover:border-ink",
-    light: "bg-white text-ink hover:bg-zinc-100",
-    outline: "border border-white/50 bg-transparent text-white hover:border-white hover:bg-white/10",
+    primary: "bg-black text-white hover:bg-gray-800",
+    secondary: "border-2 border-ink bg-white text-ink hover:bg-gray-50",
+    light: "bg-white text-ink hover:bg-gray-100",
+    outline: "border-2 border-white/50 bg-transparent text-white hover:border-white hover:bg-white/10",
   }[variant];
+  const cls = `${base} ${sizes} ${styles} ${className}`;
+  const inner = (
+    <>
+      {children}
+      {arrow ? <ArrowRightIcon className={size === "lg" ? "h-5 w-5" : "h-4 w-4"} /> : null}
+    </>
+  );
   if (external) {
     return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`${base} ${styles} ${className}`}
-      >
-        {children}
+      <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+        {inner}
       </a>
     );
   }
   return (
-    <Link href={href} className={`${base} ${styles} ${className}`}>
-      {children}
+    <Link href={href} className={cls}>
+      {inner}
     </Link>
   );
 }

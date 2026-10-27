@@ -50,7 +50,7 @@ export default function PozadiPage() {
               A = 1 osoba = <Link href="/ai-filtry">ZDE</Link> si můžete vybrat AI filtry pro 1 osobu
               <br />
               B = skupinky = <Link href="/skupinove-ai-filtry">ZDE</Link> poté výběr AI filtrů pro skupiny až
-              8 osob
+              10 osob
             </p>
           </Prose>
 

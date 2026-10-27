@@ -22,8 +22,8 @@ export const metadata: Metadata = pageMetadata(seo.aiDrawBot);
 const facts: Fact[] = [
   { value: "40 s", label: "trvá jeden portrét", count: true },
   { value: "3", label: "roboti, 3 hosté najednou", count: true },
-  { value: "2 h", label: "provozu v ceně", count: true },
-  { value: "+1 500 Kč", label: "každá další hodina" },
+  { value: "200", label: "papírků ve 2 hodinách v ceně", count: true },
+  { value: "+1 500 Kč", label: "každá další hodina a 100 papírků" },
 ];
 
 const steps = [
@@ -140,13 +140,14 @@ export default function AiDrawBotPage() {
         seed={113}
         heading="Kolik stojí AI Draw Bot?"
         price="od 19 000 Kč"
-        included={["AI Draw Bot", "2 hodiny provozu", "Obsluha", "Doprava", "Papírky s vaší grafikou"]}
-        extras={[{ label: "Každá další hodina", price: "+ 1 500 Kč" }]}
+        included={["AI Draw Bot", "2 hodiny provozu", "Obsluha", "Doprava", "200 papírků s vaší grafikou"]}
+        extras={[{ label: "Každá další hodina a 100 papírků", price: "+ 1 500 Kč" }]}
         note="Objednáte víc služeb najednou? Získáte slevu 10–30 % podle velikosti objednávky."
         service="AI Draw Bot"
         serviceLabel="AI Draw Bot"
         faq={[
           { q: "Kolik hostů robot zvládne?", a: "Máme 3 roboty, takže kreslí až 3 hosty najednou. Každý portrét je hotový do 40 vteřin." },
+          { q: "Kolik portrétů robot stihne?", a: "100 papírků za hodinu. Ve dvou hodinách v ceně je to 200 portrétů a každá další hodina přidá dalších 100." },
           { q: "Může být na portrétu naše logo?", a: "Ano. Na papír připravíme vlastní design s vaší grafikou nebo logem." },
           { q: "Jaký styl portrétu si můžeme vybrat?", a: "Karikaturu, klasický portrét nebo třeba piráta. V rámci jedné akce jde vyzkoušet víc stylů." },
           { q: "Nakreslí i zvíře?", a: "Ano, zvládneme nakreslit i vašeho čtyřnohého mazlíčka." },

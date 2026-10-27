@@ -12,8 +12,8 @@ export function ScrollRow({ children, dark = false, label }: { children: ReactNo
     const el = track.current;
     if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: "smooth" });
   };
-  const arrow = `inline-flex h-11 w-11 items-center justify-center rounded-lg border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-    dark ? "border-white/25 text-white hover:border-white" : "border-ink bg-white text-ink hover:bg-ink hover:text-white"
+  const arrow = `inline-flex h-11 w-11 items-center justify-center rounded-full border-2 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+    dark ? "border-white/50 text-white hover:border-white" : "border-ink bg-white text-ink hover:bg-ink hover:text-white"
   }`;
   return (
     <div>

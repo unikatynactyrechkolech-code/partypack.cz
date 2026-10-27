@@ -76,9 +76,9 @@ export function SocialLinks({
 }) {
   const link =
     shape === "square"
-      ? "inline-flex h-11 w-11 items-center justify-center rounded-lg bg-paper-soft text-ink transition-colors hover:bg-ink hover:text-white"
+      ? "inline-flex h-11 w-11 items-center justify-center rounded-full bg-paper-soft text-ink transition-colors hover:bg-ink hover:text-white"
       : shape === "plain"
-        ? "inline-flex h-10 w-10 items-center justify-center rounded-lg text-white transition-colors hover:text-[#00b1ff]"
+        ? "inline-flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:text-[#00b1ff]"
         : "inline-flex h-10 w-10 items-center justify-center rounded-full border border-current/15 transition-colors hover:bg-ink hover:text-white";
   return (
     <ul className={`flex items-center gap-2 ${className}`}>
@@ -93,5 +93,14 @@ export function SocialLinks({
         </a>
       </li>
     </ul>
+  );
+}
+
+/** Šipka doprava v tlačítkách („Chci akci →“). */
+export function ArrowRightIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg aria-hidden viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M4 10h12M11 5l5 5-5 5" />
+    </svg>
   );
 }

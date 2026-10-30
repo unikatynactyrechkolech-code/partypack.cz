@@ -56,13 +56,13 @@ const photos: Photo[] = [
   },
 ];
 
-/** Ukázka galerie: mozaika fotek z akcí se zaoblenými rohy. */
+/** Ukázka galerie: mozaika fotek z akcí od kraje ke kraji, s úzkými mezerami. */
 export function GalleryMosaic() {
   return (
-    <ul className="mt-12 grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[190px] sm:gap-4 lg:auto-rows-[280px] lg:grid-cols-12">
+    <ul className="mt-12 grid auto-rows-[170px] grid-cols-2 gap-1.5 sm:auto-rows-[220px] sm:gap-3 lg:auto-rows-[320px] lg:grid-cols-12">
       {photos.map((p) => (
         <li key={p.slug} className={p.className}>
-          <Link href={p.slug ? `/portfolio/${p.slug}` : "/specialni-pozadi"} className="group relative block h-full overflow-hidden rounded-2xl bg-paper-soft">
+          <Link href={p.slug ? `/portfolio/${p.slug}` : "/specialni-pozadi"} className="group relative block h-full overflow-hidden bg-paper-soft">
             <Img
               k={p.image}
               alt={p.title}

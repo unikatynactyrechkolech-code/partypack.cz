@@ -18,7 +18,7 @@ export function CrossSell({
   return (
     <Section>
       <Container>
-        <SectionTitle title={title} subtitle={subtitle} />
+        <SectionTitle eyebrow="Další služby" title={title} subtitle={subtitle} />
         <ul className="-mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 [scrollbar-width:none] sm:-mx-8 sm:scroll-px-8 sm:px-8 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-5 lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden">
           {items.map((s, i) => (
             <li key={s.href} className="w-[64%] shrink-0 snap-start sm:w-[40%] lg:w-auto">

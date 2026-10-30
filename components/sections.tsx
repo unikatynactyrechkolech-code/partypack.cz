@@ -113,7 +113,7 @@ export function Stats({
         <dl className="grid grid-cols-2 gap-10 text-center md:grid-cols-4">
           {items.map((s) => (
             <div key={s.label}>
-              <dd className="text-4xl font-semibold tracking-tight sm:text-5xl">
+              <dd className="text-5xl font-light tracking-[-0.02em] sm:text-6xl">
                 {animate && /^\d+$/.test(s.value) ? <CountUp value={Number(s.value)} /> : s.value}
               </dd>
               <dt className="mt-2 text-sm text-white">{s.label}</dt>

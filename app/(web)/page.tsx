@@ -4,9 +4,11 @@ import { pageMetadata, seo } from "@/lib/seo";
 import { ConversionHero } from "@/components/ConversionHero";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection, Glow, Partners, Stats } from "@/components/sections";
-import { ServiceCards } from "@/components/home/ServiceCards";
+import { ServiceTiles } from "@/components/home/ServiceTiles";
 import { GalleryMosaic } from "@/components/home/GalleryMosaic";
 import { PackageBar } from "@/components/home/PackagePicker";
+import { MobileCtaBar } from "@/components/home/MobileCtaBar";
+import { PhotoBand } from "@/components/PhotoBand";
 import { OccasionTabs, type OccasionGroup } from "@/components/home/OccasionTabs";
 import { Faq, type FaqItem } from "@/components/Faq";
 import { listEvents } from "@/lib/events";
@@ -86,14 +88,17 @@ export default async function HomePage() {
     <>
       <ConversionHero />
 
-      <Section className="overflow-x-clip">
+      <Section className="pb-0 sm:pb-0">
         <Container>
           <SectionTitle
+            eyebrow="Naše služby"
             title="Služby na akce v jednom balíčku"
             subtitle="Vyberte jednu službu, nebo si poskládejte celý balíček. Při více službách vám připravíme zvýhodněnou nabídku."
           />
-          <ServiceCards />
         </Container>
+        <div className="mt-14">
+          <ServiceTiles />
+        </div>
       </Section>
 
       <Stats
@@ -108,10 +113,14 @@ export default async function HomePage() {
         ]}
       />
 
-      <Section>
+      <Section className="bg-sand">
         <Container>
-          <SectionTitle title="Galerie fotek z firemních akcí a svateb" />
+          <SectionTitle eyebrow="Galerie" title="Galerie fotek z firemních akcí a svateb" />
+        </Container>
+        <div className="px-1.5 sm:px-3">
           <GalleryMosaic />
+        </div>
+        <Container>
           <div className="mt-10 flex justify-center">
             <Button href="/galerie" className="px-7 py-3.5 text-base">
               Celá galerie
@@ -121,13 +130,20 @@ export default async function HomePage() {
       </Section>
 
       {occasions.length ? (
-        <Section className="relative isolate overflow-hidden bg-ink text-white">
-          <Glow variant="events" />
-          <Container>
-            <SectionTitle title="Zábava na firemní akce, konference i svatby" subtitle="Podívejte se, jak to u nás vypadá." light />
-            <OccasionTabs groups={occasions} dark />
-          </Container>
-        </Section>
+        <>
+          <PhotoBand
+            k="2022/10/Partypack-50-kopie"
+            eyebrow="Z našich akcí"
+            title="Zábava na firemní akce, konference i svatby"
+            text="Podívejte se, jak to u nás vypadá."
+          />
+          <Section className="relative isolate overflow-hidden bg-ink text-white">
+            <Glow variant="events" />
+            <Container>
+              <OccasionTabs groups={occasions} dark />
+            </Container>
+          </Section>
+        </>
       ) : null}
 
       <Partners className="bg-paper" />
@@ -137,6 +153,7 @@ export default async function HomePage() {
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionTitle
               align="left"
+              eyebrow="Časté dotazy"
               title="Časté dotazy k pronájmu fotokoutku a dalších služeb"
               subtitle={
                 <>
@@ -156,6 +173,7 @@ export default async function HomePage() {
       <ContactSection lead="Napište nám datum a představu o akci a my se postaráme o zbytek. Zajistíme i dětské dny, koncerty nebo třeba babyshower." />
 
       <PackageBar />
+      <MobileCtaBar />
     </>
   );
 }

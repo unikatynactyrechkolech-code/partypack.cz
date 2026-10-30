@@ -4,6 +4,7 @@ import { pageMetadata, seo } from "@/lib/seo";
 import { Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection } from "@/components/sections";
 import { PackageBar } from "@/components/home/PackagePicker";
+import { MobileCtaBar } from "@/components/home/MobileCtaBar";
 import { ServiceHero, type Fact } from "@/components/service/ServiceHero";
 import { HeroSlides } from "@/components/service/HeroSlides";
 import { WantButton } from "@/components/service/WantButton";
@@ -12,6 +13,8 @@ import { CardGrid, type GridItem } from "@/components/service/CardGrid";
 import { ServiceEvents } from "@/components/service/ServiceEvents";
 import { PriceFaq } from "@/components/service/PriceFaq";
 import { CrossSell } from "@/components/service/CrossSell";
+import { PhotoBand } from "@/components/PhotoBand";
+import { PhotoTiles } from "@/components/PhotoTiles";
 
 export const revalidate = 600;
 
@@ -79,6 +82,8 @@ export default function FotokoutekPage() {
   return (
     <>
       <ServiceHero
+        eyebrow="Pronájem fotokoutku"
+        background={{ k: "2024/04/Partypack-29", position: "object-[30%_center]" }}
         seed={11}
         title="Fotokoutek a GIFy na vaši akci"
         lead="Designová fotobudka s obsluhou, která tiskne fotky do 7 vteřin."
@@ -100,6 +105,7 @@ export default function FotokoutekPage() {
       <Section>
         <Container>
           <SectionTitle
+            eyebrow="Jak to funguje"
             title="Pronájem fotokoutku s obsluhou"
             subtitle="Fotobudka se dvěma velkými obrazovkami a naše obsluha, která hosty provede celým focením."
           />
@@ -109,25 +115,27 @@ export default function FotokoutekPage() {
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <PhotoBand k="2023/07/MiaGebauer-292" eyebrow="V ceně" title="Co je v ceně fotokoutku" text="Obsluha, neomezený tisk, pozadí, rekvizity, online galerie i polep do vašich barev." />
+      <Section className="bg-sand pt-6 sm:pt-10">
         <Container>
-          <SectionTitle title="Co je v ceně fotokoutku" />
           <CardGrid items={included} cols={3} />
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section>
         <Container>
-          <SectionTitle title="Doplňky k fotokoutku" />
+          <SectionTitle eyebrow="Doplňky" title="Doplňky k fotokoutku" />
           <CardGrid items={extras} cols={2} variant="card" headingAs="h2" aspect="aspect-[16/10]" />
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section className="pb-0 sm:pb-0">
         <Container>
-          <SectionTitle title="Fotokoutek na každou příležitost" />
-          <CardGrid items={occasions} cols={3} headingAs="h2" />
+          <SectionTitle eyebrow="Příležitosti" title="Fotokoutek na každou příležitost" />
         </Container>
+        <div className="mt-14">
+          <PhotoTiles items={occasions} cols={3} headingAs="h2" />
+        </div>
       </Section>
 
       <ServiceEvents seed={23} service="fotokoutek" title="Fotky z akcí s naším fotokoutkem" subtitle="… a kde je ta vaše?" />
@@ -164,6 +172,7 @@ export default function FotokoutekPage() {
       <ContactSection lead="Napište nám datum a představu o akci a my se postaráme o zbytek." />
 
       <PackageBar />
+      <MobileCtaBar />
     </>
   );
 }

@@ -26,7 +26,7 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={`py-16 sm:py-24 ${className}`}>
+    <section id={id} className={`py-20 sm:py-28 ${className}`}>
       {children}
     </section>
   );
@@ -46,15 +46,16 @@ export function Heading({
   align?: Align;
   className?: string;
 }) {
+  // Klidná verze: velké nadpisy tenkým písmem, jako na webu, který se klientce líbí.
   const size =
     Tag === "h1"
-      ? "text-3xl leading-[1.05] sm:text-5xl lg:text-6xl uppercase"
+      ? "text-4xl leading-[1.05] sm:text-6xl lg:text-7xl"
       : Tag === "h2"
-        ? "text-2xl sm:text-3xl lg:text-4xl uppercase"
+        ? "text-3xl leading-[1.1] sm:text-4xl lg:text-5xl"
         : "text-xl sm:text-2xl";
   return (
     <Tag
-      className={`${Tag === "h3" ? "font-semibold tracking-[-0.01em]" : "font-extrabold tracking-[0.005em]"} text-ink text-balance ${size} ${
+      className={`${Tag === "h3" ? "font-medium tracking-[-0.01em]" : "font-light tracking-[-0.02em]"} text-ink text-balance ${size} ${
         align === "center" ? "text-center" : ""
       } ${className}`}
     >
@@ -63,10 +64,16 @@ export function Heading({
   );
 }
 
-/** Nadpis sekce ve stylu původního webu: nadpis, linka, podtitulek. */
+/** Štítek nad nadpisem: malé prostrkané verzálky. */
+export function Eyebrow({ children, light = false, className = "" }: { children: ReactNode; light?: boolean; className?: string }) {
+  return <p className={`mb-5 text-xs font-semibold uppercase tracking-[0.22em] ${light ? "text-white" : "text-ink"} ${className}`}>{children}</p>;
+}
+
+/** Nadpis sekce: štítek, nadpis, podtitulek. */
 export function SectionTitle({
   title,
   subtitle,
+  eyebrow,
   align = "center",
   as = "h2",
   light = false,
@@ -74,6 +81,8 @@ export function SectionTitle({
 }: {
   title: ReactNode;
   subtitle?: ReactNode;
+  /** Malý prostrkaný štítek nad nadpisem („Naše služby“). */
+  eyebrow?: string;
   align?: Align;
   as?: "h1" | "h2" | "h3";
   light?: boolean;
@@ -81,12 +90,13 @@ export function SectionTitle({
 }) {
   return (
     <div className={`${align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"} ${className}`}>
+      {eyebrow ? <Eyebrow light={light}>{eyebrow}</Eyebrow> : null}
       <Heading as={as} align={align} className={light ? "text-white" : ""}>
         {title}
       </Heading>
       {subtitle ? (
         <p
-          className={`mt-5 text-lg leading-relaxed text-pretty ${
+          className={`mt-6 text-lg font-light leading-relaxed text-pretty sm:text-xl ${
             light ? "text-white" : "text-ink"
           }`}
         >

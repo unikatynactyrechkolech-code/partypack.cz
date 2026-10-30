@@ -4,6 +4,7 @@ import { Container } from "@/components/ui";
 import { Glow } from "@/components/sections";
 import { Img } from "@/components/Img";
 import { Eyebrow } from "@/components/ui";
+import { LoopVideo } from "@/components/service/LoopVideo";
 import { CountUp } from "@/components/home/CountUp";
 
 export type Fact = {
@@ -70,14 +71,16 @@ export function ServiceHero({
   seed: number;
   /** Štítek nad nadpisem („Pronájem fotokoutku“). */
   eyebrow?: string;
-  /** Fotka přes celý úvod s textem uprostřed (klidná verze); bez ní je úvod rozdělený na text a ukázku. */
-  background?: { k: string; position?: string };
+  /** Fotka přes celý úvod s textem uprostřed (klidná verze); bez ní je úvod rozdělený na text a ukázku.
+   *  `video` = smyčka z R2 přes fotku (fotka zůstává, dokud video nehraje). */
+  background?: { k: string; position?: string; video?: string };
 }) {
   if (background) {
     return (
       <div className="flex flex-col lg:min-h-svh">
         <section className="relative isolate flex flex-1 items-center overflow-hidden bg-ink text-white">
           <Img k={background.k} alt="" fill priority sizes="100vw" quality={85} className={`object-cover ${background.position ?? "object-center"}`} />
+          {background.video ? <LoopVideo name={background.video} eager className="absolute inset-0 h-full w-full object-cover" /> : null}
           <div className="absolute inset-0 bg-ink/55" />
           <Container className="relative flex flex-col items-center pt-36 pb-20 text-center sm:pt-44 sm:pb-24">
             {eyebrow ? <Eyebrow light>{eyebrow}</Eyebrow> : null}

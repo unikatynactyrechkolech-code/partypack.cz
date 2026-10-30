@@ -4,6 +4,7 @@ import { Img } from "@/components/Img";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection, Glow } from "@/components/sections";
 import { PackageBar } from "@/components/home/PackagePicker";
+import { MobileCtaBar } from "@/components/home/MobileCtaBar";
 import { ServiceHero, type Fact } from "@/components/service/ServiceHero";
 import { HeroSlides } from "@/components/service/HeroSlides";
 import { WantButton } from "@/components/service/WantButton";
@@ -13,6 +14,8 @@ import { CardGrid, type GridItem } from "@/components/service/CardGrid";
 import { ServiceEvents } from "@/components/service/ServiceEvents";
 import { PriceFaq } from "@/components/service/PriceFaq";
 import { CrossSell } from "@/components/service/CrossSell";
+import { PhotoBand } from "@/components/PhotoBand";
+import { PhotoTiles } from "@/components/PhotoTiles";
 
 export const revalidate = 600;
 
@@ -59,6 +62,8 @@ export default function PartyspinPage() {
   return (
     <>
       <ServiceHero
+        eyebrow="360° videokoutek"
+        background={{ k: "2024/08/3M0A0668-scaled", position: "object-[70%_center]" }}
         seed={71}
         title="360° fotokoutek Partyspin"
         lead="Kamera hosty obtočí a za pár vteřin mají video s hudbou v mobilu."
@@ -77,11 +82,12 @@ export default function PartyspinPage() {
         }
       />
 
-      <section className="relative isolate overflow-hidden bg-white py-16 sm:py-24">
+      <section className="relative isolate overflow-hidden bg-sand py-20 sm:py-28">
         <Container className="grid items-center gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           <div>
             <SectionTitle
               align="left"
+              eyebrow="Ukázka videa"
               title="360° videokoutek na firemní akce i svatby"
               subtitle="Takové video si hosté odnesou: natočené ze všech úhlů, sestříhané, s hudbou a grafikou vaší akce."
             />
@@ -99,30 +105,33 @@ export default function PartyspinPage() {
         </Container>
       </section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section>
         <Container>
-          <SectionTitle title="Jak funguje 360° fotokoutek" />
+          <SectionTitle eyebrow="Jak to funguje" title="Jak funguje 360° fotokoutek" />
           <div className="mt-12">
             <StepsShowcase steps={steps} media={stepMedia} mediaAspect="aspect-[4/5]" />
           </div>
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <PhotoBand k="2024/08/200ee3dd-0c9d-4fc0-a642-70fa5e6e4469" eyebrow="V ceně" title="Co je v ceně Partyspinu 360°" />
+      <Section className="bg-sand pt-6 sm:pt-10">
         <Container>
-          <SectionTitle title="Co je v ceně Partyspinu 360°" />
           <CardGrid items={included} cols={3} />
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section className="pb-0 sm:pb-0">
         <Container>
           <SectionTitle
+            eyebrow="Doplňky"
             title="Doplňky k 360° fotokoutku"
             subtitle="Kromě vlastního textu do e-mailu, tisku fotek nebo GIFů umíme i rekvizity na míru a tyhle doplňky."
           />
-          <CardGrid items={extras} cols={4} headingAs="h2" aspect="aspect-[4/5]" />
         </Container>
+        <div className="mt-14">
+          <PhotoTiles items={extras} cols={2} headingAs="h2" aspect="aspect-[4/5] sm:aspect-[16/10]" />
+        </div>
       </Section>
 
       <ServiceEvents seed={83} service="partyspin" title="Fotky z akcí s Partyspinem 360°" />
@@ -148,6 +157,7 @@ export default function PartyspinPage() {
       <ContactSection lead="Napište nám datum a představu o akci a my se postaráme o zbytek." />
 
       <PackageBar />
+      <MobileCtaBar />
     </>
   );
 }

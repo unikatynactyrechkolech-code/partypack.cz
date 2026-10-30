@@ -5,6 +5,7 @@ import { BeforeAfter } from "@/components/BeforeAfter";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection } from "@/components/sections";
 import { PackageBar } from "@/components/home/PackagePicker";
+import { MobileCtaBar } from "@/components/home/MobileCtaBar";
 import { ServiceHero, type Fact } from "@/components/service/ServiceHero";
 import { WantButton } from "@/components/service/WantButton";
 import { StepsShowcase } from "@/components/service/StepsShowcase";
@@ -13,6 +14,7 @@ import { CardGrid, type GridItem } from "@/components/service/CardGrid";
 import { ServiceEvents } from "@/components/service/ServiceEvents";
 import { PriceFaq } from "@/components/service/PriceFaq";
 import { CrossSell } from "@/components/service/CrossSell";
+import { PhotoBand } from "@/components/PhotoBand";
 import { Reveal } from "@/components/Reveal";
 
 export const revalidate = 600;
@@ -82,6 +84,8 @@ export default function AiFotokoutekPage() {
   return (
     <>
       <ServiceHero
+        eyebrow="Fotokoutek s umělou inteligencí"
+        background={{ k: "2024/08/AI-cenik", position: "object-[center_12%]" }}
         seed={41}
         title="AI fotokoutek na vaši akci"
         lead="Staň se kýmkoli, kdekoli. Umělá inteligence promění hosty až v 8 různých stylech."
@@ -102,7 +106,7 @@ export default function AiFotokoutekPage() {
 
       <Section>
         <Container>
-          <SectionTitle title="AI filtry pro jednotlivce i skupiny" subtitle="Všechny filtry fungují pro muže, ženy i děti." />
+          <SectionTitle eyebrow="Filtry" title="AI filtry pro jednotlivce i skupiny" subtitle="Všechny filtry fungují pro muže, ženy i děti." />
         </Container>
         <div className="mt-12">
           <FilterMarquee items={marquee} />
@@ -131,20 +135,20 @@ export default function AiFotokoutekPage() {
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section className="bg-sand">
         <Container>
-          <SectionTitle title="Jak funguje AI fotokoutek" />
+          <SectionTitle eyebrow="Jak to funguje" title="Jak funguje AI fotokoutek" />
           <div className="mt-12">
             <StepsShowcase steps={steps} media={stepMedia} mediaAspect="aspect-[4/5]" reverse />
           </div>
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section>
         <Container>
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.1fr_1.1fr] lg:gap-10">
             <div>
-              <SectionTitle title="AI fotky před a po" subtitle="Posuňte jezdcem a porovnejte skutečnou fotku s výsledkem." align="left" />
+              <SectionTitle eyebrow="Před a po" title="AI fotky před a po" subtitle="Posuňte jezdcem a porovnejte skutečnou fotku s výsledkem." align="left" />
             </div>
             <BeforeAfter
               before="2024/08/301557972_10209961384586974_2088446339125162929_n"
@@ -160,9 +164,9 @@ export default function AiFotokoutekPage() {
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <PhotoBand k="2026/06/Template-pro-klienty-fotokoutek-5-9" eyebrow="Co umí" title="Co umí fotokoutek s umělou inteligencí" />
+      <Section className="bg-sand pt-6 sm:pt-10">
         <Container>
-          <SectionTitle title="Co umí fotokoutek s umělou inteligencí" />
           <CardGrid items={abilities} cols={4} />
         </Container>
       </Section>
@@ -191,6 +195,7 @@ export default function AiFotokoutekPage() {
       <ContactSection lead="Napište nám datum a představu o akci a my se postaráme o zbytek." />
 
       <PackageBar />
+      <MobileCtaBar />
     </>
   );
 }

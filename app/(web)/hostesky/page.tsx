@@ -4,12 +4,14 @@ import { Img } from "@/components/Img";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection, Glow } from "@/components/sections";
 import { PackageBar } from "@/components/home/PackagePicker";
+import { MobileCtaBar } from "@/components/home/MobileCtaBar";
 import { ServiceHero, type Fact } from "@/components/service/ServiceHero";
 import { HeroSlides } from "@/components/service/HeroSlides";
 import { WantButton } from "@/components/service/WantButton";
 import { StepsShowcase } from "@/components/service/StepsShowcase";
 import { PriceFaq } from "@/components/service/PriceFaq";
 import { CrossSell } from "@/components/service/CrossSell";
+import { PhotoTiles } from "@/components/PhotoTiles";
 import { Reveal } from "@/components/Reveal";
 import { R2_BASE, site } from "@/lib/site";
 
@@ -60,6 +62,8 @@ export default function HosteskyPage() {
   return (
     <>
       <ServiceHero
+        eyebrow="Hostesky a promotéři"
+        background={{ k: "2024/02/1942", position: "object-[65%_center]" }}
         seed={127}
         title="Hostesky na akce"
         lead="Hostesky, modelky i promotéři, které vybereme společně s vámi."
@@ -79,35 +83,19 @@ export default function HosteskyPage() {
         }
       />
 
-      <Section>
+      <Section className="pb-0 sm:pb-0">
         <Container>
-          <SectionTitle title="Hostesky, modelky a promotéři" subtitle="Personál na konference, veletrhy, firemní akce i luxusní eventy." />
-          <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-            {roles.map((r, i) => (
-              <li key={r.title}>
-                <Reveal from="up" delay={i * 90}>
-                  <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl bg-ink">
-                    <Img
-                      k={r.image}
-                      alt={r.title}
-                      fill
-                      sizes="(min-width: 1024px) 25vw, 50vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />
-                    <h2 className="absolute inset-x-0 bottom-0 p-4 text-xl font-bold tracking-tight text-white sm:p-5 sm:text-2xl">{r.title}</h2>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
+          <SectionTitle eyebrow="Koho zajistíme" title="Hostesky, modelky a promotéři" subtitle="Personál na konference, veletrhy, firemní akce i luxusní eventy." />
         </Container>
+        <div className="mt-14">
+          <PhotoTiles items={roles.map((r) => ({ title: r.title, image: r.image }))} cols={2} headingAs="h2" aspect="aspect-[4/5] sm:aspect-[16/10]" />
+        </div>
       </Section>
 
-      <section className="relative isolate overflow-hidden bg-ink py-16 text-white sm:py-24">
+      <section className="relative isolate overflow-hidden bg-ink py-20 text-white sm:py-28">
         <Glow seed={131} />
         <Container>
-          <SectionTitle title="Jak probíhá výběr hostesek" subtitle="Hostesky vybíráme vždy na míru podle vašich požadavků a představ." light />
+          <SectionTitle eyebrow="Jak to funguje" title="Jak probíhá výběr hostesek" subtitle="Hostesky vybíráme vždy na míru podle vašich požadavků a představ." light />
           <div className="mt-12">
             <StepsShowcase steps={steps} media={stepMedia} mediaAspect="aspect-[4/5]" dark />
           </div>
@@ -128,10 +116,10 @@ export default function HosteskyPage() {
         </Container>
       </section>
 
-      <Section>
+      <Section className="bg-sand">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionTitle title="Hostesky na konference, veletrhy a firemní akce" align="left" />
+            <SectionTitle eyebrow="Z našich akcí" title="Hostesky na konference, veletrhy a firemní akce" align="left" />
             <Button href={site.instagram} external variant="secondary">
               {site.instagramHandle}
             </Button>
@@ -172,6 +160,7 @@ export default function HosteskyPage() {
       <ContactSection lead="Napište nám datum a představu o akci a my se postaráme o zbytek." />
 
       <PackageBar />
+      <MobileCtaBar />
     </>
   );
 }

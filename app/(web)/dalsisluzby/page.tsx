@@ -3,10 +3,12 @@ import { pageMetadata, seo } from "@/lib/seo";
 import { Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection, Partners } from "@/components/sections";
 import { PackageBar } from "@/components/home/PackagePicker";
+import { MobileCtaBar } from "@/components/home/MobileCtaBar";
 import { ServiceHero, type Fact } from "@/components/service/ServiceHero";
 import { HeroSlides } from "@/components/service/HeroSlides";
 import { WantButton } from "@/components/service/WantButton";
-import { CardGrid, type GridItem } from "@/components/service/CardGrid";
+import type { GridItem } from "@/components/service/CardGrid";
+import { PhotoTiles } from "@/components/PhotoTiles";
 import { CrossSell } from "@/components/service/CrossSell";
 
 export const metadata: Metadata = pageMetadata(seo.dalsiSluzby);
@@ -34,6 +36,8 @@ export default function DalsiSluzbyPage() {
   return (
     <>
       <ServiceHero
+        eyebrow="Balíček na míru"
+        background={{ k: "2022/10/IMG_9706-3-scaled", position: "object-[center_30%]" }}
         seed={149}
         title="Další služby na akce"
         lead="DJ, fotograf, výzdoba, stany i taneční vystoupení. Doplníme, co k akci chybí."
@@ -53,14 +57,17 @@ export default function DalsiSluzbyPage() {
         }
       />
 
-      <Section>
+      <Section className="pb-0 sm:pb-0">
         <Container>
           <SectionTitle
+            eyebrow="Co zajistíme"
             title="Vše pro vaši akci od jednoho dodavatele"
             subtitle="Kromě fotokoutků a hostesek zajistíme i tyhle služby. Napište nám a sestavíme balíček na míru."
           />
-          <CardGrid items={services} cols={3} variant="card" headingAs="h2" />
         </Container>
+        <div className="mt-14">
+          <PhotoTiles items={services} cols={3} headingAs="h2" />
+        </div>
       </Section>
 
       <Partners className="bg-paper" />
@@ -70,6 +77,7 @@ export default function DalsiSluzbyPage() {
       <ContactSection lead="Napište nám datum a představu o akci a my se postaráme o zbytek." />
 
       <PackageBar />
+      <MobileCtaBar />
     </>
   );
 }

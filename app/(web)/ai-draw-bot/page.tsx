@@ -4,15 +4,16 @@ import { Img } from "@/components/Img";
 import { Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection, Glow } from "@/components/sections";
 import { PackageBar } from "@/components/home/PackagePicker";
+import { MobileCtaBar } from "@/components/home/MobileCtaBar";
 import { ServiceHero, type Fact } from "@/components/service/ServiceHero";
 import { WantButton } from "@/components/service/WantButton";
-import { LoopVideo } from "@/components/service/LoopVideo";
 import { StepsShowcase } from "@/components/service/StepsShowcase";
 import { TimerRing } from "@/components/service/TimerRing";
 import { CardGrid, type GridItem } from "@/components/service/CardGrid";
 import { ServiceEvents } from "@/components/service/ServiceEvents";
 import { PriceFaq } from "@/components/service/PriceFaq";
 import { CrossSell } from "@/components/service/CrossSell";
+import { PhotoBand } from "@/components/PhotoBand";
 import { Reveal } from "@/components/Reveal";
 
 export const revalidate = 600;
@@ -64,22 +65,20 @@ export default function AiDrawBotPage() {
   return (
     <>
       <ServiceHero
+        eyebrow="Kreslící robot"
+        background={{ k: "video/svc-drawbot-v1-poster", video: "svc-drawbot-v1" }}
         seed={97}
         title="AI Draw Bot – robot, který kreslí portréty"
         lead="Robotická ramena nakreslí portrét hosta přímo na akci do 40 vteřin."
         price="od 19 000 Kč"
         cta={<WantButton service="AI Draw Bot">Chci AI Draw Bota</WantButton>}
         facts={facts}
-        visual={
-          <div className="relative mx-auto aspect-square max-h-[60svh] overflow-hidden rounded-2xl bg-white/5">
-            <LoopVideo name="svc-drawbot-v1" eager className="absolute inset-0 h-full w-full object-cover" />
-          </div>
-        }
       />
 
       <Section>
         <Container>
           <SectionTitle
+            eyebrow="Jak to funguje"
             title="Kreslící robot s umělou inteligencí"
             subtitle="Stačí se vyfotit a sledovat, jak robot s přesností umělce přenáší vaše rysy na papír."
           />
@@ -94,7 +93,7 @@ export default function AiDrawBotPage() {
         <Container className="grid items-center gap-10 md:grid-cols-[auto_1fr] md:gap-16">
           <TimerRing seconds={40} label="Portrét do 40 vteřin" />
           <div className="max-w-xl">
-            <h2 className="text-3xl font-extrabold uppercase tracking-[0.005em] text-balance sm:text-4xl">AI portrét do 40 vteřin</h2>
+            <h2 className="text-3xl font-light tracking-[-0.02em] text-balance sm:text-4xl lg:text-5xl">AI portrét do 40 vteřin</h2>
             <p className="mt-5 text-lg leading-relaxed text-white text-pretty">
               Robot zachytí vaše rysy a bleskově je promění v jedinečný portrét. Rychlé, přesné a fascinující.
             </p>
@@ -102,12 +101,14 @@ export default function AiDrawBotPage() {
         </Container>
       </section>
 
-      <Section>
+      <PhotoBand
+        k="2026/08/WhatsApp-Image-2026-08-20-at-10.21.02"
+        eyebrow="S vaším logem"
+        title="AI portrét na míru s vaším logem"
+        text="Na papír připravíme vaši grafiku nebo logo, aby portrét ladil se značkou i tématem akce."
+      />
+      <Section className="bg-sand pt-6 sm:pt-10">
         <Container>
-          <SectionTitle
-            title="AI portrét na míru s vaším logem"
-            subtitle="Na papír připravíme vaši grafiku nebo logo, aby portrét ladil se značkou i tématem akce."
-          />
           <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
             {portraits.map((p, i) => (
               <li key={p.k} className={i === 0 ? "col-span-2 lg:row-span-2" : ""}>
@@ -128,7 +129,7 @@ export default function AiDrawBotPage() {
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section className="bg-sand pt-0 sm:pt-0">
         <Container>
           <CardGrid items={features} cols={2} variant="card" headingAs="h2" aspect="aspect-[16/10]" />
         </Container>
@@ -159,6 +160,7 @@ export default function AiDrawBotPage() {
       <ContactSection lead="Napište nám datum a představu o akci a my se postaráme o zbytek." />
 
       <PackageBar />
+      <MobileCtaBar />
     </>
   );
 }

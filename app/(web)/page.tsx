@@ -8,6 +8,7 @@ import { ServiceTiles } from "@/components/home/ServiceTiles";
 import { GalleryMosaic } from "@/components/home/GalleryMosaic";
 import { PackageBar } from "@/components/home/PackagePicker";
 import { MobileCtaBar } from "@/components/home/MobileCtaBar";
+import { PhotoBand } from "@/components/PhotoBand";
 import { OccasionTabs, type OccasionGroup } from "@/components/home/OccasionTabs";
 import { Faq, type FaqItem } from "@/components/Faq";
 import { listEvents } from "@/lib/events";
@@ -87,15 +88,17 @@ export default async function HomePage() {
     <>
       <ConversionHero />
 
-      <Section>
+      <Section className="pb-0 sm:pb-0">
         <Container>
           <SectionTitle
             eyebrow="Naše služby"
             title="Služby na akce v jednom balíčku"
             subtitle="Vyberte jednu službu, nebo si poskládejte celý balíček. Při více službách vám připravíme zvýhodněnou nabídku."
           />
-          <ServiceTiles />
         </Container>
+        <div className="mt-14">
+          <ServiceTiles />
+        </div>
       </Section>
 
       <Stats
@@ -113,7 +116,11 @@ export default async function HomePage() {
       <Section className="bg-sand">
         <Container>
           <SectionTitle eyebrow="Galerie" title="Galerie fotek z firemních akcí a svateb" />
+        </Container>
+        <div className="px-1.5 sm:px-3">
           <GalleryMosaic />
+        </div>
+        <Container>
           <div className="mt-10 flex justify-center">
             <Button href="/galerie" className="px-7 py-3.5 text-base">
               Celá galerie
@@ -123,13 +130,20 @@ export default async function HomePage() {
       </Section>
 
       {occasions.length ? (
-        <Section className="relative isolate overflow-hidden bg-ink text-white">
-          <Glow variant="events" />
-          <Container>
-            <SectionTitle eyebrow="Z našich akcí" title="Zábava na firemní akce, konference i svatby" subtitle="Podívejte se, jak to u nás vypadá." light />
-            <OccasionTabs groups={occasions} dark />
-          </Container>
-        </Section>
+        <>
+          <PhotoBand
+            k="2022/10/Partypack-50-kopie"
+            eyebrow="Z našich akcí"
+            title="Zábava na firemní akce, konference i svatby"
+            text="Podívejte se, jak to u nás vypadá."
+          />
+          <Section className="relative isolate overflow-hidden bg-ink text-white">
+            <Glow variant="events" />
+            <Container>
+              <OccasionTabs groups={occasions} dark />
+            </Container>
+          </Section>
+        </>
       ) : null}
 
       <Partners className="bg-paper" />

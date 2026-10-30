@@ -13,6 +13,8 @@ import { CardGrid, type GridItem } from "@/components/service/CardGrid";
 import { ServiceEvents } from "@/components/service/ServiceEvents";
 import { PriceFaq } from "@/components/service/PriceFaq";
 import { CrossSell } from "@/components/service/CrossSell";
+import { PhotoBand } from "@/components/PhotoBand";
+import { PhotoTiles } from "@/components/PhotoTiles";
 
 export const revalidate = 600;
 
@@ -113,9 +115,9 @@ export default function FotokoutekPage() {
         </Container>
       </Section>
 
-      <Section className="bg-sand">
+      <PhotoBand k="2023/07/MiaGebauer-292" eyebrow="V ceně" title="Co je v ceně fotokoutku" text="Obsluha, neomezený tisk, pozadí, rekvizity, online galerie i polep do vašich barev." />
+      <Section className="bg-sand pt-6 sm:pt-10">
         <Container>
-          <SectionTitle eyebrow="V ceně" title="Co je v ceně fotokoutku" />
           <CardGrid items={included} cols={3} />
         </Container>
       </Section>
@@ -127,11 +129,13 @@ export default function FotokoutekPage() {
         </Container>
       </Section>
 
-      <Section className="bg-sand">
+      <Section className="pb-0 sm:pb-0">
         <Container>
           <SectionTitle eyebrow="Příležitosti" title="Fotokoutek na každou příležitost" />
-          <CardGrid items={occasions} cols={3} headingAs="h2" />
         </Container>
+        <div className="mt-14">
+          <PhotoTiles items={occasions} cols={3} headingAs="h2" />
+        </div>
       </Section>
 
       <ServiceEvents seed={23} service="fotokoutek" title="Fotky z akcí s naším fotokoutkem" subtitle="… a kde je ta vaše?" />

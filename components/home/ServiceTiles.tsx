@@ -5,16 +5,16 @@ import { Reveal } from "@/components/Reveal";
 import { SERVICE_CATALOG } from "@/lib/services-catalog";
 
 /**
- * Služby jako velké fotky s názvem uprostřed (klidná verze podle webu, který se klientce líbí).
- * Celá dlaždice vede na podstránku služby, vpravo dole je tlačítko do poptávky.
+ * Služby jako velké fotky od kraje ke kraji s názvem uprostřed (podle webu, který se klientce líbí).
+ * Celá dlaždice vede na podstránku služby, dole jsou tlačítka Více a Do poptávky.
  */
 export function ServiceTiles() {
   return (
-    <ul className="mt-14 grid gap-4 sm:gap-6 md:grid-cols-2">
+    <ul className="grid md:grid-cols-2">
       {SERVICE_CATALOG.map((c, i) => (
         <li key={c.href}>
           <Reveal from="up" delay={(i % 2) * 120}>
-            <article className="group relative isolate aspect-[4/3] overflow-hidden rounded-2xl bg-ink text-white sm:aspect-[3/2]">
+            <article className="group relative isolate aspect-[4/5] overflow-hidden bg-ink text-white sm:aspect-[16/10]">
               <Img
                 k={c.image}
                 alt=""
@@ -23,16 +23,22 @@ export function ServiceTiles() {
                 quality={85}
                 className={`object-cover ${c.position ?? "object-center"} transition-transform duration-700 ease-out group-hover:scale-[1.04]`}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/30 to-ink/15" />
+              <div className="absolute inset-0 bg-ink/45" />
               <Link
                 href={c.href}
-                className="absolute inset-0 flex flex-col items-center justify-center px-6 pb-16 pt-8 text-center outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="absolute inset-0 flex flex-col items-center justify-center px-6 pt-10 pb-24 text-center outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                <h2 className="text-3xl font-light tracking-[-0.02em] text-balance sm:text-4xl">{c.title}</h2>
-                <p className="mt-3 max-w-md text-[15px] font-light leading-relaxed text-white text-pretty">{c.statement}</p>
+                <h2 className="text-4xl font-light tracking-[-0.02em] text-balance sm:text-5xl">{c.title}</h2>
+                <p className="mt-4 max-w-md text-base font-light leading-relaxed text-white text-pretty sm:text-lg">{c.statement}</p>
                 {c.price ? <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em]">{c.price}</p> : null}
               </Link>
-              <div className="absolute right-4 bottom-4 z-10 sm:right-5 sm:bottom-5">
+              <div className="absolute inset-x-0 bottom-6 z-10 flex items-center justify-center gap-3 sm:bottom-8">
+                <Link
+                  href={c.href}
+                  className="inline-flex items-center justify-center rounded-full border-2 border-white/60 px-5 py-2 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
+                >
+                  Více<span className="sr-only">: {c.title}</span>
+                </Link>
                 <PackageToggle service={c.inquiry} label={c.title} tone="dark" />
               </div>
             </article>

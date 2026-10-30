@@ -24,8 +24,8 @@ export function MobileCtaBar() {
   const count = picked.length;
   return (
     <>
-      {/* Místo pro lištu, aby nezakrývala konec stránky. */}
-      <div aria-hidden className="h-[4.5rem] lg:hidden" />
+      {/* Místo pro lištu, aby nezakrývala konec stránky (černé, mezi poptávkou a patičkou). */}
+      <div aria-hidden className="h-[4.5rem] bg-ink lg:hidden" />
       <div
         data-cta-bar
         aria-hidden={formVisible}

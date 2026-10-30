@@ -4,6 +4,7 @@ import { pageMetadata, seo } from "@/lib/seo";
 import { Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection } from "@/components/sections";
 import { PackageBar } from "@/components/home/PackagePicker";
+import { MobileCtaBar } from "@/components/home/MobileCtaBar";
 import { ServiceHero, type Fact } from "@/components/service/ServiceHero";
 import { HeroSlides } from "@/components/service/HeroSlides";
 import { WantButton } from "@/components/service/WantButton";
@@ -79,6 +80,8 @@ export default function FotokoutekPage() {
   return (
     <>
       <ServiceHero
+        eyebrow="Pronájem fotokoutku"
+        background={{ k: "2024/04/Partypack-29", position: "object-[30%_center]" }}
         seed={11}
         title="Fotokoutek a GIFy na vaši akci"
         lead="Designová fotobudka s obsluhou, která tiskne fotky do 7 vteřin."
@@ -100,6 +103,7 @@ export default function FotokoutekPage() {
       <Section>
         <Container>
           <SectionTitle
+            eyebrow="Jak to funguje"
             title="Pronájem fotokoutku s obsluhou"
             subtitle="Fotobudka se dvěma velkými obrazovkami a naše obsluha, která hosty provede celým focením."
           />
@@ -109,23 +113,23 @@ export default function FotokoutekPage() {
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section className="bg-sand">
         <Container>
-          <SectionTitle title="Co je v ceně fotokoutku" />
+          <SectionTitle eyebrow="V ceně" title="Co je v ceně fotokoutku" />
           <CardGrid items={included} cols={3} />
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section>
         <Container>
-          <SectionTitle title="Doplňky k fotokoutku" />
+          <SectionTitle eyebrow="Doplňky" title="Doplňky k fotokoutku" />
           <CardGrid items={extras} cols={2} variant="card" headingAs="h2" aspect="aspect-[16/10]" />
         </Container>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section className="bg-sand">
         <Container>
-          <SectionTitle title="Fotokoutek na každou příležitost" />
+          <SectionTitle eyebrow="Příležitosti" title="Fotokoutek na každou příležitost" />
           <CardGrid items={occasions} cols={3} headingAs="h2" />
         </Container>
       </Section>
@@ -164,6 +168,7 @@ export default function FotokoutekPage() {
       <ContactSection lead="Napište nám datum a představu o akci a my se postaráme o zbytek." />
 
       <PackageBar />
+      <MobileCtaBar />
     </>
   );
 }

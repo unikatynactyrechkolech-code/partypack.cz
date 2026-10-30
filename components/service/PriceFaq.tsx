@@ -38,8 +38,8 @@ export function PriceFaq({
       <Container className="grid items-start gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
         <div className="@container relative isolate overflow-hidden rounded-2xl bg-ink p-7 text-white sm:p-10">
           <Glow seed={seed} />
-          <h2 className="text-2xl leading-tight font-extrabold uppercase tracking-[0.005em] text-balance sm:text-3xl">{heading}</h2>
-          <p className="mt-6 text-5xl leading-none font-extrabold tracking-tight tabular-nums sm:text-6xl">{price}</p>
+          <h2 className="text-3xl leading-tight font-light tracking-[-0.02em] text-balance sm:text-4xl">{heading}</h2>
+          <p className="mt-6 text-5xl leading-none font-light tracking-[-0.02em] tabular-nums sm:text-6xl">{price}</p>
           <p className="mt-9 text-[15px] font-semibold">{includedLabel}</p>
           <ul className="mt-3 flex flex-wrap gap-2">
             {included.map((x) => (
@@ -67,7 +67,7 @@ export function PriceFaq({
           </div>
         </div>
         <div>
-          <h2 className="text-2xl font-extrabold uppercase tracking-[0.005em] text-ink sm:text-3xl">Časté dotazy</h2>
+          <h2 className="text-3xl font-light tracking-[-0.02em] text-ink sm:text-4xl">Časté dotazy</h2>
           <div className="mt-6">
             <Faq items={faq} />
           </div>

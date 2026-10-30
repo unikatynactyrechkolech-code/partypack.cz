@@ -17,6 +17,8 @@
   --color-line: #e4e4e7;
   --color-paper: #ffffff;
   --color-paper-soft: #f6f6f7;
+  /* Teplá světlá plocha pro klidné sekce (návrh podle webu, který se klientce líbí). */
+  --color-sand: #f4f1ec;
   --color-accent: #2f6df6;
   --color-accent-strong: #1f56d6;
 }

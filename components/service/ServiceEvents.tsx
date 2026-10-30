@@ -25,7 +25,7 @@ export async function ServiceEvents({
       <Glow seed={seed} />
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionTitle title={title} subtitle={subtitle} align="left" light />
+          <SectionTitle eyebrow="Galerie" title={title} subtitle={subtitle} align="left" light />
           <Button href={`/galerie?sluzba=${service}`} variant="outline">
             Celá galerie
           </Button>

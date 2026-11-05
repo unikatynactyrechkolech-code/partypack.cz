@@ -5,7 +5,8 @@ import { useEffect, useRef } from "react";
 const fmt = (n: number) => n.toLocaleString("cs-CZ");
 
 /**
- * Číslo, které se při prvním zobrazení „natočí“ od nuly.
+ * Číslo, které se při prvním zobrazení „natočí“ od nuly: ze začátku letí rychle
+ * a před koncem výrazně zpomalí (exponenciální dojezd), poslední čísla doťukají pomalu.
  * Server i návštěvník bez animací vidí rovnou konečnou hodnotu.
  */
 export function CountUp({ value }: { value: number }) {
@@ -24,8 +25,9 @@ export function CountUp({ value }: { value: number }) {
         io.disconnect();
         const start = performance.now();
         const tick = (now: number) => {
-          const p = Math.min(1, (now - start) / 1600);
-          el.textContent = fmt(Math.round(value * (1 - Math.pow(1 - p, 3))));
+          const p = Math.min(1, (now - start) / 2600);
+          const eased = p === 1 ? 1 : 1 - Math.pow(2, -9 * p);
+          el.textContent = fmt(Math.round(value * eased));
           if (p < 1) raf = requestAnimationFrame(tick);
         };
         raf = requestAnimationFrame(tick);

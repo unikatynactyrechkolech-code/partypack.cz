@@ -23,8 +23,8 @@ export function ConversionHero() {
         <Container className="relative flex flex-col items-center justify-center pb-10 pt-24 text-center sm:pb-14 sm:pt-28">
           <div className="mx-auto max-w-3xl lg:max-w-4xl">
             <p className="mb-6 text-xs font-semibold uppercase tracking-[0.22em] [text-shadow:0_1px_3px_rgb(0_0_0/0.5)]">{site.tagline}</p>
-            <h1 className="text-4xl font-light leading-[1.05] tracking-[-0.02em] text-balance [text-shadow:0_0_32px_rgb(0_0_0/0.45),0_2px_10px_rgb(0_0_0/0.5),0_1px_2px_rgb(0_0_0/0.5)] sm:text-6xl lg:text-7xl">
-              Zábava na celou akci od jednoho dodavatele
+            <h1 className="text-[2.1rem] font-light leading-[1.08] tracking-[-0.02em] text-balance [text-shadow:0_0_32px_rgb(0_0_0/0.45),0_2px_10px_rgb(0_0_0/0.5),0_1px_2px_rgb(0_0_0/0.5)] sm:text-5xl lg:text-6xl">
+              Fotokoutek, AI fotokoutek, Partyspin 360° a hostesky na vaši akci
             </h1>
             <div className="mt-10 flex justify-center">
               <Link

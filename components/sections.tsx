@@ -76,11 +76,10 @@ export function ContactSection({
   lead?: ReactNode;
 }) {
   return (
-    <Section id="kontakt" className="relative isolate overflow-hidden bg-ink text-white">
-      <Glow variant="contact" />
+    <Section id="kontakt" className="bg-sand text-ink">
       <Container>
-        <SectionTitle title={title} subtitle={lead} light />
-        <div className="mx-auto mt-12 max-w-3xl rounded-lg bg-white p-6 text-ink sm:p-10">
+        <SectionTitle eyebrow="Poptávka" title={title} subtitle={lead} />
+        <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-ink bg-white p-6 text-ink sm:p-10">
           <ContactForm />
         </div>
       </Container>
@@ -93,6 +92,7 @@ export function Stats({
   image,
   position = "object-center",
   animate = false,
+  tone = "dark",
 }: {
   items: { value: string; label: string }[];
   image?: string;
@@ -100,9 +100,11 @@ export function Stats({
   position?: string;
   /** Čísla se při zobrazení natočí od nuly (hlavní stránka). */
   animate?: boolean;
+  /** light = písková plocha s černými čísly (klidná verze), dark = černý pás, případně s fotkou. */
+  tone?: "dark" | "light";
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-ink text-white">
+    <section className={`relative isolate overflow-hidden ${tone === "light" ? "bg-sand text-ink" : "bg-ink text-white"}`}>
       {image ? (
         <>
           <Img k={image} alt="" fill sizes="100vw" quality={85} className={`object-cover ${position}`} />
@@ -116,7 +118,7 @@ export function Stats({
               <dd className="text-5xl font-light tracking-[-0.02em] sm:text-6xl">
                 {animate && /^\d+$/.test(s.value) ? <CountUp value={Number(s.value)} /> : s.value}
               </dd>
-              <dt className="mt-2 text-sm text-white">{s.label}</dt>
+              <dt className={`mt-2 text-sm ${tone === "light" ? "text-ink" : "text-white"}`}>{s.label}</dt>
             </div>
           ))}
         </dl>

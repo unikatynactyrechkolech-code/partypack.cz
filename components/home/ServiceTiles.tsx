@@ -23,10 +23,10 @@ export function ServiceTiles() {
                 quality={85}
                 className={`object-cover ${c.position ?? "object-center"} transition-transform duration-700 ease-out group-hover:scale-[1.04]`}
               />
-              <div className="absolute inset-0 bg-ink/45" />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/30 to-ink/20" />
               <Link
                 href={c.href}
-                className="absolute inset-0 flex flex-col items-center justify-center px-6 pt-10 pb-24 text-center outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="absolute inset-0 flex flex-col items-center justify-center px-6 pt-10 pb-24 text-center outline-none [text-shadow:0_1px_14px_rgb(0_0_0/0.55)] focus-visible:ring-2 focus-visible:ring-white"
               >
                 <h2 className="text-4xl font-light tracking-[-0.02em] text-balance sm:text-5xl">{c.title}</h2>
                 <p className="mt-4 max-w-md text-base font-light leading-relaxed text-white text-pretty sm:text-lg">{c.statement}</p>

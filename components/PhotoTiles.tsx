@@ -33,8 +33,8 @@ export function PhotoTiles({
               quality={85}
               className={`object-cover ${it.position ?? "object-center"} transition-transform duration-700 ease-out group-hover:scale-[1.04]`}
             />
-            <div className="absolute inset-0 bg-ink/45" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/65 via-ink/30 to-ink/15" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center [text-shadow:0_1px_14px_rgb(0_0_0/0.55)]">
               <H className="text-2xl font-light tracking-[-0.02em] text-balance sm:text-3xl">{it.title}</H>
               {it.text ? <p className="mt-3 max-w-xs text-[15px] font-light leading-relaxed text-white text-pretty">{it.text}</p> : null}
               {it.price ? <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em]">{it.price}</p> : null}

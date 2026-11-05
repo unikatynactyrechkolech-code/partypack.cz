@@ -3,7 +3,7 @@ import Link from "next/link";
 import { pageMetadata, seo } from "@/lib/seo";
 import { ConversionHero } from "@/components/ConversionHero";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
-import { ContactSection, Glow, Partners, Stats } from "@/components/sections";
+import { ContactSection, Partners, Stats } from "@/components/sections";
 import { ServiceTiles } from "@/components/home/ServiceTiles";
 import { GalleryMosaic } from "@/components/home/GalleryMosaic";
 import { PackageBar } from "@/components/home/PackagePicker";
@@ -103,8 +103,7 @@ export default async function HomePage() {
 
       <Stats
         animate
-        image="2024/03/IMG_6079-scaled"
-        position="object-[center_12%]"
+        tone="light"
         items={[
           { value: "10", label: "let na trhu" },
           { value: "3750", label: "úspěšných akcí" },
@@ -137,10 +136,9 @@ export default async function HomePage() {
             title="Zábava na firemní akce, konference i svatby"
             text="Podívejte se, jak to u nás vypadá."
           />
-          <Section className="relative isolate overflow-hidden bg-ink text-white">
-            <Glow variant="events" />
+          <Section>
             <Container>
-              <OccasionTabs groups={occasions} dark />
+              <OccasionTabs groups={occasions} />
             </Container>
           </Section>
         </>

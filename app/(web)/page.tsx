@@ -7,7 +7,6 @@ import { ContactSection, Partners, Stats } from "@/components/sections";
 import { ServiceTiles } from "@/components/home/ServiceTiles";
 import { GalleryMosaic } from "@/components/home/GalleryMosaic";
 import { PackageBar } from "@/components/home/PackagePicker";
-import { MobileCtaBar } from "@/components/home/MobileCtaBar";
 import { PhotoBand } from "@/components/PhotoBand";
 import { OccasionTabs, type OccasionGroup } from "@/components/home/OccasionTabs";
 import { Faq, type FaqItem } from "@/components/Faq";
@@ -171,7 +170,6 @@ export default async function HomePage() {
       <ContactSection lead="Napište nám datum a představu o akci a my se postaráme o zbytek. Zajistíme i dětské dny, koncerty nebo třeba babyshower." />
 
       <PackageBar />
-      <MobileCtaBar />
     </>
   );
 }

@@ -4,7 +4,6 @@ import { Img } from "@/components/Img";
 import { Button, Container, Section, SectionTitle } from "@/components/ui";
 import { ContactSection, Glow } from "@/components/sections";
 import { PackageBar } from "@/components/home/PackagePicker";
-import { MobileCtaBar } from "@/components/home/MobileCtaBar";
 import { ServiceHero, type Fact } from "@/components/service/ServiceHero";
 import { HeroSlides } from "@/components/service/HeroSlides";
 import { WantButton } from "@/components/service/WantButton";
@@ -157,7 +156,6 @@ export default function PartyspinPage() {
       <ContactSection lead="Napište nám datum a představu o akci a my se postaráme o zbytek." />
 
       <PackageBar />
-      <MobileCtaBar />
     </>
   );
 }
